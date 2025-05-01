@@ -1,0 +1,78 @@
+/* Animations for enhanced UI */
+
+/* Wobble Animation */
+@keyframes wobble {
+  0%, 100% { transform: translateX(0%); }
+  15% { transform: translateX(-10%) rotate(-5deg); }
+  30% { transform: translateX(8%) rotate(4deg); }
+  45% { transform: translateX(-6%) rotate(-3deg); }
+  60% { transform: translateX(4%) rotate(2deg); }
+  75% { transform: translateX(-2%) rotate(-1deg); }
+  90% { transform: translateX(1%) rotate(0deg); }
+}
+
+.wobble {
+  animation: wobble 1s ease;
+  transform-origin: center center;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rotate {
+  animation: rotate 5s linear infinite;
+}
+
+/* Slide In From Top */
+@keyframes slideFromTop {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-from-top {
+  animation: slideFromTop 0.5s ease forwards;
+}
+
+/* Slide In From Left */
+@keyframes slideFromLeft {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.slide-from-left {
+  animation: slideFromLeft 0.5s ease forwards;
+}

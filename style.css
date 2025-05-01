@@ -1,74 +1,558 @@
-/* General Body Styles */
-body.light-mode {
-    background-color: #ffffff;
-    color: #000000;
+/* Variables for theme colors */
+:root {
+  --bg-primary: #f8f9fa;
+  --text-primary: #1a1a2e;
+  --text-secondary: #303045;
+  --accent-color: #212529;
+  --accent-light: #212529;
+  --separator-color: #212529;
+  --card-bg: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --footer-bg: rgba(255, 255, 255, 0.8);
+  --bg-primary-rgb: 248, 249, 250;
+  --card-bg-rgb: 255, 255, 255;
+  --text-secondary-rgb: 48, 48, 69;
+  --accent-color-rgb: 33, 37, 41;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #121212;
+  --text-primary: #e6e6e6;
+  --text-secondary: #b0b0b0;
+  --accent-color: #4cc9f0;
+  --accent-light: #72deff;
+  --separator-color: rgba(76, 201, 240, 0.7);
+  --card-bg: #1e1e1e;
+  --nav-bg: rgba(30, 30, 30, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --footer-bg: rgba(30, 30, 30, 0.8);
+  --bg-primary-rgb: 18, 18, 18;
+  --card-bg-rgb: 30, 30, 30;
+  --text-secondary-rgb: 176, 176, 176;
+  --accent-color-rgb: 76, 201, 240;
+}
+
+/* Solar System Canvas Styles */
+#solarSystemCanvas {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: -1 !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  display: block !important;
+}
+
+/* Starfield Canvas Styles */
+#starfield {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: -2 !important;
+  pointer-events: none !important;
+  display: block !important;
+}
+
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.light-mode, .dark-mode {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Ensure all text elements use theme variables */
+.navbar-brand, .nav-link, .hero-title, .description, footer p, .social-link, .webgl-error p {
+  color: var(--text-primary);
+}
+
+.nav-link:hover, .hero-title .highlight, .social-link:hover {
+  color: var(--accent-color);
+}
+
+/* 3D Background Canvas */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#backgroundCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place the canvas behind other content */
+}
+
+/* Navbar Styles */
+.navbar {
+  padding: 1.5rem 2rem;
+  background-color: transparent;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.nav-link {
+  margin: 0 0.5rem;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0.75rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 80%;
+  left: 10%;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Add to style.css */
+
+/* Hamburger Button Styles */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 10px var(--shadow-color);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem var(--accent-light);
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: all 0.4s ease;
+}
+
+/* Animation for open state */
+.navbar-toggler[aria-expanded="true"] .line1 {
+  transform: translateY(7px) rotate(45deg);
+  background-color: var(--accent-color);
+}
+
+.navbar-toggler[aria-expanded="true"] .line2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar-toggler[aria-expanded="true"] .line3 {
+  transform: translateY(-7px) rotate(-45deg);
+  background-color: var(--accent-color);
+}
+
+/* Ripple Effect on Click */
+.navbar-toggler::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: var(--accent-light);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.navbar-toggler:active::before {
+  width: 60px;
+  height: 60px;
+  opacity: 0.3;
+}
+
+/* Glow Effect on Hover */
+.navbar-toggler:hover {
+  box-shadow: 0 0 15px var(--accent-light);
+}
+
+/* Ensure hamburger is visible on smaller screens */
+@media (max-width: 992px) {
+  .hamburger {
+    display: flex;
   }
-  body.dark-mode {
-    background-color: #212529;
-    color: #ffffff;
+}
+/* Main Content Styles */
+.content-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.content-wrapper {
+  max-width: 900px;
+  width: 100%;
+  padding: 3rem;
+  background-color: transparent;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px var(--shadow-color);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.content-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+.separator {
+  width: 100px;
+  height: 4px;
+  background: var(--separator-color);
+  margin: 1.5rem 0;
+  border-radius: 2px;
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+/* Footer Styles */
+footer {
+  background-color: transparent;
+  padding: 1.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-bg);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 2.8rem;
   }
-  
-  /* Navbar Styles */
+  .content-wrapper {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .content-wrapper {
+    padding: 1.5rem;
+  }
   .navbar {
-    transition: background-color 0.3s, color 0.3s;
+    padding: 1rem;
   }
-  .navbar.light-mode {
-    background-color: #f8f9fa;
-  }
-  .navbar.dark-mode {
-    background-color: #212529;
-  }
-  .navbar-brand,
-  .nav-link {
-    transition: color 0.3s;
-  }
-  .navbar.light-mode .navbar-brand,
-  .navbar.light-mode .nav-link {
-    color: #000000;
-  }
-  .navbar.dark-mode .navbar-brand,
-  .navbar.dark-mode .nav-link {
-    color: #ffffff;
-  }
-  .navbar.light-mode .nav-link:hover {
-    color: #3b3b3b;
-  }
-  .navbar.dark-mode .nav-link:hover {
-    color: #cccccc;
-  }
-  
-  /* Theme Toggle */
-  .theme-toggle {
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Black Hole Animation Styles */
+.black-hole-container {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    padding: 10px;
-  }
-  
-  /* Main Content */
-  .monda h1,
-  .monda p {
-    transition: color 0.3s;
-  }
-  body.light-mode .monda h1,
-  body.light-mode .monda p {
-    color: #000000;
-  }
-  body.dark-mode .monda h1,
-  body.dark-mode .monda p {
-    color: #ffffff;
-  }
-  .lead {
-    max-width: 800px;
-  }
-  
-  /* Footer */
-  footer {
-    transition: background-color 0.3s, color 0.3s;
-  }
-  footer.light-mode {
-    background-color: #f8f9fa;
-    color: #000000;
-  }
-  footer.dark-mode {
-    background-color: #212529;
-    color: #ffffff;
-  }
+    perspective: 100px;
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+
+.black-hole-container:hover {
+    transform: scale(1.1);
+}
+
+.black-hole-outer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.black-hole-inner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(75, 0, 130, 0.8), rgba(20, 0, 50, 0.9));
+    box-shadow: 0 0 15px rgba(128, 0, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    animation: rotate 8s linear infinite;
+}
+
+.black-hole-core {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8), inset 0 0 5px rgba(100, 0, 200, 0.5);
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.black-hole-particle {
+    position: absolute;
+    width: 3px; /* Increased width for better visibility */
+    height: 3px; /* Increased height for better visibility */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    transform: 
+        rotate(calc(var(--angle))) 
+        translateX(var(--distance))
+        scale(var(--particle-scale));
+    animation: orbit-particle var(--rotate-speed) linear infinite;
+    filter: blur(0.5px);
+}
+
+@keyframes orbit-particle {
+    0% {
+        transform: 
+            rotate(calc(var(--angle))) 
+            translateX(var(--distance))
+            scale(var(--particle-scale));
+    }
+    100% {
+        transform: 
+            rotate(calc(var(--angle) + 6.28rad)) 
+            translateX(var(--distance))
+            scale(var(--particle-scale));
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0) rotateY(30deg);
+    }
+    100% {
+        transform: rotateZ(360deg) rotateY(30deg);
+    }
+}
+
+/* Theme-specific styles - Improved for better visibility */
+.black-hole-container.dark-theme .black-hole-inner {
+    background: radial-gradient(circle, rgba(128, 0, 255, 0.8), rgba(30, 0, 70, 0.9));
+    box-shadow: 0 0 20px rgba(150, 50, 255, 0.7);
+}
+
+.black-hole-container.light-theme .black-hole-inner {
+    background: radial-gradient(circle, rgba(30, 0, 60, 0.9), rgba(10, 0, 30, 1)); /* Darker for better contrast */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Darker shadow for light mode */
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Add border for better definition in light mode */
+}
+
+.black-hole-container.dark-theme .black-hole-particle {
+    background: rgba(200, 150, 255, 0.9);
+    box-shadow: 0 0 3px rgba(200, 150, 255, 0.8); /* Add glow */
+}
+
+.black-hole-container.light-theme .black-hole-particle {
+    background: rgba(50, 0, 100, 0.9); /* Darker particles for light mode */
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.8); /* Add shadow for visibility */
+    width: 4px; /* Slightly larger in light mode */
+    height: 4px; /* Slightly larger in light mode */
+}
+
+.black-hole-container.active .black-hole-inner {
+    box-shadow: 0 0 25px rgba(150, 50, 255, 0.8);
+}
+
+.black-hole-container.light-theme.active .black-hole-inner {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8); /* Darker active shadow for light mode */
+}
+
+.black-hole-container.paused .black-hole-particle,
+.black-hole-container.paused .black-hole-inner {
+    animation-play-state: paused;
+}
+
+/* Add outer ring for better visibility in light mode */
+.black-hole-container.light-theme::after {
+    content: '';
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+/* Theme-specific styles - Updated to match portfolio theme colors */
+.black-hole-container.dark-theme .black-hole-inner {
+    /* These base styles will be overridden by JS for dynamic theme color matching */
+    background: radial-gradient(circle, var(--accent-light), var(--accent-color));
+    box-shadow: 0 0 20px var(--accent-light);
+}
+
+.black-hole-container.light-theme .black-hole-inner {
+    /* These base styles will be overridden by JS for dynamic theme color matching */
+    background: radial-gradient(circle, var(--accent-color), var(--text-primary));
+    box-shadow: 0 0 20px var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+.black-hole-container.dark-theme .black-hole-particle {
+    background: var(--accent-light);
+    box-shadow: 0 0 3px var(--accent-light);
+}
+
+.black-hole-container.light-theme .black-hole-particle {
+    background: var(--accent-color);
+    box-shadow: 0 0 3px var(--text-primary);
+}
+
+.black-hole-container.dark-theme .black-hole-core {
+    background-color: var(--bg-primary);
+    box-shadow: 0 0 10px var(--accent-color), inset 0 0 5px var(--accent-light);
+}
+
+.black-hole-container.light-theme .black-hole-core {
+    background-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--text-primary), inset 0 0 5px var(--accent-light);
+}
+
+/* Make content containers have no background by default */
+.container, .row, .col-md-10, .col-lg-8 {
+  background-color: transparent !important;
+}

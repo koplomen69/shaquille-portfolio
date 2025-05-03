@@ -1,36 +1,36 @@
 /* Variables for theme colors */
 :root {
-  --bg-primary: #f8f9fa;
-  --text-primary: #1a1a2e;
-  --text-secondary: #303045;
-  --accent-color: #212529;
-  --accent-light: #212529;
-  --separator-color: #212529;
-  --card-bg: #ffffff;
-  --nav-bg: rgba(255, 255, 255, 0.8);
-  --shadow-color: rgba(0, 0, 0, 0.05);
-  --footer-bg: rgba(255, 255, 255, 0.8);
-  --bg-primary-rgb: 248, 249, 250;
-  --card-bg-rgb: 255, 255, 255;
-  --text-secondary-rgb: 48, 48, 69;
-  --accent-color-rgb: 33, 37, 41;
+  --bg-primary: #FBF5F3;
+  --text-primary: #1B2A41;
+  --text-secondary: #324a5f;
+  --accent-color: #0C1821;
+  --accent-light: #1B2A41;
+  --separator-color: #324a5f;
+  --card-bg: #FBF5F3;
+  --nav-bg: rgba(251, 245, 243, 0.8);
+  --shadow-color: rgba(27, 42, 65, 0.05);
+  --footer-bg: rgba(251, 245, 243, 0.8);
+  --bg-primary-rgb: 251, 245, 243;
+  --card-bg-rgb: 251, 245, 243;
+  --text-secondary-rgb: 50, 74, 95;
+  --accent-color-rgb: 12, 24, 33;
 }
 
 [data-theme="dark"] {
-  --bg-primary: #121212;
-  --text-primary: #e6e6e6;
-  --text-secondary: #b0b0b0;
-  --accent-color: #4cc9f0;
-  --accent-light: #72deff;
-  --separator-color: rgba(76, 201, 240, 0.7);
-  --card-bg: #1e1e1e;
-  --nav-bg: rgba(30, 30, 30, 0.8);
+  --bg-primary: #000000;
+  --text-primary: #FBF5F3;
+  --text-secondary: #CCC9DC;
+  --accent-color: #CCC9DC;
+  --accent-light: #FBF5F3;
+  --separator-color: rgba(204, 201, 220, 0.7);
+  --card-bg: #000000;
+  --nav-bg: rgba(0, 0, 0, 0.8);
   --shadow-color: rgba(0, 0, 0, 0.2);
-  --footer-bg: rgba(30, 30, 30, 0.8);
-  --bg-primary-rgb: 18, 18, 18;
-  --card-bg-rgb: 30, 30, 30;
-  --text-secondary-rgb: 176, 176, 176;
-  --accent-color-rgb: 76, 201, 240;
+  --footer-bg: rgba(0, 0, 0, 0.8);
+  --bg-primary-rgb: 12, 24, 33;
+  --card-bg-rgb: 27, 42, 65;
+  --text-secondary-rgb: 204, 201, 220;
+  --accent-color-rgb: 204, 201, 220;
 }
 
 /* Solar System Canvas Styles */
@@ -139,6 +139,66 @@ body {
 .nav-link:hover::after {
   width: 80%;
   left: 10%;
+}
+
+/* Hamburger Menu - Improved Styles */
+#navbarToggleExternalContent {
+  padding-top: 10px; 
+}
+
+@media (max-width: 992px) {
+  /* Style for collapsed navbar */
+  #navbarToggleExternalContent {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    padding: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Fix for menu items in collapsed menu */
+  #navbarToggleExternalContent .navbar-nav {
+    width: 100%;
+  }
+  
+  #navbarToggleExternalContent .nav-item {
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  #navbarToggleExternalContent .nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    margin: 0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Different highlight style for collapsed menu items */
+  #navbarToggleExternalContent .nav-link:hover {
+    background-color: var(--accent-color);
+    color: var(--card-bg) !important;
+    transform: translateX(5px);
+  }
+  
+  /* Remove the underline effect in collapsed menu */
+  #navbarToggleExternalContent .nav-link::after {
+    display: none;
+  }
+  
+  /* Active link style */
+  #navbarToggleExternalContent .nav-link.active {
+    background-color: var(--accent-color);
+    color: var(--card-bg) !important;
+  }
+  
+  /* Add right arrow icon for menu items */
+  #navbarToggleExternalContent .nav-link:hover::before {
+    content: '→';
+    position: absolute;
+    right: 15px;
+    opacity: 0.7;
+  }
 }
 
 /* Theme Toggle Button */
@@ -552,7 +612,212 @@ footer {
     box-shadow: 0 0 10px var(--text-primary), inset 0 0 5px var(--accent-light);
 }
 
+/* Black Hole Animation Styles - Updated with minimalist colors */
+.black-hole-container.dark-theme .black-hole-inner {
+    background: radial-gradient(circle, #f8f9fa, #333333);
+    box-shadow: 0 0 20px #f8f9fa;
+}
+
+.black-hole-container.light-theme .black-hole-inner {
+    background: radial-gradient(circle, #333333, #212529);
+    box-shadow: 0 0 20px #303045;
+    border: 1px solid #212529;
+}
+
+.black-hole-container.dark-theme .black-hole-particle {
+    background: #f8f9fa;
+    box-shadow: 0 0 3px #f8f9fa;
+}
+
+.black-hole-container.light-theme .black-hole-particle {
+    background: #212529;
+    box-shadow: 0 0 3px #333333;
+}
+
+.black-hole-container.dark-theme .black-hole-core {
+    background-color: #212529;
+    box-shadow: 0 0 10px #333333, inset 0 0 5px #f8f9fa;
+}
+
+.black-hole-container.light-theme .black-hole-core {
+    background-color: #212529;
+    box-shadow: 0 0 10px #333333, inset 0 0 5px #303045;
+}
+
+/* Black Hole Animation Styles - Updated with new color palette */
+.black-hole-container.dark-theme .black-hole-inner {
+    background: radial-gradient(circle, #FBF5F3, #CCC9DC);
+    box-shadow: 0 0 20px #FBF5F3;
+}
+
+.black-hole-container.light-theme .black-hole-inner {
+    background: radial-gradient(circle, #1B2A41, #0C1821);
+    box-shadow: 0 0 20px #324a5f;
+    border: 1px solid #0C1821;
+}
+
+.black-hole-container.dark-theme .black-hole-particle {
+    background: #FBF5F3;
+    box-shadow: 0 0 3px #FBF5F3;
+}
+
+.black-hole-container.light-theme .black-hole-particle {
+    background: #0C1821;
+    box-shadow: 0 0 3px #1B2A41;
+}
+
+.black-hole-container.dark-theme .black-hole-core {
+    background-color: #0C1821;
+    box-shadow: 0 0 10px #1B2A41, inset 0 0 5px #FBF5F3;
+}
+
+.black-hole-container.light-theme .black-hole-core {
+    background-color: #0C1821;
+    box-shadow: 0 0 10px #1B2A41, inset 0 0 5px #324a5f;
+}
+
 /* Make content containers have no background by default */
 .container, .row, .col-md-10, .col-lg-8 {
   background-color: transparent !important;
+}
+
+/* CV Download Button Styles */
+.download-cv-container {
+  margin-top: 30px;
+}
+
+.download-cv-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--accent-color), var(--secondary-accent));
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.download-cv-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.download-cv-btn:active {
+  transform: translateY(0);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.btn-icon {
+  position: relative;
+  margin-left: 8px;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.download-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(135deg, var(--secondary-accent), var(--accent-color));
+  z-index: 1;
+  transition: width 0.4s ease;
+}
+
+/* Button states */
+.download-cv-btn.loading .btn-text {
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+.download-cv-btn.loading .btn-icon {
+  animation: bounce 1s infinite;
+}
+
+.download-cv-btn.completed {
+  background: var(--success-color, #4CAF50);
+}
+
+.download-cv-btn.completed .btn-text {
+  opacity: 0;
+}
+
+.download-cv-btn.completed .btn-icon {
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+/* Success Animation */
+.download-success-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 20px 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.download-success-container.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.success-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.success-animation i {
+  font-size: 48px;
+  color: var(--success-color, #4CAF50);
+  margin-bottom: 10px;
+  animation: pulse 1s infinite;
+}
+
+.success-animation span {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.success-particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  transition: transform 0.6s cubic-bezier(0, 0.55, 0.45, 1);
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }

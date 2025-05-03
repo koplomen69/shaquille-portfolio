@@ -18,9 +18,11 @@
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand" href="index.html">Shaquille</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <div class="hamburger-icon">
-            <span></span><span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,6 +42,7 @@
     <!-- Main Content -->
     <main class="container mt-5 pt-5">
       <h1 class="text-center my-5">My Experience</h1>
+      
       <div class="row">
         <!-- Experience Card 1 -->
         <div class="col-md-6 mb-4">
@@ -80,8 +83,15 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-center py-3">
-      <p>&copy; 2024 Shaquille. All rights reserved.</p>
+    <footer class="d-flex justify-content-between align-items-center py-3 container">
+      <div>
+        <p class="m-0">&copy; 2024 Shaquille. All rights reserved.</p>
+      </div>
+      <div>
+        <a href="cv-preview.html" class="btn btn-view-cv">
+          <i class="bi bi-file-earmark-pdf me-2"></i>View CV
+        </a>
+      </div>
     </footer>
 
     <!-- Scripts -->
@@ -94,9 +104,18 @@
       // Handle hamburger menu toggle animation
       document.addEventListener('DOMContentLoaded', function() {
         const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        
         navbarToggler.addEventListener('click', function() {
-          // Force a reflow to make sure animations work properly
-          this.offsetHeight;
+          navbarCollapse.classList.toggle('show');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!navbarToggler.contains(event.target) && !navbarCollapse.contains(event.target)) {
+            navbarCollapse.classList.remove('show');
+            navbarToggler.setAttribute('aria-expanded', 'false');
+          }
         });
       });
     </script>

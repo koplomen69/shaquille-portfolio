@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underwater Coral Reef Simulation</title>
+    <link rel="stylesheet" href="css/underwater.css">
+</head>
+<body>
+    <div id="loading">Loading underwater world...</div>
+    <div id="debug-panel"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r146/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/shaders/CopyShader.js"></script>
+    <script>
+        // Console override to show errors in the debug panel
+        const debugPanel = document.getElementById('debug-panel');
+        if (debugPanel) {
+            const originalConsoleError = console.error;
+            console.error = function() {
+                originalConsoleError.apply(console, arguments);
+                const message = Array.from(arguments).join(' ');
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error';
+                errorDiv.textContent = "ERROR: " + message;
+                debugPanel.appendChild(errorDiv);
+            };
+            
+            const originalConsoleLog = console.log;
+            console.log = function() {
+                originalConsoleLog.apply(console, arguments);
+                const message = Array.from(arguments).join(' ');
+                const logDiv = document.createElement('div');
+                logDiv.className = 'log';
+                logDiv.textContent = message;
+                debugPanel.appendChild(logDiv);
+            };
+        }
+    </script>
+    <script src="js/underwater.js"></script>
+</body>
+</html>

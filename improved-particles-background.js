@@ -22,9 +22,10 @@ const nodeSize = 0.08;
 const networkSize = 8;
 
 // Colors
-const lightModeColor = 0x212529;
-const darkModeColor = 0x4cc9f0;
-const darkModeHighlightColor = 0x72deff; // Brighter color for dark mode particles
+const lightModeColor = 0x1B2A41; // Dark navy for light mode
+const darkModeColor = 0xFBF5F3;  // Off-white for dark mode
+const darkModeHighlightColor = 0xCCC9DC; // Light lavender for dark mode highlights
+const packetColor = 0x324a5f; // Slate blue for packets
 
 // Create nodes
 const nodes = [];
@@ -34,6 +35,46 @@ const nodeMaterial = new THREE.MeshBasicMaterial({
   opacity: 0.8,
 });
 const nodeGeometry = new THREE.SphereGeometry(nodeSize, 16, 16);
+
+// Create glow effect for nodes
+function createGlowMaterial(color, size = 1.5) {
+  return new THREE.PointsMaterial({
+    color: color,
+    transparent: true,
+    opacity: 0.5,
+    size: nodeSize * size,
+    map: createGlowTexture(),
+    blending: THREE.AdditiveBlending
+  });
+}
+
+// Create a glow texture
+function createGlowTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 64;
+  canvas.height = 64;
+  const ctx = canvas.getContext('2d');
+  
+  const gradient = ctx.createRadialGradient(
+    canvas.width / 2,
+    canvas.height / 2,
+    0,
+    canvas.width / 2,
+    canvas.height / 2,
+    canvas.width / 2
+  );
+  
+  gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+  gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.5)');
+  gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  const texture = new THREE.Texture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}
 
 for (let i = 0; i < nodeCount; i++) {
   const angle1 = Math.random() * Math.PI * 2;
@@ -54,15 +95,53 @@ for (let i = 0; i < nodeCount; i++) {
   node.pulseOffset = Math.random() * Math.PI * 2;
   group.add(node);
   nodes.push(node);
+  
+  // Add glow effect for each node
+  const glow = new THREE.Points(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0)]), createGlowMaterial(lightModeColor));
+  node.add(glow);
+  node.glow = glow;
 }
 
-// Create connections
+// Create connections and data packets
 const connections = [];
 const lineMaterial = new THREE.LineBasicMaterial({
   color: lightModeColor,
   transparent: true,
   opacity: 0.2,
 });
+
+// Data packet system
+const dataPackets = [];
+const packetGeometry = new THREE.SphereGeometry(nodeSize * 0.4, 8, 8);
+const packetMaterial = new THREE.MeshBasicMaterial({
+  color: packetColor,
+  transparent: true,
+  opacity: 0.8,
+});
+
+// Create a new data packet along a connection
+function createDataPacket(connection) {
+  const packet = new THREE.Mesh(packetGeometry, packetMaterial.clone());
+  packet.connection = connection;
+  packet.progress = 0; // 0 = start node, 1 = end node
+  packet.speed = 0.005 + Math.random() * 0.01; // Random speed
+  packet.active = true;
+  
+  // Position at the start node
+  packet.position.copy(connection.nodeA.position);
+  
+  // Add glow effect for packet
+  const glow = new THREE.Points(
+    new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0)]),
+    createGlowMaterial(packetColor, 1.2)
+  );
+  packet.add(glow);
+  
+  group.add(packet);
+  dataPackets.push(packet);
+  
+  return packet;
+}
 
 for (let i = 0; i < connectionCount; i++) {
   const geometry = new THREE.BufferGeometry();
@@ -78,8 +157,14 @@ for (let i = 0; i < connectionCount; i++) {
   line.baseDistance = nodeA.position.distanceTo(nodeB.position);
   line.nodeA = nodeA;
   line.nodeB = nodeB;
+  line.lastPacketTime = 0; // Time tracker for packet generation
   group.add(line);
   connections.push(line);
+  
+  // Create initial data packets on some connections
+  if (Math.random() < 0.3) {
+    createDataPacket(line);
+  }
 }
 
 // Create particle cloud
@@ -133,6 +218,7 @@ interactiveCube.userData.isInteractive = true;
 interactiveCube.userData.originalScale = new THREE.Vector3(1, 1, 1);
 interactiveCube.userData.isExpanded = false;
 interactiveCube.userData.rotationSpeed = { x: 0.005, y: 0.005, z: 0 };
+interactiveCube.scale.set(0.01, 0.01, 0.01); // Start scaled down
 group.add(interactiveCube);
 
 // Create wireframe outline for the cube
@@ -189,6 +275,7 @@ interactivePyramid.userData.isInteractive = true;
 interactivePyramid.userData.originalScale = new THREE.Vector3(1, 1, 1);
 interactivePyramid.userData.isExpanded = false;
 interactivePyramid.userData.rotationSpeed = { x: 0.005, y: 0.005, z: 0 };
+interactivePyramid.scale.set(0.01, 0.01, 0.01); // Start scaled down
 group.add(interactivePyramid);
 
 // Create wireframe outline for the pyramid
@@ -243,6 +330,7 @@ interactivePolyHex.userData.isInteractive = true;
 interactivePolyHex.userData.originalScale = new THREE.Vector3(1, 1, 1);
 interactivePolyHex.userData.isExpanded = false;
 interactivePolyHex.userData.rotationSpeed = { x: 0.005, y: 0.005, z: 0 };
+interactivePolyHex.scale.set(0.01, 0.01, 0.01); // Start scaled down
 group.add(interactivePolyHex);
 
 // Create wireframe outline for the polyhedral hexagon
@@ -429,50 +517,105 @@ let scrollY = 0;
 
 // Update colors based on theme
 function updateColors(isDarkMode) {
-  const newColor = isDarkMode ? darkModeColor : lightModeColor;
-  const particleColor = isDarkMode ? darkModeHighlightColor : lightModeColor; // Brighter for dark mode
-  
-  nodes.forEach(node => {
-    node.material.color.set(newColor);
-    // Increase opacity in dark mode for better visibility
-    node.material.opacity = isDarkMode ? 0.9 : 0.8;
-  });
-  
-  connections.forEach(connection => {
-    connection.material.color.set(newColor);
-    // Increase connection opacity in dark mode
-    connection.material.opacity = isDarkMode ? 0.35 : 0.2;
-  });
-  
-  // Set particles to brighter color in dark mode
-  particleSystem.material.color.set(particleColor);
-  // Make particles more visible in dark mode
-  particleSystem.material.opacity = isDarkMode ? 0.6 : 0.3;
-  particleSystem.material.size = isDarkMode ? 0.15 : 0.1;
-  
-  // Update the cube frame and particles
-  wireframeMaterial.color.set(newColor);
-  wireframeMaterial.opacity = isDarkMode ? 0.6 : 0.3;
-  
-  cubeParticlesMaterial.color.set(particleColor);
-  cubeParticlesMaterial.opacity = isDarkMode ? 0.8 : 0.5;
-  cubeParticlesMaterial.size = isDarkMode ? 0.07 : 0.05;
-  
-  // Update pyramid wireframe and particles
-  pyramidWireframeMaterial.color.set(newColor);
-  pyramidWireframeMaterial.opacity = isDarkMode ? 0.6 : 0.3;
-  
-  pyramidParticlesMaterial.color.set(particleColor);
-  pyramidParticlesMaterial.opacity = isDarkMode ? 0.8 : 0.5;
-  pyramidParticlesMaterial.size = isDarkMode ? 0.07 : 0.05;
-  
-  // Update polyHex wireframe and particles
-  polyHexWireframeMaterial.color.set(newColor);
-  polyHexWireframeMaterial.opacity = isDarkMode ? 0.6 : 0.3;
-  
-  polyHexParticlesMaterial.color.set(particleColor);
-  polyHexParticlesMaterial.opacity = isDarkMode ? 0.8 : 0.5;
-  polyHexParticlesMaterial.size = isDarkMode ? 0.07 : 0.05;
+    const newColor = isDarkMode ? darkModeColor : lightModeColor;
+    const particleColor = isDarkMode ? darkModeHighlightColor : 0x324a5f; // Slate blue in light mode
+    const newPacketColor = isDarkMode ? 0xCCC9DC : 0x324a5f; // Lavender in dark, slate blue in light
+    
+    nodes.forEach(node => {
+        node.material.color.set(newColor);
+        // Increase opacity in dark mode for better visibility
+        node.material.opacity = isDarkMode ? 0.9 : 0.8;
+        
+        // Update node glow
+        if (node.glow) {
+            node.glow.material.color.set(newColor);
+            node.glow.material.opacity = isDarkMode ? 0.8 : 0.5;
+            node.glow.material.size = isDarkMode ? nodeSize * 2 : nodeSize * 1.5;
+        }
+    });
+    
+    connections.forEach(connection => {
+        connection.material.color.set(newColor);
+        // Increase connection opacity in dark mode
+        connection.material.opacity = isDarkMode ? 0.35 : 0.2;
+    });
+    
+    // Update data packets
+    dataPackets.forEach(packet => {
+        if (packet.active) {
+            packet.material.color.set(newPacketColor);
+            packet.material.opacity = isDarkMode ? 0.9 : 0.7;
+            
+            // Update packet glow
+            if (packet.children.length > 0) {
+                packet.children[0].material.color.set(newPacketColor);
+                packet.children[0].material.opacity = isDarkMode ? 0.8 : 0.5;
+            }
+        }
+    });
+    
+    // Set particles to brighter color in dark mode
+    particleSystem.material.color.set(particleColor);
+    // Make particles more visible in dark mode
+    particleSystem.material.opacity = isDarkMode ? 0.6 : 0.3;
+    particleSystem.material.size = isDarkMode ? 0.15 : 0.1;
+    
+    // Update cube materials with new colors
+    for (let i = 0; i < cubeMaterials.length; i++) {
+        if (isDarkMode) {
+            cubeMaterials[i].color.set(0xFBF5F3); // Off-white in dark mode
+        } else {
+            if (i % 2 === 0) {
+                cubeMaterials[i].color.set(0x0C1821); // Very dark blue in light mode
+            } else {
+                cubeMaterials[i].color.set(0x1B2A41); // Dark navy in light mode
+            }
+        }
+    }
+    
+    // Update the cube frame and particles
+    wireframeMaterial.color.set(newColor);
+    wireframeMaterial.opacity = isDarkMode ? 0.6 : 0.3;
+    
+    cubeParticlesMaterial.color.set(particleColor);
+    cubeParticlesMaterial.opacity = isDarkMode ? 0.8 : 0.5;
+    cubeParticlesMaterial.size = isDarkMode ? 0.07 : 0.05;
+    
+    // Update pyramid materials
+    for (let i = 0; i < pyramidMaterials.length; i++) {
+        if (isDarkMode) {
+            pyramidMaterials[i].color.set(0xCCC9DC); // Light lavender in dark mode
+        } else {
+            if (i % 2 === 0) {
+                pyramidMaterials[i].color.set(0x0C1821); // Very dark blue in light mode
+            } else {
+                pyramidMaterials[i].color.set(0x1B2A41); // Dark navy in light mode
+            }
+        }
+    }
+    
+    // Update pyramid wireframe and particles
+    pyramidWireframeMaterial.color.set(newColor);
+    pyramidWireframeMaterial.opacity = isDarkMode ? 0.6 : 0.3;
+    
+    pyramidParticlesMaterial.color.set(particleColor);
+    pyramidParticlesMaterial.opacity = isDarkMode ? 0.8 : 0.5;
+    pyramidParticlesMaterial.size = isDarkMode ? 0.07 : 0.05;
+    
+    // Update polyHex color
+    if (isDarkMode) {
+        polyHexMaterial.color.set(0xFBF5F3); // Off-white in dark mode
+    } else {
+        polyHexMaterial.color.set(0x1B2A41); // Dark navy in light mode
+    }
+    
+    // Update polyHex wireframe and particles
+    polyHexWireframeMaterial.color.set(newColor);
+    polyHexWireframeMaterial.opacity = isDarkMode ? 0.6 : 0.3;
+    
+    polyHexParticlesMaterial.color.set(particleColor);
+    polyHexParticlesMaterial.opacity = isDarkMode ? 0.8 : 0.5;
+    polyHexParticlesMaterial.size = isDarkMode ? 0.07 : 0.05;
 }
 
 // Initialize theme
@@ -502,6 +645,11 @@ window.addEventListener('scroll', () => {
   scrollY = window.scrollY;
 });
 
+// Flag for initial animation
+let initialAnimationComplete = false;
+const initialScaleTarget = new THREE.Vector3(1, 1, 1);
+const animationLerpFactor = 0.04; // Speed of the initial scaling animation
+
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
@@ -512,109 +660,116 @@ function animate() {
   group.position.y = -scrollY * 0.005;
   particleSystem.position.y = -scrollY * 0.002;
   const time = Date.now() * 0.001;
-  
-  // Check for hover over the cube
+  const currentTime = Date.now();
+
+  // Initial scaling animation for interactive objects
+  if (!initialAnimationComplete) {
+    interactiveCube.scale.lerp(initialScaleTarget, animationLerpFactor);
+    interactivePyramid.scale.lerp(initialScaleTarget, animationLerpFactor);
+    interactivePolyHex.scale.lerp(initialScaleTarget, animationLerpFactor);
+
+    // Check if animation is close enough to complete
+    if (interactiveCube.scale.distanceTo(initialScaleTarget) < 0.01) {
+      interactiveCube.scale.copy(initialScaleTarget); // Snap to final scale
+      interactivePyramid.scale.copy(initialScaleTarget);
+      interactivePolyHex.scale.copy(initialScaleTarget);
+      initialAnimationComplete = true;
+    }
+  }
+
+  // Check for hover over the cube (only after initial animation)
   raycaster.setFromCamera(mouse, camera);
-  const intersects = raycaster.intersectObjects([interactiveCube, interactivePyramid, interactivePolyHex], true); // Exclude older hexagon
-  
-  if (intersects.length > 0 && !isDragging) {
+  const intersects = raycaster.intersectObjects([interactiveCube, interactivePyramid, interactivePolyHex], true);
+
+  let isHovering = false;
+  if (initialAnimationComplete && intersects.length > 0 && !isDragging) {
+    isHovering = true;
     document.body.style.cursor = 'pointer';
-    // Make the cube "breathe" when hovered
+    const hoveredObject = intersects[0].object.parent; // Get the main object (Mesh)
+
+    // Make the object "breathe" when hovered
     const pulseScale = 1.1 + Math.sin(time * 3) * 0.05;
-    intersects[0].object.scale.set(pulseScale, pulseScale, pulseScale);
-    
-    // Spin cube particles faster on hover
-    if (intersects[0].object === interactiveCube) {
+    hoveredObject.scale.set(pulseScale, pulseScale, pulseScale);
+
+    // Spin particles faster on hover
+    if (hoveredObject === interactiveCube) {
       cubeParticles.rotation.y += 0.01;
       cubeParticles.rotation.x += 0.01;
-    } else if (intersects[0].object === interactivePyramid) {
+    } else if (hoveredObject === interactivePyramid) {
       pyramidParticles.rotation.y += 0.01;
       pyramidParticles.rotation.x += 0.01;
-    } else if (intersects[0].object === interactivePolyHex) {
+    } else if (hoveredObject === interactivePolyHex) {
       polyHexParticles.rotation.y += 0.01;
       polyHexParticles.rotation.x += 0.01;
     }
   } else if (!isDragging) {
     document.body.style.cursor = 'default';
-    
-    // Handle cube animation based on expanded state
-    if (interactiveCube.userData.isExpanded) {
-      interactiveCube.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.05);
-      cubeWireframe.material.opacity = 0.5;
-      
-      // Rotate expanded cube slowly
-      interactiveCube.rotation.x += interactiveCube.userData.rotationSpeed.x * 0.5;
-      interactiveCube.rotation.y += interactiveCube.userData.rotationSpeed.y * 0.5;
-    } else {
-      interactiveCube.scale.lerp(interactiveCube.userData.originalScale, 0.05);
-      cubeWireframe.material.opacity = 0.3;
-      
-      // Rotate normal cube
-      interactiveCube.rotation.x += interactiveCube.userData.rotationSpeed.x;
-      interactiveCube.rotation.y += interactiveCube.userData.rotationSpeed.y;
-    }
-    
-    // Handle pyramid animation based on expanded state
-    if (interactivePyramid.userData.isExpanded) {
-      interactivePyramid.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.05);
-      pyramidWireframe.material.opacity = 0.5;
-      
-      // Rotate expanded pyramid slowly
-      interactivePyramid.rotation.x += interactivePyramid.userData.rotationSpeed.x * 0.5;
-      interactivePyramid.rotation.y += interactivePyramid.userData.rotationSpeed.y * 0.5;
-    } else {
-      interactivePyramid.scale.lerp(interactivePyramid.userData.originalScale, 0.05);
-      pyramidWireframe.material.opacity = 0.3;
-      
-      // Rotate normal pyramid
-      interactivePyramid.rotation.x += interactivePyramid.userData.rotationSpeed.x;
-      interactivePyramid.rotation.y += interactivePyramid.userData.rotationSpeed.y;
-    }
-    
-    // Handle polyhedral hexagon animation based on expanded state
-    if (interactivePolyHex.userData.isExpanded) {
-      interactivePolyHex.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.05);
-      polyHexWireframe.material.opacity = 0.5;
-
-      // Rotate expanded polyhedral hexagon slowly
-      interactivePolyHex.rotation.x += interactivePolyHex.userData.rotationSpeed.x * 0.5;
-      interactivePolyHex.rotation.y += interactivePolyHex.userData.rotationSpeed.y * 0.5;
-    } else {
-      interactivePolyHex.scale.lerp(interactivePolyHex.userData.originalScale, 0.05);
-      polyHexWireframe.material.opacity = 0.3;
-
-      // Rotate normal polyhedral hexagon
-      interactivePolyHex.rotation.x += interactivePolyHex.userData.rotationSpeed.x;
-      interactivePolyHex.rotation.y += interactivePolyHex.userData.rotationSpeed.y;
-    }
-
-    // Normal speed for cube particles
-    cubeParticles.rotation.y += 0.002;
-    cubeParticles.rotation.x += 0.001;
-    
-    // Normal speed for pyramid particles
-    pyramidParticles.rotation.y += 0.002;
-    pyramidParticles.rotation.x += 0.001;
-
-    // Normal speed for polyhedral hexagon particles
-    polyHexParticles.rotation.y += 0.002;
-    polyHexParticles.rotation.x += 0.001;
   }
-  
-  // Rotate cube particles
-  cubeParticles.rotation.y += 0.002;
-  
-  // Rotate pyramid particles
-  pyramidParticles.rotation.y += 0.002;
 
-  // Rotate polyhedral hexagon particles
-  polyHexParticles.rotation.y += 0.002;
+  // Handle object animations (only if not hovering and initial animation is done)
+  if (initialAnimationComplete && !isHovering && !isDragging) {
+      // Handle cube animation based on expanded state
+      if (interactiveCube.userData.isExpanded) {
+        interactiveCube.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.05);
+        cubeWireframe.material.opacity = 0.5;
+        interactiveCube.rotation.x += interactiveCube.userData.rotationSpeed.x * 0.5;
+        interactiveCube.rotation.y += interactiveCube.userData.rotationSpeed.y * 0.5;
+      } else {
+        interactiveCube.scale.lerp(interactiveCube.userData.originalScale, 0.05);
+        cubeWireframe.material.opacity = 0.3;
+        interactiveCube.rotation.x += interactiveCube.userData.rotationSpeed.x;
+        interactiveCube.rotation.y += interactiveCube.userData.rotationSpeed.y;
+      }
 
+      // Handle pyramid animation based on expanded state
+      if (interactivePyramid.userData.isExpanded) {
+        interactivePyramid.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.05);
+        pyramidWireframe.material.opacity = 0.5;
+        interactivePyramid.rotation.x += interactivePyramid.userData.rotationSpeed.x * 0.5;
+        interactivePyramid.rotation.y += interactivePyramid.userData.rotationSpeed.y * 0.5;
+      } else {
+        interactivePyramid.scale.lerp(interactivePyramid.userData.originalScale, 0.05);
+        pyramidWireframe.material.opacity = 0.3;
+        interactivePyramid.rotation.x += interactivePyramid.userData.rotationSpeed.x;
+        interactivePyramid.rotation.y += interactivePyramid.userData.rotationSpeed.y;
+      }
+
+      // Handle polyhedral hexagon animation based on expanded state
+      if (interactivePolyHex.userData.isExpanded) {
+        interactivePolyHex.scale.lerp(new THREE.Vector3(1.5, 1.5, 1.5), 0.05);
+        polyHexWireframe.material.opacity = 0.5;
+        interactivePolyHex.rotation.x += interactivePolyHex.userData.rotationSpeed.x * 0.5;
+        interactivePolyHex.rotation.y += interactivePolyHex.userData.rotationSpeed.y * 0.5;
+      } else {
+        interactivePolyHex.scale.lerp(interactivePolyHex.userData.originalScale, 0.05);
+        polyHexWireframe.material.opacity = 0.3;
+        interactivePolyHex.rotation.x += interactivePolyHex.userData.rotationSpeed.x;
+        interactivePolyHex.rotation.y += interactivePolyHex.userData.rotationSpeed.y;
+      }
+  }
+
+  // Rotate particles (only if not hovering or dragging)
+  if (!isHovering && !isDragging) {
+      cubeParticles.rotation.y += 0.002;
+      cubeParticles.rotation.x += 0.001;
+      pyramidParticles.rotation.y += 0.002;
+      pyramidParticles.rotation.x += 0.001;
+      polyHexParticles.rotation.y += 0.002;
+      polyHexParticles.rotation.x += 0.001;
+  }
+
+  // Update nodes with glowing effect
   nodes.forEach(node => {
     node.position.add(node.velocity);
     const pulse = Math.sin(time * node.pulseSpeed + node.pulseOffset) * 0.2 + 0.8;
     node.scale.set(pulse, pulse, pulse);
     node.material.opacity = 0.5 + pulse * 0.2;
+    
+    // Update glow effect
+    if (node.glow) {
+      node.glow.material.opacity = 0.3 + pulse * 0.3;
+    }
+    
     const distance = node.position.length();
     if (distance > networkSize * 1.1) {
       node.velocity.addScaledVector(node.position, -0.001);
@@ -629,12 +784,104 @@ function animate() {
     }
   });
 
-  connections.forEach(line => {
-    const points = [line.nodeA.position.clone(), line.nodeB.position.clone()];
-    line.geometry.setFromPoints(points);
-    const currentDistance = line.nodeA.position.distanceTo(line.nodeB.position);
-    const ratio = Math.min(line.baseDistance / currentDistance, 2.0);
-    line.material.opacity = 0.05 + ratio * 0.15;
+  // Update connections with pulsing effect
+  connections.forEach(connection => {
+    const points = [connection.nodeA.position.clone(), connection.nodeB.position.clone()];
+    connection.geometry.setFromPoints(points);
+    const currentDistance = connection.nodeA.position.distanceTo(connection.nodeB.position);
+    const ratio = Math.min(connection.baseDistance / currentDistance, 2.0);
+    
+    // Add pulsing effect to connections
+    const pulseFactor = 0.05 + Math.sin(time * 2 + connection.nodeA.pulseOffset) * 0.05;
+    connection.material.opacity = pulseFactor + ratio * 0.15;
+    
+    // Generate new data packets occasionally
+    if (currentTime - connection.lastPacketTime > 3000 + Math.random() * 7000) { // Random interval between 3-10 seconds
+      if (Math.random() < 0.4) { // 40% chance to generate a packet
+        createDataPacket(connection);
+        connection.lastPacketTime = currentTime;
+      }
+    }
+  });
+
+  // Update data packets
+  dataPackets.forEach((packet, index) => {
+    if (packet.active) {
+      // Move packet along the connection
+      packet.progress += packet.speed;
+      
+      if (packet.progress >= 1) {
+        // Reached destination node
+        packet.active = false;
+        
+        // Create a small burst effect when packet reaches a node
+        const destNode = packet.connection.nodeB;
+        destNode.scale.set(1.3, 1.3, 1.3); // Make node larger momentarily
+        setTimeout(() => {
+          if (destNode) destNode.scale.set(1, 1, 1);
+        }, 300);
+        
+        // Increase node glow temporarily
+        if (destNode.glow) {
+          const originalSize = destNode.glow.material.size;
+          destNode.glow.material.size = originalSize * 1.5;
+          destNode.glow.material.opacity = 0.9;
+          setTimeout(() => {
+            if (destNode.glow) {
+              destNode.glow.material.size = originalSize;
+              destNode.glow.material.opacity = 0.5;
+            }
+          }, 300);
+        }
+        
+        // Remove the packet after a short delay
+        setTimeout(() => {
+          if (packet && packet.parent) {
+            group.remove(packet);
+            // Remove from array
+            const idx = dataPackets.indexOf(packet);
+            if (idx > -1) dataPackets.splice(idx, 1);
+          }
+        }, 500);
+        
+        // 30% chance to create a new packet from the destination node
+        if (Math.random() < 0.3) {
+          // Find a random connection from the destination node
+          const possibleConnections = connections.filter(conn => 
+            conn.nodeA === packet.connection.nodeB || conn.nodeB === packet.connection.nodeB
+          );
+          
+          if (possibleConnections.length > 0) {
+            const newConnection = possibleConnections[Math.floor(Math.random() * possibleConnections.length)];
+            // If the connection is in the wrong direction, we need to create a packet going the other way
+            if (newConnection.nodeB === packet.connection.nodeB) {
+              const reversedConn = {
+                nodeA: newConnection.nodeB,
+                nodeB: newConnection.nodeA,
+                baseDistance: newConnection.baseDistance
+              };
+              createDataPacket(reversedConn);
+            } else {
+              createDataPacket(newConnection);
+            }
+          }
+        }
+      } else {
+        // Update position along the path
+        const startPos = packet.connection.nodeA.position;
+        const endPos = packet.connection.nodeB.position;
+        packet.position.lerpVectors(startPos, endPos, packet.progress);
+        
+        // Pulse the packet
+        const pulseFactor = 0.8 + Math.sin(time * 10) * 0.2;
+        packet.scale.set(pulseFactor, pulseFactor, pulseFactor);
+        
+        // Update packet glow
+        if (packet.children.length > 0) {
+          packet.children[0].material.opacity = 0.5 + Math.sin(time * 10) * 0.3;
+        }
+      }
+    }
   });
 
   particleSystem.rotation.y += 0.0002;

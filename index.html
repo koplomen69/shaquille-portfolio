@@ -55,6 +55,19 @@
       [data-theme="dark"] .interaction-hint {
         background: rgba(255, 255, 255, 0.2);
       }
+
+      /* Typing animation cursor */
+      .typing-cursor::after {
+        content: '|';
+        animation: blink 1s step-end infinite;
+        margin-left: 2px; /* Adjust spacing */
+        color: var(--accent-color); /* Use accent color for cursor */
+      }
+
+      @keyframes blink {
+        from, to { opacity: 1; }
+        50% { opacity: 0; }
+      }
     </style>
   </head>
   <body>
@@ -117,12 +130,18 @@
       <div class="content-wrapper">
         <h1 class="hero-title"><span class="highlight">Hi,</span> Shaquille Here</h1>
         <div class="separator"></div>
-        <p class="description">
+        <!-- Add id="descriptionText" -->
+        <p class="description" id="descriptionText">
           IT student majoring in Information Systems. Skilled in process and
           system management in IT companies, experienced in multiple
           programming languages, and passionate about the latest technology.
           Quick to learn and implement new skills into work.
         </p>
+        
+        <!-- Add interaction hint for data packets -->
+        <div class="interaction-hint">
+          Watch the data packets travel through the network <i class="bi bi-arrow-right"></i>
+        </div>
       </div>
     </main>
 
@@ -166,6 +185,7 @@
     <script src="improved-particles-background.js"></script>
     <script src="tiny-animation.js"></script>
     <script src="black-hole-animation.js"></script>
+    <script src="cv-download.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         // Check WebGL support
@@ -257,6 +277,30 @@
           setTimeout(() => {
             contentWrapper.classList.add("visible");
           }, 200);
+        }
+
+        // Typing animation for description
+        const descriptionElement = document.getElementById("descriptionText");
+        if (descriptionElement) {
+          const originalText = descriptionElement.textContent.trim();
+          descriptionElement.textContent = ''; // Clear initial text
+          descriptionElement.style.visibility = 'visible'; // Make sure it's visible if hidden by CSS initially
+          let charIndex = 0;
+          const typingSpeed = 30; // Milliseconds per character
+
+          function typeCharacter() {
+            if (charIndex < originalText.length) {
+              descriptionElement.textContent += originalText.charAt(charIndex);
+              descriptionElement.classList.add('typing-cursor'); // Add cursor during typing
+              charIndex++;
+              setTimeout(typeCharacter, typingSpeed);
+            } else {
+              descriptionElement.classList.remove('typing-cursor'); // Remove cursor when done
+            }
+          }
+
+          // Start typing after a short delay (e.g., after content fades in)
+          setTimeout(typeCharacter, 500); // Start typing after 500ms
         }
 
         // Hide interaction hint after 8 seconds

@@ -1,43 +1,43 @@
 /* Base theme variables */
 :root {
-  --bg-primary: transparent;
-  --bg-primary-rgb: 248, 249, 250;
-  --text-primary: #ffffff;
-  --text-primary-rgb: 33, 37, 41;
-  --text-secondary: #ffffff;
-  --text-secondary-rgb: 108, 117, 125;
-  --card-bg: #ffffff , 0.8; /* Changed to more transparent */
-  --card-bg-rgb: 255, 255, 255;
-  --accent-color: #212529;
-  --accent-color-rgb: 13, 110, 253;
-  --accent-light: #212529;
-  --shadow-color: rgba(0, 0, 0, 0.15);
-  --navbar-bg: rgba(255, 255, 255, 0.7);
-  --navbar-text: #212529;
-  --footer-bg: rgba(248, 249, 250, 0.5);
-  --footer-text: #6c757d;
-  --muted-text: #6c757d;
+  --bg-primary: transparent; /* Changed to transparent */
+  --bg-primary-rgb: 251, 245, 243;
+  --text-primary: #1B2A41;
+  --text-primary-rgb: 27, 42, 65;
+  --text-secondary: #324a5f;
+  --text-secondary-rgb: 50, 74, 95;
+  --card-bg: rgba(251, 245, 243, 0.5); /* Reduced opacity for better transparency */
+  --card-bg-rgb: 251, 245, 243;
+  --accent-color: #0C1821;
+  --accent-color-rgb: 12, 24, 33;
+  --accent-light: #324a5f;
+  --shadow-color: rgba(50, 74, 95, 0.15);
+  --navbar-bg: rgba(251, 245, 243, 0.7);
+  --navbar-text: #1B2A41;
+  --footer-bg: rgba(251, 245, 243, 0.5);
+  --footer-text: #324a5f;
+  --muted-text: #324a5f;
 }
 
 /* Dark theme variables */
 [data-theme="dark"] {
-  --bg-primary: transparent;
-  --bg-primary-rgb: 18, 18, 18;
-  --text-primary: #ffffff;
-  --text-primary-rgb: 255, 255, 255;
-  --text-secondary: #aaaaaa;
-  --text-secondary-rgb: 170, 170, 170;
-  --card-bg: rgba(30, 30, 30, 0.3); /* Changed to more transparent */
-  --card-bg-rgb: 30, 30, 30;
-  --accent-color: #212529;
-  --accent-color-rgb: 76, 201, 240;
-  --accent-light: #72deff;
-  --shadow-color: rgba(255, 255, 255, 0.1);
-  --navbar-bg: #6c757d;
-  --navbar-text: #ffffff;
-  --footer-bg: rgba(30, 30, 30, 0.5);
-  --footer-text: #aaaaaa;
-  --muted-text: #aaaaaa;
+  --bg-primary: transparent; /* Changed to transparent */
+  --bg-primary-rgb: 0, 0, 0; /* Updated to black */
+  --text-primary: #FBF5F3;
+  --text-primary-rgb: 251, 245, 243;
+  --text-secondary: #CCC9DC;
+  --text-secondary-rgb: 204, 201, 220;
+  --card-bg: rgba(27, 42, 65, 0.3); /* Already transparent */
+  --card-bg-rgb: 27, 42, 65;
+  --accent-color: #CCC9DC;
+  --accent-color-rgb: 204, 201, 220;
+  --accent-light: #FBF5F3;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --navbar-bg: rgba(0, 0, 0, 0.6); /* Made more transparent */
+  --navbar-text: #FBF5F3;
+  --footer-bg: rgba(0, 0, 0, 0.5);
+  --footer-text: #CCC9DC;
+  --muted-text: #CCC9DC;
 }
 
 /* Base element styling */
@@ -66,14 +66,12 @@ html, body {
   background-color: transparent !important;
 }
 
-/* Experience item styling */
+/* Experience item styling - Made more transparent */
 .experience-item {
   position: relative;
-  background-color: var(--card-bg);
-  backdrop-filter: none; /* Removed blur */
-  -webkit-backdrop-filter: none; /* Removed blur */
+  background-color: rgba(var(--card-bg-rgb), 0.1); /* More transparent */
   border: 1px solid rgba(var(--text-primary-rgb), 0.15);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   color: var(--text-primary);
   transition: all 0.3s ease;
   z-index: 2;
@@ -263,4 +261,47 @@ footer {
     margin-top: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
+}
+
+/* CV Section Styling */
+.cv-section {
+  margin-bottom: 3rem;
+}
+
+.cv-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 600px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cv-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.btn-view-cv {
+  background: linear-gradient(45deg, #0C1821, #1B2A41);
+  color: #FBF5F3;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-view-cv:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #1B2A41, #324a5f);
+  color: #FBF5F3;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .cv-container {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.1);
 }

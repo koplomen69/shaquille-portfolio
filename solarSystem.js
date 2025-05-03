@@ -15,32 +15,20 @@ function getThemeColors() {
 
     return {
         light: {
-            background: getColor('--bg-primary'),
-            stars: getColor('--text-secondary'),
-            orbits: getColor('--accent-color'),
-            mathObjects: getColor('--text-secondary'),
-            sun: 0xff9500, // Keep sun orange for visual appeal
-            planets: [
-                getColor('--accent-color'),
-                getColor('--text-primary'),
-                getColor('--text-secondary'),
-                getColor('--accent-light') || getColor('--accent-color'),
-                getColor('--separator-color') || getColor('--accent-color')
-            ]
+            background: 0xFBF5F3,
+            stars: 0x1B2A41,
+            orbits: 0x324a5f, 
+            mathObjects: 0x1B2A41,
+            sun: 0xff9500, // Keep the original orange sun color
+            planets: [0x0C1821, 0x1B2A41, 0x324a5f, 0x324a5f, 0x1B2A41]
         },
         dark: {
-            background: getColor('--bg-primary'),
-            stars: 0xffffff, // Keep stars white for visibility
-            orbits: getColor('--accent-color'),
-            mathObjects: getColor('--accent-light') || getColor('--accent-color'),
-            sun: 0xff9500, // Keep sun orange for visual appeal
-            planets: [
-                getColor('--accent-color'),
-                getColor('--accent-light') || getColor('--accent-color'),
-                getColor('--text-primary'),
-                getColor('--text-secondary'),
-                getColor('--separator-color') || getColor('--accent-color')
-            ]
+            background: 0x000000,
+            stars: 0xFBF5F3, 
+            orbits: 0xCCC9DC,
+            mathObjects: 0xCCC9DC,
+            sun: 0xff9500, // Keep the original orange sun color
+            planets: [0x212529, 0xf8f9fa, 0xFBF5F3, 0x000000, 0x212529]
         }
     };
 }

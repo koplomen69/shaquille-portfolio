@@ -1,0 +1,868 @@
+/* Animation Keyframes and Effects */
+
+/* Wave Animation */
+@keyframes wave {
+  0%, 20%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(-10deg); }
+  40%, 50% { transform: rotate(10deg); }
+}
+
+/* Advanced Pokémon Card-Inspired Animations */
+
+/* Rainbow rotation animation */
+@keyframes rainbow-rotation {
+  0% { 
+    filter: hue-rotate(0deg) saturate(1.2) brightness(1.1);
+    background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+  25% { 
+    filter: hue-rotate(90deg) saturate(1.4) brightness(1.2);
+    background-position: 25% 25%, 25% 25%, 25% 25%, 25% 25%;
+  }
+  50% { 
+    filter: hue-rotate(180deg) saturate(1.6) brightness(1.3);
+    background-position: 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+  }
+  75% { 
+    filter: hue-rotate(270deg) saturate(1.4) brightness(1.2);
+    background-position: 75% 75%, 75% 75%, 75% 75%, 75% 75%;
+  }
+  100% { 
+    filter: hue-rotate(360deg) saturate(1.2) brightness(1.1);
+    background-position: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  }
+}
+
+/* Holographic shift effect */
+@keyframes holo-shift {
+  0%, 100% { 
+    background-position: 0% 0%, 0% 0%, 20% 20%, 80% 80%;
+  }
+  25% { 
+    background-position: 100% 0%, 50% 50%, 30% 10%, 70% 90%;
+  }
+  50% { 
+    background-position: 100% 100%, 100% 100%, 80% 80%, 20% 20%;
+  }
+  75% { 
+    background-position: 0% 100%, 50% 50%, 90% 70%, 10% 30%;
+  }
+}
+
+/* Advanced foil glide animation */
+@keyframes foil-glide {
+  0%, 100% {
+    background-position: -100% -100%, -100% -100%;
+    opacity: 0.7;
+  }
+  25% {
+    background-position: 0% 0%, 50% 50%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 100% 100%, 100% 100%;
+    opacity: 0.8;
+  }
+  75% {
+    background-position: 200% 0%, 150% 50%;
+    opacity: 0.9;
+  }
+}
+
+/* Light sweep animation */
+@keyframes light-sweep {
+  0%, 90%, 100% { 
+    opacity: 0; 
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  10%, 80% { 
+    opacity: 1; 
+    transform: translateX(100%) skewX(-15deg);
+  }
+}
+
+/* Code holographic glow */
+@keyframes code-holo-glow {
+  0% { 
+    box-shadow: 
+      var(--shadow-xl),
+      0 0 20px rgba(255, 0, 255, 0.2),
+      inset 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+  100% { 
+    box-shadow: 
+      0 20px 40px -5px rgba(99, 102, 241, 0.4),
+      0 0 40px rgba(255, 0, 255, 0.4),
+      inset 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Rainbow shift for code snippet */
+@keyframes rainbow-shift {
+  0% { 
+    background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    filter: hue-rotate(0deg);
+  }
+  33% { 
+    background-position: 0% 0%, 100% 100%, 30% 30%, 70% 70%, 50% 50%;
+    filter: hue-rotate(120deg);
+  }
+  66% { 
+    background-position: 0% 0%, 200% 200%, 60% 60%, 40% 40%, 80% 80%;
+    filter: hue-rotate(240deg);
+  }
+  100% { 
+    background-position: 0% 0%, 300% 300%, 90% 90%, 10% 10%, 100% 100%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Prismatic shift animation */
+@keyframes prismatic-shift {
+  0%, 100% {
+    background-position: 0% 0%, 0% 0%, 20% 20%, 80% 80%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  25% {
+    background-position: 25% 25%, 75% 25%, 40% 10%, 60% 90%;
+    filter: hue-rotate(90deg) brightness(1.1);
+  }
+  50% {
+    background-position: 50% 50%, 100% 50%, 80% 80%, 20% 20%;
+    filter: hue-rotate(180deg) brightness(1.2);
+  }
+  75% {
+    background-position: 75% 75%, 25% 75%, 10% 60%, 90% 40%;
+    filter: hue-rotate(270deg) brightness(1.1);
+  }
+}
+
+/* Gradient Animation */
+@keyframes gradient-shift {
+  0%, 100% { 
+    filter: hue-rotate(0deg); 
+    background-position: 0% 50%;
+  }
+  50% { 
+    filter: hue-rotate(45deg); 
+    background-position: 100% 50%;
+  }
+}
+
+/* Typewriter Animation */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  0%, 50% { border-color: var(--primary-color); }
+  51%, 100% { border-color: transparent; }
+}
+
+/* Floating Shapes Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-20px) rotate(120deg); }
+  66% { transform: translateY(10px) rotate(240deg); }
+}
+
+/* Code Glow Animation */
+@keyframes code-glow {
+  0% { box-shadow: var(--shadow-xl); }
+  100% { box-shadow: 0 20px 40px -5px rgba(99, 102, 241, 0.3); }
+}
+
+/* Code Typing Animation */
+@keyframes code-type {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Slide In Animations */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(100px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-100px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scale Animations */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.5); }
+}
+
+/* Rotation Animations */
+@keyframes rotateIn {
+  from { opacity: 0; transform: rotate(-200deg); }
+  to { opacity: 1; transform: rotate(0deg); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Hover Effect Animations */
+@keyframes hover-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes hover-glow {
+  0% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); }
+  100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
+}
+
+/* Loading Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dots {
+  0%, 20% { color: rgba(0, 0, 0, 0); text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0); }
+  40% { color: black; text-shadow: .25em 0 0 rgba(0, 0, 0, 0), .5em 0 0 rgba(0, 0, 0, 0); }
+  60% { text-shadow: .25em 0 0 black, .5em 0 0 rgba(0, 0, 0, 0); }
+  80%, 100% { text-shadow: .25em 0 0 black, .5em 0 0 black; }
+}
+
+/* Background Animations */
+@keyframes gradient-background {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  33% { transform: translateY(-30px) translateX(30px) rotate(120deg); }
+  66% { transform: translateY(30px) translateX(-30px) rotate(240deg); }
+}
+
+/* Text Effect Animations */
+@keyframes text-glow {
+  0% { text-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(99, 102, 241, 0.8); }
+  100% { text-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+}
+
+@keyframes text-rainbow {
+  0% { color: #ff0000; }
+  16.66% { color: #ff8000; }
+  33.33% { color: #ffff00; }
+  50% { color: #00ff00; }
+  66.66% { color: #0080ff; }
+  83.33% { color: #8000ff; }
+  100% { color: #ff0000; }
+}
+
+/* Enhanced immersive holographic animations */
+@keyframes immersive-holographic-shift {
+  0%, 100% {
+    background-position: 
+      0% 0%, 50% 50%, 75% 75%, 200% 200%, 0% 0%, 100% 100%;
+    filter: hue-rotate(0deg) brightness(1) saturate(1);
+    --reflection-angle: 45deg;
+  }
+  20% {
+    background-position: 
+      20% 20%, 70% 30%, 95% 55%, 220% 180%, 20% 20%, 80% 120%;
+    filter: hue-rotate(20deg) brightness(1.05) saturate(1.1);
+    --reflection-angle: 65deg;
+  }
+  40% {
+    background-position: 
+      40% 40%, 90% 10%, 15% 35%, 240% 160%, 40% 40%, 60% 140%;
+    filter: hue-rotate(40deg) brightness(1.1) saturate(1.2);
+    --reflection-angle: 85deg;
+  }
+  60% {
+    background-position: 
+      60% 60%, 10% 90%, 35% 15%, 260% 140%, 60% 60%, 40% 160%;
+    filter: hue-rotate(60deg) brightness(1.1) saturate(1.2);
+    --reflection-angle: 105deg;
+  }
+  80% {
+    background-position: 
+      80% 80%, 30% 70%, 55% 95%, 280% 120%, 80% 80%, 20% 180%;
+    filter: hue-rotate(80deg) brightness(1.05) saturate(1.1);
+    --reflection-angle: 125deg;
+  }
+}
+
+@keyframes immersive-glitter-dance {
+  0%, 100% {
+    background-position: 
+      0% 0%, 50% 50%, 25% 25%, 75% 75%, 40% 60%,
+      60% 40%, 30% 70%, 70% 30%, 20% 80%, 80% 20%,
+      0% 0%, 100% 0%, 25% 75%, 75% 25%, 50% 50%;
+    transform: rotate(0deg) scale(1);
+    filter: hue-rotate(0deg) brightness(1) saturate(1);
+  }
+  25% {
+    background-position: 
+      25% 25%, 75% 25%, 50% 0%, 100% 50%, 65% 35%,
+      85% 15%, 55% 45%, 95% 5%, 45% 55%, 105% -5%,
+      25% 25%, 75% 25%, 50% 50%, 50% 50%, 75% 25%;
+    transform: rotate(3deg) scale(1.02);
+    filter: hue-rotate(90deg) brightness(1.1) saturate(1.2);
+  }
+  50% {
+    background-position: 
+      50% 50%, 100% 0%, 75% 75%, 25% 25%, 90% 10%,
+      10% 90%, 80% 20%, 20% 80%, 70% 30%, 30% 70%,
+      50% 50%, 50% 50%, 75% 25%, 25% 75%, 100% 0%;
+    transform: rotate(6deg) scale(1.04);
+    filter: hue-rotate(180deg) brightness(1.2) saturate(1.4);
+  }
+  75% {
+    background-position: 
+      75% 75%, 25% 75%, 100% 50%, 0% 0%, 15% 85%,
+      35% 65%, 5% 95%, 45% 55%, 95% 5%, 55% 45%,
+      75% 75%, 25% 75%, 100% 0%, 0% 100%, 25% 75%;
+    transform: rotate(3deg) scale(1.02);
+    filter: hue-rotate(270deg) brightness(1.1) saturate(1.2);
+  }
+}
+
+@keyframes reflection-shimmer {
+  0%, 100% {
+    background-position: -50% -50%, 0% 0%;
+    --mouse-angle: 45deg;
+    --rotate-reflection: 0deg;
+  }
+  25% {
+    background-position: 0% 0%, 25% 25%;
+    --mouse-angle: 75deg;
+    --rotate-reflection: 2deg;
+  }
+  50% {
+    background-position: 50% 50%, 50% 50%;
+    --mouse-angle: 105deg;
+    --rotate-reflection: 4deg;
+  }
+  75% {
+    background-position: 100% 100%, 75% 75%;
+    --mouse-angle: 135deg;
+    --rotate-reflection: 2deg;
+  }
+}
+
+@keyframes border-glow-cycle {
+  0%, 100% {
+    --gradient-angle: 0deg;
+    filter: brightness(1) saturate(1);
+  }
+  33% {
+    --gradient-angle: 120deg;
+    filter: brightness(1.1) saturate(1.2);
+  }
+  66% {
+    --gradient-angle: 240deg;
+    filter: brightness(1.2) saturate(1.4);
+  }
+}
+
+/* Prismatic card animations */
+@keyframes prismatic-card-float {
+  0%, 100% {
+    background-position: 
+      0% 0%, 50% 50%, 25% 25%, 75% 75%, 40% 60%, 0% 0%, 0% 0%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  33% {
+    background-position: 
+      33% 33%, 67% 33%, 50% 0%, 100% 50%, 65% 35%, 15% 15%, 20% 20%;
+    filter: hue-rotate(10deg) brightness(1.05);
+  }
+  66% {
+    background-position: 
+      66% 66%, 100% 0%, 75% 75%, 25% 25%, 90% 10%, 30% 30%, 40% 40%;
+    filter: hue-rotate(20deg) brightness(1.1);
+  }
+}
+
+@keyframes prismatic-card-fragments {
+  0%, 100% {
+    background-position: 0% 0%, 100% 0%, 25% 75%, 75% 25%, 50% 50%;
+    transform: rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 25% 25%, 75% 25%, 50% 50%, 50% 50%, 75% 25%;
+    transform: rotate(3deg);
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    background-position: 50% 50%, 50% 50%, 75% 25%, 25% 75%, 100% 0%;
+    transform: rotate(6deg);
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    background-position: 75% 75%, 25% 75%, 100% 0%, 0% 100%, 25% 75%;
+    transform: rotate(3deg);
+    filter: hue-rotate(270deg);
+  }
+}
+
+/* Prismatic Void Theme Animations */
+
+/* Prismatic void drift animation */
+@keyframes prismatic-void-drift {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1);
+  }
+  25% {
+    background-position: 100% 50%;
+    filter: hue-rotate(15deg) brightness(1.05);
+  }
+  50% {
+    background-position: 100% 100%;
+    filter: hue-rotate(30deg) brightness(1.1);
+  }
+  75% {
+    background-position: 0% 100%;
+    filter: hue-rotate(15deg) brightness(1.05);
+  }
+}
+
+/* Geometric prismatic pattern animation */
+@keyframes prismatic-geometry {
+  0%, 100% {
+    background-position: 
+      0% 0%,
+      50% 50%,
+      25% 25%,
+      75% 75%,
+      40% 60%,
+      0% 0%,
+      0% 0%;
+    transform: rotate(0deg);
+  }
+  25% {
+    background-position: 
+      25% 25%,
+      75% 25%,
+      50% 0%,
+      100% 50%,
+      65% 35%,
+      15% 15%,
+      20% 20%;
+    transform: rotate(0.5deg);
+  }
+  50% {
+    background-position: 
+      50% 50%,
+      100% 0%,
+      75% 75%,
+      25% 25%,
+      90% 10%,
+      30% 30%,
+      40% 40%;
+    transform: rotate(1deg);
+  }
+  75% {
+    background-position: 
+      75% 75%,
+      25% 75%,
+      100% 50%,
+      0% 0%,
+      15% 85%,
+      45% 45%,
+      60% 60%;
+    transform: rotate(0.5deg);
+  }
+}
+
+/* Crystal fragments animation */
+@keyframes prismatic-fragments {
+  0%, 100% {
+    background-position: 
+      0% 0%,
+      100% 0%,
+      25% 75%,
+      75% 25%,
+      50% 50%;
+    transform: rotate(0deg) scale(1);
+    filter: hue-rotate(0deg);
+  }
+  20% {
+    background-position: 
+      20% 20%,
+      80% 20%,
+      45% 55%,
+      55% 45%,
+      30% 70%;
+    transform: rotate(6deg) scale(1.02);
+    filter: hue-rotate(72deg);
+  }
+  40% {
+    background-position: 
+      40% 40%,
+      60% 40%,
+      65% 35%,
+      35% 65%,
+      10% 90%;
+    transform: rotate(12deg) scale(1.04);
+    filter: hue-rotate(144deg);
+  }
+  60% {
+    background-position: 
+      60% 60%,
+      40% 60%,
+      85% 15%,
+      15% 85%,
+      90% 10%;
+    transform: rotate(18deg) scale(1.02);
+    filter: hue-rotate(216deg);
+  }
+  80% {
+    background-position: 
+      80% 80%,
+      20% 80%,
+      5% 95%,
+      95% 5%,
+      70% 30%;
+    transform: rotate(24deg) scale(1);
+    filter: hue-rotate(288deg);
+  }
+}
+
+/* Prismatic content glow animation */
+@keyframes prismatic-content-glow {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    filter: blur(80px) brightness(1);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(90deg) scale(1.1);
+    filter: blur(60px) brightness(1.2);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.2);
+    filter: blur(40px) brightness(1.4);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(270deg) scale(1.1);
+    filter: blur(60px) brightness(1.2);
+  }
+}
+
+/* Holographic Foil Effect */
+@keyframes foil-shimmer {
+  0%, 100% {
+    background-position: 0px 0px, 0px 0px;
+    filter: hue-rotate(0deg) saturate(1) brightness(1);
+  }
+  25% {
+    background-position: 10px 10px, -10px 10px;
+    filter: hue-rotate(90deg) saturate(1.2) brightness(1.1);
+  }
+  50% {
+    background-position: 20px 0px, 0px 20px;
+    filter: hue-rotate(180deg) saturate(1.4) brightness(1.2);
+  }
+  75% {
+    background-position: 10px -10px, 10px 10px;
+    filter: hue-rotate(270deg) saturate(1.2) brightness(1.1);
+  }
+}
+
+/* Holographic Pokemon Card Animations */
+
+/* Sparkle effect animation */
+@keyframes sparkleAnim {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+}
+
+/* Glitter sweep animation */
+@keyframes glitter-sweep {
+  0% {
+    background-position: -200% 0, 0% 0%, 0% 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    background-position: 200% 0, 100% 100%, 100% 100%;
+    opacity: 0;
+  }
+}
+
+/* Holographic glow pulse */
+@keyframes holo-glow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(139, 92, 246, 0.3),
+      0 0 40px rgba(139, 92, 246, 0.2),
+      0 0 60px rgba(139, 92, 246, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(139, 92, 246, 0.5),
+      0 0 60px rgba(139, 92, 246, 0.3),
+      0 0 90px rgba(139, 92, 246, 0.2);
+  }
+}
+
+/* Foil shine sweep */
+@keyframes foil-shine {
+  0% {
+    background-position: -100% -100%, 0% 0%, 0% 0%;
+    filter: brightness(1) contrast(1) saturate(1);
+  }
+  50% {
+    background-position: 0% 0%, 50% 50%, 50% 50%;
+    filter: brightness(1.3) contrast(1.5) saturate(1.8);
+  }
+  100% {
+    background-position: 100% 100%, 100% 100%, 100% 100%;
+    filter: brightness(1) contrast(1) saturate(1);
+  }
+}
+
+/* Ambient shimmer for inactive cards */
+@keyframes ambient-shimmer {
+  0%, 100% {
+    opacity: 0.8;
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    opacity: 0.9;
+    filter: brightness(1.1) saturate(1.2);
+  }
+}
+
+/* Rainbow wave effect */
+@keyframes rainbow-wave {
+  0% {
+    background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 25% 25%, 50% 25%, 75% 25%, 100% 25%;
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    background-position: 50% 50%, 100% 50%, 150% 50%, 200% 50%;
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    background-position: 75% 75%, 150% 75%, 225% 75%, 300% 75%;
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    background-position: 100% 100%, 200% 100%, 300% 100%, 400% 100%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Holographic interference pattern */
+@keyframes interference {
+  0%, 100% {
+    background-size: 100% 100%, 200% 200%, 300% 300%;
+    opacity: 0.7;
+  }
+  50% {
+    background-size: 150% 150%, 250% 250%, 350% 350%;
+    opacity: 0.9;
+  }
+}
+
+/* Cosmic holographic effect */
+@keyframes cosmic-holo {
+  0% {
+    background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    filter: brightness(1) contrast(1) saturate(1) hue-rotate(0deg);
+  }
+  20% {
+    background-position: 20% 80%, 40% 60%, 60% 40%, 80% 20%;
+    filter: brightness(1.2) contrast(1.3) saturate(1.5) hue-rotate(72deg);
+  }
+  40% {
+    background-position: 40% 60%, 80% 20%, 120% 80%, 160% 40%;
+    filter: brightness(1.1) contrast(1.5) saturate(1.8) hue-rotate(144deg);
+  }
+  60% {
+    background-position: 60% 40%, 120% 80%, 180% 20%, 240% 60%;
+    filter: brightness(1.3) contrast(1.2) saturate(1.3) hue-rotate(216deg);
+  }
+  80% {
+    background-position: 80% 20%, 160% 40%, 240% 60%, 320% 80%;
+    filter: brightness(1.15) contrast(1.4) saturate(1.6) hue-rotate(288deg);
+  }
+  100% {
+    background-position: 100% 100%, 200% 100%, 300% 100%, 400% 100%;
+    filter: brightness(1) contrast(1) saturate(1) hue-rotate(360deg);
+  }
+}
+
+/* Radial holographic burst */
+@keyframes radial-burst {
+  0% {
+    background-size: 0% 0%, 100% 100%, 100% 100%;
+    opacity: 0;
+  }
+  10% {
+    background-size: 50% 50%, 150% 150%, 120% 120%;
+    opacity: 0.8;
+  }
+  90% {
+    background-size: 300% 300%, 400% 400%, 350% 350%;
+    opacity: 0.6;
+  }
+  100% {
+    background-size: 500% 500%, 600% 600%, 550% 550%;
+    opacity: 0;
+  }
+}
+
+/* Floating particles effect */
+@keyframes floating-particles {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.5;
+  }
+  25% {
+    transform: translateY(-10px) translateX(5px) rotate(90deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-20px) translateX(0px) rotate(180deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-10px) translateX(-5px) rotate(270deg);
+    opacity: 0.8;
+  }
+}
+
+/* Energy pulse effect */
+@keyframes energy-pulse {
+  0%, 100% {
+    box-shadow: 
+      inset 0 0 20px rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(139, 92, 246, 0.2);
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    box-shadow: 
+      inset 0 0 40px rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(139, 92, 246, 0.5);
+    filter: brightness(1.2) saturate(1.5);
+  }
+}
+
+/* Apply animations to project cards */
+.project-card:not(.interactive) {
+  animation: ambient-shimmer 4s ease-in-out infinite;
+}
+
+.project-card.active {
+  animation: 
+    holo-glow 2s ease-in-out infinite,
+    cosmic-holo 6s linear infinite;
+}
+
+.project-card.rainbow {
+  animation: 
+    rainbow-wave 3s linear infinite,
+    energy-pulse 1.5s ease-in-out infinite;
+}
+
+.project-card .sparkle {
+  animation: sparkleAnim 0.8s ease-out forwards;
+}
+
+/* Hover animations for non-interactive cards */
+.project-card:not(.interactive):hover {
+  animation: 
+    foil-shine 2s ease-in-out,
+    holo-glow 2s ease-in-out;
+}
+
+/* Utility Animation Classes */
+.animate-wave { animation: wave 2s infinite; }
+.animate-gradient { animation: gradient-shift 3s ease-in-out infinite; }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-bounce { animation: bounce 2s infinite; }
+.animate-pulse { animation: pulse 2s ease-in-out infinite; }
+.animate-spin { animation: spin 1s linear infinite; }
+.animate-fade-in { animation: fadeIn 1s ease-out; }
+.animate-slide-in-left { animation: slideInLeft 0.5s ease-out; }
+.animate-slide-in-right { animation: slideInRight 0.5s ease-out; }
+.animate-slide-in-up { animation: slideInUp 0.5s ease-out; }
+.animate-slide-in-down { animation: slideInDown 0.5s ease-out; }
+.animate-scale-in { animation: scaleIn 0.5s ease-out; }
+.animate-rotate-in { animation: rotateIn 0.5s ease-out; }
+.animate-rainbow-rotation { animation: rainbow-rotation 4s linear infinite; }
+.animate-holo-shift { animation: holo-shift 4s linear infinite; }
+.animate-foil-glide { animation: foil-glide 4s linear infinite; }
+.animate-light-sweep { animation: light-sweep 2s linear infinite; }
+.animate-code-holo-glow { animation: code-holo-glow 1.5s ease-in-out infinite; }
+.animate-rainbow-shift { animation: rainbow-shift 3s ease-in-out infinite; }
+.animate-prismatic-shift { animation: prismatic-shift 4s ease-in-out infinite; }
+
+/* Hover Animation Classes */
+.hover-float:hover { animation: hover-float 0.3s ease-in-out; }
+.hover-glow:hover { animation: hover-glow 0.3s ease-in-out; }
+
+/* Delayed Animations */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-1000 { animation-delay: 1s; }
+.delay-1500 { animation-delay: 1.5s; }
+.delay-2000 { animation-delay: 2s; }

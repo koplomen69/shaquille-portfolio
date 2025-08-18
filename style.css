@@ -1,0 +1,32 @@
+/* Main Portfolio CSS - Organized Structure */
+
+/* Import all CSS modules */
+@import url('css/global.css');
+@import url('css/animations.css');
+
+/* Page-specific imports will be added to individual HTML files */
+/* For index.html: @import url('css/index.css'); */
+/* For experience.html: @import url('css/experience.css'); */
+/* For project.html: @import url('css/project.css'); */
+/* For contact.html: @import url('css/contact.css'); */
+
+/* 
+This file now serves as the main entry point for styles.
+Each page should import only the CSS files it needs:
+
+Global styles (always needed):
+- css/global.css - Variables, base styles, navbar, footer
+- css/animations.css - All animation keyframes and utility classes
+
+Page-specific styles:
+- css/index.css - Hero section, skills section
+- css/experience.css - Timeline, education cards
+- css/project.css - Project grid, filters, modals
+- css/contact.css - Contact form, contact info, map
+
+This organization provides:
+1. Better performance - only load needed styles
+2. Easier maintenance - styles grouped by functionality
+3. Cleaner codebase - each file has a specific purpose
+4. Reusability - animations and global styles can be shared
+*/

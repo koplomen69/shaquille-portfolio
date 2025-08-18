@@ -1,0 +1,1652 @@
+/* Pokemon Card Holographic Effects */
+
+/* Override Bootstrap card default background */
+.pokemon-card.card {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.pokemon-card .card-body {
+  background: transparent !important;
+  background-color: transparent !important;
+  position: relative;
+  z-index: 10;
+}
+
+.card {
+  /* Base CSS Variables */
+  --card-aspect: 63/88;
+  --card-radius: 12px;
+  --card-scale: 1;
+  --card-opacity: 1;
+  --card-glow: #69b7ff;
+  --card-edge: #5d8cff;
+  --card-back: #151515;
+  
+  /* Animation Variables */
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --pointer-from-center: 0;
+  --pointer-from-top: 0;
+  --pointer-from-left: 0;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --background-x: 50%;
+  --background-y: 50%;
+  --translate-x: 0px;
+  --translate-y: 0px;
+  
+  /* Holo Effects Variables */
+  --grain: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9Im5vaXNlIj4KICAgICAgPGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPgogICAgPC9maWx0ZXI+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZSkiIG9wYWNpdHk9IjAuNCIvPgo8L3N2Zz4K");
+  --glitter: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.8) 2px, transparent 3px);
+  --glittersize: 5px;
+  
+  /* Colors for effects */
+  --red: #f80e35;
+  --yellow: #eedf10;
+  --green: #21e985;
+  --blue: #0dbde9;
+  --violet: #c929f1;
+  
+  /* Positioning and sizing */
+  position: relative;
+  transform: translate3d(0px, 0px, 0.01px);
+  pointer-events: none;
+  z-index: calc(var(--card-scale) * 2);
+  will-change: transform, visibility, z-index;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.card,
+.card * {
+  outline: 1px solid transparent;
+}
+
+.card__rotator {
+  transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+  transform-style: preserve-3d;
+  pointer-events: auto;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  will-change: transform, box-shadow;
+  border-radius: var(--card-radius);
+  box-shadow: 
+    0 0 3px -1px transparent, 
+    0 0 2px 1px transparent, 
+    0 0 5px 0px transparent,
+    0px 10px 20px -5px rgba(0,0,0,0.3), 
+    0 2px 15px -5px rgba(0,0,0,0.2),
+    0 0 20px 0px transparent;
+}
+
+.card.active .card__rotator,
+.card__rotator:focus,
+.card:hover .card__rotator {
+  box-shadow: 
+    0 0 3px -1px white, 
+    0 0 3px 1px var(--card-edge), 
+    0 0 12px 2px var(--card-glow), 
+    0px 10px 20px -5px rgba(0,0,0,0.4), 
+    0 0 40px -30px var(--card-glow), 
+    0 0 50px -20px var(--card-glow);
+}
+
+.card__inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-area: 1/1;
+  border-radius: var(--card-radius);
+  image-rendering: optimizeQuality;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Shine Effects */
+.card__shine {
+  display: grid;
+  transform: translateZ(1px);
+  overflow: hidden;
+  z-index: 1;
+  background-image: 
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 255, 255, 0.02) 0%,
+      rgba(255, 255, 255, 0.01) 20%,
+      transparent 60%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      var(--red) 0%,
+      var(--yellow) 16.66%,
+      var(--green) 33.33%,
+      var(--blue) 50%,
+      var(--violet) 66.66%,
+      var(--red) 83.33%,
+      var(--yellow) 100%
+    ),
+    var(--grain);
+  background-size: 
+    200% 200%,
+    400% 400%,
+    25% 25%;
+  background-position: 
+    var(--pointer-x) var(--pointer-y),
+    calc(var(--background-x) * 2) calc(var(--background-y) * 2),
+    center;
+  background-blend-mode: overlay, soft-light, multiply;
+  filter: brightness(calc((var(--pointer-from-center) * 0.3) + 0.3)) contrast(1.5) saturate(0.8);
+  mix-blend-mode: color-dodge;
+  opacity: var(--card-opacity);
+  will-change: transform, opacity, background-image, background-size, background-position, background-blend-mode, filter;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+}
+
+.card__shine:before,
+.card__shine:after {
+  display: none;
+}
+
+/* Base holographic rainbow effect - integrated into main .card__shine definition above */
+
+/* Glare effect - COMPLETELY DISABLED */
+.card__glare {
+  display: none;
+}
+
+/* Enhanced effects for different card types */
+.card.holo .card__shine {
+  background-image: 
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.01) 30%,
+      transparent 70%
+    ),
+    repeating-linear-gradient(
+      calc(var(--rotate-x) + 133deg),
+      var(--red) 0%,
+      var(--yellow) 8.33%,
+      var(--green) 16.66%,
+      var(--blue) 25%,
+      var(--violet) 33.33%,
+      var(--red) 41.66%,
+      var(--yellow) 50%,
+      var(--green) 58.33%,
+      var(--blue) 66.66%,
+      var(--violet) 75%,
+      var(--red) 83.33%,
+      var(--yellow) 91.66%,
+      var(--green) 100%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(0, 0, 0, 0.05) 4px
+    ),
+    var(--grain);
+    
+  background-size: 
+    150% 150%,
+    600% 600%,
+    100% 2px,
+    20% 20%;
+    
+  background-position: 
+    var(--pointer-x) var(--pointer-y),
+    calc(var(--background-x) * 3) calc(var(--background-y) * 3),
+    calc(var(--background-x) * 1.5) calc(var(--background-y) * 1.5),
+    center;
+    
+  filter: brightness(calc((var(--pointer-from-center) * 0.7) + 0.5)) contrast(2) saturate(1);
+  opacity: calc(var(--card-opacity) * 0.2);
+}
+
+/* Rainbow rare effect */
+.card.rainbow .card__shine {
+  background-image:
+    var(--glitter),
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 40%,
+      transparent 80%
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      hsla(0, 100%, 80%, 0.4) 20%,
+      hsla(60, 100%, 80%, 0.4) 42.5%,
+      hsla(120, 100%, 80%, 0.4) 55%,
+      hsla(180, 100%, 80%, 0.4) 57.5%,
+      hsla(240, 100%, 80%, 0.4) 80%,
+      hsla(300, 100%, 80%, 0.4) 92.5%,
+      hsla(360, 100%, 80%, 0.4) 75%,
+      hsla(60, 100%, 80%, 0.4) 87.5%,
+      hsla(0, 100%, 80%, 0.4) 100%
+    );
+    
+  background-size:
+    var(--glittersize) var(--glittersize),
+    200% 200%,
+    400% 400%;
+    
+  background-position:
+    calc(50% + var(--pointer-from-left) * 50%) calc(50% + var(--pointer-from-top) * 50%),
+    var(--pointer-x) var(--pointer-y),
+    calc(var(--background-x) * 2) calc(var(--background-y) * 2);
+    
+  background-blend-mode: color-dodge, overlay, multiply;
+  filter: brightness(calc((var(--pointer-from-center) * 0.3) + 0.6)) contrast(1.8) saturate(1.2);
+  opacity: calc(var(--card-opacity) * 0.2);
+}
+
+/* Gold/Secret rare effect */
+.card.gold .card__shine {
+  background-image:
+    var(--glitter),
+    var(--glitter),
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 215, 0, 0.25) 0%,
+      rgba(255, 193, 7, 0.15) 40%,
+      rgba(218, 165, 32, 0.1) 100%,
+      transparent 30%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 215, 0, 0.5),
+      rgba(255, 193, 7, 0.4),
+      rgba(255, 143, 0, 0.35),
+      rgba(255, 111, 0, 0.4),
+      rgba(255, 215, 0, 0.5)
+    );
+    
+  background-size:
+    15px 15px,
+    10px 10px,
+    150% 150%,
+    300% 300%;
+    
+  background-position:
+    calc(50% + var(--pointer-from-left) * 30%) calc(50% + var(--pointer-from-top) * 30%),
+    calc(50% - var(--pointer-from-left) * 20%) calc(50% - var(--pointer-from-top) * 20%),
+    var(--pointer-x) var(--pointer-y),
+    calc(var(--background-x) * 1.5) calc(var(--background-y) * 1.5);
+    
+  background-blend-mode: color-dodge, overlay, soft-light, multiply;
+  filter: brightness(calc((var(--pointer-from-center) * 0.2) + 0.1)) contrast(1.3) saturate(1.0);
+  opacity: calc(var(--card-opacity) * 0.1);
+}
+
+/* Enhanced gold effect when interacting */
+.card.gold.interacting .card__shine,
+.card.gold:hover .card__shine,
+.card.gold.active .card__shine {
+  background-image:
+    var(--glitter),
+    var(--glitter),
+    radial-gradient(
+      circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 215, 0, 0.6) 0%,
+      rgba(255, 193, 7, 0.4) 50%,
+      rgba(218, 165, 32, 0.3) 100%,
+      transparent 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 215, 0, 0.8),
+      rgba(255, 193, 7, 0.7),
+      rgba(255, 143, 0, 0.6),
+      rgba(255, 111, 0, 0.7),
+      rgba(255, 215, 0, 0.8)
+    );
+  
+  filter: brightness(calc((var(--pointer-from-center) * 0.3) + 0.4)) contrast(1.8) saturate(1.5);
+  opacity: calc(var(--card-opacity) * 0.3);
+}
+
+/* Hover effects for non-interactive cards */
+.card:not(.interactive):hover {
+  --pointer-x: 25%;
+  --pointer-y: 10%;
+  --card-scale: 1.05;
+  --card-opacity: 1;
+  --translate-x: 0px;
+  --translate-y: -5px;
+  --rotate-x: 7deg;
+  --rotate-y: -19deg;
+  --background-x: 44%;
+  --background-y: 36%;
+  --pointer-from-center: 0.9;
+  --pointer-from-top: 0.11;
+  --pointer-from-left: 0.25;
+}
+
+/* Smooth transitions for non-interactive cards */
+.card:not(.interactive) .card__rotator,
+.card:not(.interactive) .card__shine,
+.card:not(.interactive) .card__glare {
+  transition: all 0.3s ease;
+}
+
+/* Project card specific styling */
+.project-card {
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.project-card .card-img-top {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+}
+
+.project-card .card-body {
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* Enhanced Project Card Hover Effects */
+.pokemon-card:hover .card-body {
+  transform: translateY(-5px);
+  backdrop-filter: blur(15px);
+}
+
+.pokemon-card:hover .card-title {
+  transform: translateY(-2px);
+  text-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.pokemon-card:hover .card-text {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* Enhanced Card Image Effects */
+.card-img-top {
+  position: relative;
+  z-index: 5;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+  overflow: hidden;
+}
+
+/* Enhanced Card Hover Effects */
+.pokemon-card:hover .card-img-top {
+  transform: scale(1.02);
+  filter: brightness(1.1) contrast(1.05);
+}
+
+/* Active/focus states */
+.card.active {
+  z-index: calc(var(--card-scale) * 120);
+}
+
+.card.interacting {
+  z-index: calc(var(--card-scale) * 120);
+}
+
+/* Dark theme support for card text */
+.dark-mode .card-title {
+  color: #ffffff !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode .card-text {
+  color: #e0e0e0 !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.light-mode .card-title {
+  color: #333333 !important;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.light-mode .card-text {
+  color: #555555 !important;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Tech Stack Tags */
+.tech-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark theme tech tags */
+.dark-theme .tech-tag {
+    background: linear-gradient(135deg, var(--primary-color), #6a4c93);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Project Buttons */
+.project-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: white;
+}
+
+/* Dark theme project buttons */
+.dark-theme .project-btn {
+    background: linear-gradient(135deg, var(--primary-color), #6a4c93);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Modal text styling */
+.card-modal h2 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.card-modal h3 {
+    margin: 1rem 0 0.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.dark-theme .card-modal h3 {
+    color: var(--accent-color);
+}
+
+/* Enhanced modal image styling */
+.expanded-card-front img {
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.expanded-card-front img:hover {
+    transform: scale(1.02);
+}
+
+/* Enhanced Holographic Effects for Expanded Modal Cards */
+.expanded-card-front .card__shine,
+.expanded-card-back .card__shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+  z-index: 1;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(
+      circle at var(--modal-pointer-x) var(--modal-pointer-y),
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 30%,
+      transparent 70%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      var(--red) 0%,
+      var(--yellow) 16.66%,
+      var(--green) 33.33%,
+      var(--blue) 50%,
+      var(--violet) 66.66%,
+      var(--red) 83.33%,
+      var(--yellow) 100%
+    ),
+    var(--grain);
+  background-size: 
+    200% 200%,
+    600% 600%,
+    30% 30%;
+  background-position: 
+    var(--modal-pointer-x) var(--modal-pointer-y),
+    calc(var(--modal-background-x) * 3) calc(var(--modal-background-y) * 3),
+    center;
+  background-blend-mode: overlay, soft-light, multiply;
+  filter: brightness(calc((var(--modal-pointer-from-center) * 0.4) + 0.6)) contrast(1.8) saturate(1.2);
+  mix-blend-mode: color-dodge;
+  opacity: var(--modal-card-opacity);
+  transition: all 0.3s ease;
+}
+
+/* Enhanced holographic effect for modal back card */
+.expanded-card-back .card__shine {
+  background-image: 
+    radial-gradient(
+      circle at var(--modal-pointer-x) var(--modal-pointer-y),
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      transparent 80%
+    ),
+    repeating-linear-gradient(
+      -60deg,
+      hsla(0, 100%, 80%, 0.3) 20%,
+      hsla(60, 100%, 80%, 0.3) 42.5%,
+      hsla(120, 100%, 80%, 0.3) 55%,
+      hsla(180, 100%, 80%, 0.3) 57.5%,
+      hsla(240, 100%, 80%, 0.3) 80%,
+      hsla(300, 100%, 80%, 0.3) 92.5%,
+      hsla(360, 100%, 80%, 0.3) 75%
+    ),
+    var(--grain);
+  background-size:
+    250% 250%,
+    500% 500%,
+    25% 25%;
+  background-position:
+    var(--modal-pointer-x) var(--modal-pointer-y),
+    calc(var(--modal-background-x) * 2.5) calc(var(--modal-background-y) * 2.5),
+    center;
+  mix-blend-mode: overlay;
+  opacity: calc(var(--modal-card-opacity) * 0.4);
+}
+
+/* Mouse interaction effects for modal cards */
+.expanded-card:hover {
+  --modal-pointer-x: 30%;
+  --modal-pointer-y: 20%;
+  --modal-pointer-from-center: 0.8;
+  --modal-background-x: 45%;
+  --modal-background-y: 35%;
+  --modal-card-opacity: 1;
+}
+
+/* Flipping animation enhancements with holographic effects */
+.card-modal-content.flipped .expanded-card-front .card__shine {
+  opacity: 0;
+}
+
+.card-modal-content.flipped .expanded-card-back .card__shine {
+  opacity: calc(var(--modal-card-opacity) * 0.6);
+}
+
+/* Enhanced Dark Mode Animations */
+@keyframes darkGradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  20% {
+    background-position: 30% 20%;
+  }
+  40% {
+    background-position: 80% 60%;
+  }
+  60% {
+    background-position: 20% 80%;
+  }
+  80% {
+    background-position: 70% 30%;
+  }
+}
+
+@keyframes darkModeNebula {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  20% {
+    transform: translate(40px, -30px) rotate(72deg) scale(1.2);
+    opacity: 0.9;
+  }
+  40% {
+    transform: translate(-30px, 50px) rotate(144deg) scale(0.8);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(50px, -20px) rotate(216deg) scale(1.1);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translate(-20px, -40px) rotate(288deg) scale(0.95);
+    opacity: 0.85;
+  }
+}
+
+@keyframes gridFlow {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(60px) translateY(60px) rotate(180deg);
+  }
+}
+
+.navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999 !important;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.dark-mode .navbar {
+  background: rgba(20, 20, 20, 0.95) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+.dark-mode .navbar-brand {
+  background: linear-gradient(45deg, #64b3f4 0%, #c2e59c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Base navigation styles - Mobile First */
+.navbar-nav {
+  flex-direction: column !important;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.nav-link {
+  color: #333 !important;
+  font-weight: 500;
+  position: relative;
+  padding: 0.75rem 1.25rem !important;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  margin: 0.25rem 0;
+  text-align: center;
+  display: block;
+}
+
+/* Force mobile menu to be vertical on small screens */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-link {
+    text-align: center !important;
+    padding: 1rem 1.25rem !important;
+    margin: 0.25rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark-mode .nav-link {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 80%;
+}
+
+.nav-link:hover {
+  color: #667eea !important;
+  transform: translateY(-2px);
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.dark-mode .nav-link {
+  color: #e0e0e0 !important;
+}
+
+.dark-mode .nav-link:hover {
+  color: #64b3f4 !important;
+  background: rgba(100, 179, 244, 0.1);
+}
+
+.dark-mode .nav-link::before {
+  background: linear-gradient(45deg, #64b3f4, #c2e59c);
+}
+
+/* Desktop navigation */
+@media (min-width: 992px) {
+  .navbar-nav {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.5rem;
+    width: auto !important;
+  }
+  
+  .nav-item {
+    width: auto;
+  }
+  
+  .nav-link {
+    margin: 0 0.25rem !important;
+    text-align: left !important;
+    border-bottom: none !important;
+    padding: 0.75rem 1.25rem !important;
+  }
+}
+
+/* Loading Animation */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #f1f3ff 0%, #ffffff 50%, #fcf6ff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 1;
+  transition: opacity 0.8s ease-out;
+}
+
+.dark-mode .loading-overlay {
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0d0d0d 100%);
+}
+
+.loading-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-spinner {
+  text-align: center;
+  position: relative;
+}
+
+.spinner-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top: 4px solid #667eea;
+  position: absolute;
+  animation: spin 2s linear infinite;
+}
+
+.spinner-ring:nth-child(1) {
+  animation-delay: 0s;
+  border-top-color: #667eea;
+}
+
+.spinner-ring:nth-child(2) {
+  animation-delay: 0.3s;
+  border-top-color: #764ba2;
+  width: 60px;
+  height: 60px;
+  top: 10px;
+  left: 10px;
+}
+
+.spinner-ring:nth-child(3) {
+  animation-delay: 0.6s;
+  border-top-color: #f093fb;
+  width: 40px;
+  height: 40px;
+  top: 20px;
+  left: 20px;
+}
+
+.dark-mode .spinner-ring:nth-child(1) { border-top-color: #64b3f4; }
+.dark-mode .spinner-ring:nth-child(2) { border-top-color: #c2e9fb; }
+.dark-mode .spinner-ring:nth-child(3) { border-top-color: #a8e6cf; }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 120px;
+  font-family: 'Monda', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.dark-mode .loading-text {
+  background: linear-gradient(135deg, #64b3f4 0%, #c2e9fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Card Expansion Modal */
+.card-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  pointer-events: none;
+}
+
+.card-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.card-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.card-modal-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  perspective: 1000px;
+  z-index: 1;
+}
+
+.card-modal-content {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  /* Removed 3D transform to prevent mirroring */
+}
+
+.card-modal-close {
+  position: absolute;
+  top: -50px;
+  right: -10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.dark-mode .card-modal-close {
+  background: rgba(30, 30, 30, 0.9);
+  color: white;
+}
+
+.card-modal-close:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+.dark-mode .card-modal-close:hover {
+  background: rgba(30, 30, 30, 1);
+}
+
+.expanded-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  box-shadow: 
+    0 0 3px -1px white, 
+    0 0 3px 1px var(--card-edge), 
+    0 0 12px 2px var(--card-glow), 
+    0px 10px 20px -5px rgba(0,0,0,0.4), 
+    0 0 40px -30px var(--card-glow), 
+    0 0 50px -20px var(--card-glow);
+  
+  /* Add holographic card variables for modal */
+  --modal-pointer-x: 50%;
+  --modal-pointer-y: 50%;
+  --modal-pointer-from-center: 0.5;
+  --modal-background-x: 50%;
+  --modal-background-y: 50%;
+  --modal-card-opacity: 0.8;
+}
+
+.expanded-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.expanded-card-front,
+.expanded-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.expanded-card-front {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(255, 255, 255, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+}
+
+.dark-mode .expanded-card-front {
+  background: linear-gradient(135deg, 
+    rgba(30, 30, 30, 0.95) 0%, 
+    rgba(20, 20, 20, 0.9) 100%);
+}
+
+.expanded-card-back {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(255, 255, 255, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+}
+
+.dark-mode .expanded-card-back {
+  background: linear-gradient(135deg, 
+    rgba(30, 30, 30, 0.95) 0%, 
+    rgba(20, 20, 20, 0.9) 100%);
+}
+
+.modal-card-img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+}
+
+.modal-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.modal-card-body h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark-mode .modal-card-body h2 {
+  background: linear-gradient(135deg, #64b3f4 0%, #c2e9fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-card-body p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.dark-mode .modal-card-body p {
+  color: #ccc;
+}
+
+/* Card Back Content */
+.card-back-content {
+  text-align: center;
+  width: 100%;
+}
+
+.card-back-logo h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-back-info {
+  text-align: left;
+}
+
+.card-back-info h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Removed duplicate .tech-tag definition to resolve selector conflict */
+
+.project-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Removed duplicate .project-btn definition; merged unique properties into the main .project-btn above if needed. */
+
+@keyframes holoFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.05;
+  }
+  25% {
+    transform: translate(30px, -40px) scale(1.1) rotate(90deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-20px, -60px) scale(0.9) rotate(180deg);
+    opacity: 0.08;
+  }
+  75% {
+    transform: translate(40px, -20px) scale(1.2) rotate(270deg);
+    opacity: 0.12;
+  }
+}
+
+/* Dark mode adjustments for holographic background */
+.dark-mode .holo-particle {
+  opacity: 0.15;
+  background: linear-gradient(45deg, 
+    #64b3f4 0%, 
+    #c2e9fb 25%, 
+    #a8e6cf 50%, 
+    #dcedc8 75%, 
+    #fce4ec 100%);
+}
+
+/* Enhanced body background for integration */
+body {
+  background: linear-gradient(135deg, 
+    rgba(102, 126, 234, 0.03) 0%, 
+    rgba(118, 75, 162, 0.05) 50%, 
+    rgba(240, 147, 251, 0.03) 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+.dark-mode body {
+  background: linear-gradient(135deg, 
+    rgba(100, 179, 244, 0.05) 0%, 
+    rgba(194, 233, 251, 0.03) 50%, 
+    rgba(168, 230, 207, 0.05) 100%);
+}
+
+/* Enhanced card interaction with background */
+.pokemon-card:hover {
+  z-index: 10;
+}
+
+.pokemon-card:hover ~ .holographic-background .holo-particle {
+  animation-duration: 6s;
+  opacity: 0.2;
+}
+
+.dark-mode .pokemon-card:hover ~ .holographic-background .holo-particle {
+  opacity: 0.25;
+}
+
+/* Integration with modal */
+.card-modal.active ~ .holographic-background .holo-particle {
+  animation-duration: 15s;
+  opacity: 0.03;
+  filter: blur(2px);
+}
+
+.dark-mode .card-modal.active ~ .holographic-background .holo-particle {
+  opacity: 0.05;
+}
+
+/* Integrated Holographic Background System */
+.holographic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.holo-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, 
+    var(--red) 0%, 
+    var(--yellow) 25%, 
+    var(--green) 50%, 
+    var(--blue) 75%, 
+    var(--violet) 100%);
+  opacity: 0.1;
+  animation: holoFloat 8s ease-in-out infinite;
+  filter: blur(1px);
+}
+
+.holo-particle-1 {
+  width: 120px;
+  height: 120px;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+  animation-duration: 12s;
+}
+
+.holo-particle-2 {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  right: 10%;
+  animation-delay: -2s;
+  animation-duration: 10s;
+}
+
+.holo-particle-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 15%;
+  animation-delay: -4s;
+  animation-duration: 14s;
+}
+
+.holo-particle-4 {
+  width: 60px;
+  height: 60px;
+  top: 30%;
+  right: 25%;
+  animation-delay: -1s;
+  animation-duration: 9s;
+}
+
+.holo-particle-5 {
+  width: 90px;
+  height: 90px;
+  bottom: 40%;
+  right: 5%;
+  animation-delay: -3s;
+  animation-duration: 11s;
+}
+
+.holo-particle-6 {
+  width: 70px;
+  height: 70px;
+  top: 80%;
+  left: 40%;
+  animation-delay: -5s;
+  animation-duration: 13s;
+}
+
+/* Extended Holographic Effects for Modal */
+.expanded-card.holo {
+  /* Inherit all the holographic effects */
+  --card-aspect: 63/88;
+  --card-radius: 12px;
+  --card-scale: 1.2;
+  --card-opacity: 1;
+  --card-glow: #69b7ff;
+  --card-edge: #5d8cff;
+  --card-back: #151515;
+  
+  /* Animation Variables */
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --pointer-from-center: 0;
+  --pointer-from-top: 0;
+  --pointer-from-left: 0;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  --background-x: 50%;
+  --background-y: 50%;
+  --translate-x: 0px;
+  --translate-y: 0px;
+  
+  /* Apply holographic effects */
+  position: relative;
+  transform: translate3d(0px, 0px, 0.01px);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform, visibility, z-index;
+}
+
+.expanded-card.holo .expanded-card-inner {
+  transform: rotateY(var(--rotate-x)) rotateX(var(--rotate-y));
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  will-change: transform, box-shadow;
+  border-radius: var(--card-radius);
+}
+
+.expanded-card.holo:hover .expanded-card-inner {
+  box-shadow: 
+    0 0 3px -1px white, 
+    0 0 3px 1px var(--card-edge), 
+    0 0 12px 2px var(--card-glow), 
+    0px 10px 20px -5px rgba(0,0,0,0.4), 
+    0 0 40px -30px var(--card-glow), 
+    0 0 50px -20px var(--card-glow);
+}
+
+/* Apply shine effects to both front and back of expanded card */
+.expanded-card.holo .card__shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--card-radius);
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.1) 35%, rgba(255,255,255,0.3) 45%, rgba(255,255,255,0.1) 55%, transparent 70%);
+  background-position: var(--pointer-x) var(--pointer-y);
+  background-size: 300% 300%;
+  opacity: calc(var(--pointer-from-center) * 0.1);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.expanded-card.holo:hover .card__shine {
+  opacity: 1;
+}
+
+/* Simple Holographic Overlay for Expansion Mode */
+.expanded-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 150, 0.1) 0%,
+    rgba(0, 255, 255, 0.1) 25%,
+    rgba(255, 255, 0, 0.1) 50%,
+    rgba(255, 0, 255, 0.1) 75%,
+    rgba(0, 255, 0, 0.1) 100%
+  );
+  background-size: 400% 400%;
+  animation: simpleHoloShift 3s ease-in-out infinite;
+  border-radius: var(--card-radius);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes simpleHoloShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Base Holographic Effect */
+.expanded-card.holo-effect {
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+  background-size: 200% 200%;
+  animation: holoShift 3s ease-in-out infinite;
+}
+
+.expanded-card.holo-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 20%,
+    rgba(255,0,150,0.3) 25%,
+    rgba(0,255,255,0.3) 30%,
+    rgba(255,255,0,0.3) 35%,
+    rgba(255,0,255,0.3) 40%,
+    transparent 50%,
+    rgba(0,255,0,0.3) 55%,
+    rgba(255,100,0,0.3) 60%,
+    rgba(100,0,255,0.3) 65%,
+    transparent 80%
+  );
+  background-size: 300% 300%;
+  background-position: var(--pointer-x, 50%) var(--pointer-y, 50%);
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+  animation: holoMove 4s ease-in-out infinite;
+  border-radius: var(--card-radius);
+}
+
+/* Rainbow Rare Effect */
+.expanded-card.rainbow-rare {
+  background: linear-gradient(
+    45deg,
+    #ff0000 0%, #ff7f00 14.28%, #ffff00 28.57%, 
+    #00ff00 42.86%, #0000ff 57.14%, #4b0082 71.43%, 
+    #9400d3 85.71%, #ff0000 100%
+  );
+  background-size: 400% 400%;
+  animation: rainbowShift 2s linear infinite;
+}
+
+.expanded-card.rainbow-rare::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(255, 255, 255, 0.9) 100%);
+  border-radius: calc(var(--card-radius) - 2px);
+  z-index: 1;
+}
+
+.expanded-card.rainbow-rare .expanded-card-front,
+.expanded-card.rainbow-rare .expanded-card-back {
+  position: relative;
+  z-index: 2;
+}
+
+.expanded-card.rainbow-rare::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+    rgba(255,255,255,0.8) 0%,
+    rgba(255,215,0,0.4) 20%,
+    rgba(255,20,147,0.3) 40%,
+    rgba(0,191,255,0.3) 60%,
+    transparent 80%
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+  border-radius: var(--card-radius);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Gold Secret Rare Effect */
+.expanded-card.gold-secret {
+  background: linear-gradient(
+    135deg,
+    #ffd700 0%, #ffed4e 25%, #ffd700 50%, 
+    #ffb300 75%, #ffd700 100%
+  );
+  background-size: 300% 300%;
+  animation: goldShimmer 3s ease-in-out infinite;
+  box-shadow: 
+    0 0 20px rgba(255, 215, 0, 0.8),
+    0 0 40px rgba(255, 215, 0, 0.6),
+    0 0 60px rgba(255, 215, 0, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.expanded-card.gold-secret::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background: linear-gradient(135deg, 
+    rgba(255, 248, 220, 0.95) 0%, 
+    rgba(255, 245, 210, 0.9) 100%);
+  border-radius: calc(var(--card-radius) - 3px);
+  z-index: 1;
+}
+
+.expanded-card.gold-secret .expanded-card-front,
+.expanded-card.gold-secret .expanded-card-back {
+  position: relative;
+  z-index: 2;
+}
+
+.expanded-card.gold-secret::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255,255,255,0.8) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(255,223,0,0.6) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(255,255,255,0.8) 50%,
+      transparent 60%
+    );
+  background-size: 100% 100%, 100% 100%, 200% 200%;
+  background-position: 0% 0%, 0% 0%, var(--pointer-x, 50%) var(--pointer-y, 50%);
+  mix-blend-mode: overlay;
+  opacity: 0.9;
+  border-radius: var(--card-radius);
+  z-index: 3;
+  pointer-events: none;
+  animation: goldSparkle 2s ease-in-out infinite;
+}
+
+/* Dark mode adjustments */
+.dark-mode .expanded-card.rainbow-rare::before {
+  background: linear-gradient(135deg, 
+    rgba(30, 30, 30, 0.95) 0%, 
+    rgba(20, 20, 20, 0.9) 100%);
+}
+
+.dark-mode .expanded-card.gold-secret::before {
+  background: linear-gradient(135deg, 
+    rgba(40, 35, 20, 0.95) 0%, 
+    rgba(30, 25, 15, 0.9) 100%);
+}
+
+/* Animations */
+@keyframes holoShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes holoMove {
+  0%, 100% { 
+    background-position: 0% 0%;
+    opacity: 0.6;
+  }
+  25% { 
+    background-position: 100% 0%;
+    opacity: 0.8;
+  }
+  50% { 
+    background-position: 100% 100%;
+    opacity: 1;
+  }
+  75% { 
+    background-position: 0% 100%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes rainbowShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 400% 50%; }
+}
+
+@keyframes goldShimmer {
+  0%, 100% { 
+    background-position: 0% 50%;
+    box-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.8),
+      0 0 40px rgba(255, 215, 0, 0.6),
+      0 0 60px rgba(255, 215, 0, 0.4);
+  }
+  50% { 
+    background-position: 100% 50%;
+    box-shadow: 
+      0 0 30px rgba(255, 215, 0, 1),
+      0 0 60px rgba(255, 215, 0, 0.8),
+      0 0 90px rgba(255, 215, 0, 0.6);
+  }
+}
+
+@keyframes goldSparkle {
+  0%, 100% { 
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Effect Indicator */
+.effect-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 100;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.effect-indicator:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+.effect-indicator small {
+  display: block;
+  font-size: 0.6rem;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.dark-mode .effect-indicator {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark-mode .effect-indicator:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

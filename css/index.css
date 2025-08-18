@@ -1,0 +1,887 @@
+/* Index Page Specific Styles */
+
+/* 3D Canvas Background */
+.three-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* Disable interaction for better text accessibility */
+}
+
+/* Ensure text content stays above canvas */
+.hero-text {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.hero-buttons {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Mobile optimizations for 3D background */
+@media (max-width: 768px) {
+  .three-canvas {
+    opacity: 0.7; /* Reduce opacity on mobile for better text readability */
+  }
+}
+
+/* Disable 3D effects for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .three-canvas,
+  .fallback-bg {
+    display: none;
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  padding: 120px 0 60px;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+  z-index: -1;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero-text {
+  z-index: 10;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.wave {
+  display: inline-block;
+  animation: wave 2s infinite;
+  margin-right: 0.5rem;
+}
+
+.highlight {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease-in-out infinite;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--primary-color);
+  white-space: nowrap;
+  animation: typing 3s steps(30) 1s 1 normal both, blink-caret 1s step-end infinite;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  perspective: 1000px;
+}
+
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  cursor: none;
+  
+  /* Advanced multi-layer holographic background inspired by Pokémon cards */
+  background: 
+    /* Rainbow shimmer layer */
+    linear-gradient(135deg, 
+      hsla(0, 100%, 70%, 0.4) 0%,
+      hsla(60, 100%, 70%, 0.4) 16.66%,
+      hsla(120, 100%, 70%, 0.4) 33.33%,
+      hsla(180, 100%, 70%, 0.4) 50%,
+      hsla(240, 100%, 70%, 0.4) 66.66%,
+      hsla(300, 100%, 70%, 0.4) 83.33%,
+      hsla(360, 100%, 70%, 0.4) 100%
+    ),
+    /* Prismatic layer */
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 2px,
+      rgba(255, 255, 255, 0.1) 4px
+    ),
+    /* Galaxy sparkle layer */
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 0, 150, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(0, 255, 255, 0.3) 0%,
+      transparent 50%
+    );
+  
+  background-size: 200% 200%, 8px 8px, 100% 100%, 100% 100%;
+  background-blend-mode: color-dodge, overlay, multiply, normal;
+  
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.5),
+    inset 0 0 30px rgba(255, 255, 255, 0.2),
+    0 0 60px rgba(255, 0, 255, 0.3);
+  
+  filter: blur(0.5px) saturate(1.2);
+  animation: float 6s ease-in-out infinite, 
+             holo-shift 4s ease-in-out infinite,
+             rainbow-rotation 8s linear infinite;
+}
+
+.shape::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  
+  /* Advanced foil shimmer effect */
+  background: 
+    linear-gradient(
+      135deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.4) 26%,
+      rgba(255, 255, 255, 0.4) 27%,
+      transparent 28%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.3) 41%,
+      rgba(255, 255, 255, 0.3) 43%,
+      transparent 44%
+    );
+  
+  background-size: 15px 15px, 20px 20px;
+  animation: foil-glide 3s ease-in-out infinite;
+  mix-blend-mode: color-dodge;
+}
+
+.shape::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  opacity: 0;
+  animation: light-sweep 4s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 80px;
+  height: 80px;
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 60px;
+  height: 60px;
+  top: 60%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 40px;
+  height: 40px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.shape-4 {
+  width: 100px;
+  height: 100px;
+  top: 30%;
+  right: 30%;
+  animation-delay: 1s;
+}
+
+/* Advanced Code Snippet with Pokémon Card Effects */
+.code-snippet {
+  background: var(--bg-card);
+  border-radius: 12px;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid var(--border-color);
+  position: relative;
+  cursor: pointer;
+  
+  /* Advanced multi-layer holographic background */
+  background: 
+    /* Base card background */
+    var(--bg-card),
+    /* Rainbow rare shimmer */
+    linear-gradient(45deg, 
+      transparent 30%,
+      rgba(255, 0, 150, 0.1) 40%,
+      rgba(0, 255, 255, 0.1) 50%,
+      rgba(255, 255, 0, 0.1) 60%,
+      transparent 70%
+    ),
+    /* Radial sparkle effects */
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 40% 70%, rgba(0, 255, 255, 0.2) 1px, transparent 1px);
+    
+  background-size: 
+    100% 100%,
+    300% 300%,
+    20px 20px,
+    25px 25px,
+    30px 30px;
+  
+  animation: code-holo-glow 3s ease-in-out infinite alternate,
+             rainbow-shift 6s linear infinite;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.code-snippet:hover {
+  transform: rotateY(5deg) rotateX(5deg) scale(1.02);
+  box-shadow: 
+    var(--shadow-xl),
+    0 0 50px rgba(255, 0, 255, 0.3),
+    0 0 100px rgba(0, 255, 255, 0.2);
+}
+
+/* Advanced Holographic Overlay */
+.code-snippet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Prismatic pattern */
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 2px,
+      rgba(255, 255, 255, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      rgba(255, 0, 255, 0.03) 1px,
+      transparent 2px,
+      rgba(255, 0, 255, 0.03) 4px
+    ),
+    /* Galaxy texture */
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+  
+  background-size: 8px 8px, 12px 12px, 80% 80%, 80% 80%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 12px;
+  animation: prismatic-shift 4s ease-in-out infinite;
+  mix-blend-mode: color-dodge;
+}
+
+.code-snippet:hover::before {
+  opacity: 1;
+}
+
+/* Rainbow light sweep effect */
+.code-snippet::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6) 20%,
+    rgba(255, 0, 255, 0.4) 40%,
+    rgba(0, 255, 255, 0.4) 60%,
+    rgba(255, 255, 255, 0.6) 80%,
+    transparent
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.code-snippet:hover::after {
+  left: 100%;
+}
+
+/* Holographic Foil Effect */
+.code-snippet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(255, 0, 150, 0.1) 25%,
+    rgba(255, 0, 150, 0.1) 50%,
+    transparent 50%,
+    transparent 75%,
+    rgba(0, 255, 255, 0.1) 75%
+  ),
+  linear-gradient(
+    -45deg,
+    transparent 25%,
+    rgba(255, 255, 0, 0.1) 25%,
+    rgba(255, 255, 0, 0.1) 50%,
+    transparent 50%,
+    transparent 75%,
+    rgba(255, 0, 255, 0.1) 75%
+  );
+  background-size: 20px 20px, 20px 20px;
+  animation: foil-shimmer 3s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.code-snippet:hover::before {
+  opacity: 1;
+}
+
+.code-snippet::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.code-snippet:hover::after {
+  left: 100%;
+}
+
+/* Holographic border effect */
+.code-snippet {
+  background: linear-gradient(135deg, 
+    rgba(255, 0, 150, 0.1) 0%,
+    rgba(0, 255, 255, 0.1) 25%,
+    rgba(255, 255, 0, 0.1) 50%,
+    rgba(255, 0, 255, 0.1) 75%,
+    rgba(0, 150, 255, 0.1) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 4s ease infinite, code-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes foil-shimmer {
+  0%, 100% {
+    background-position: 0px 0px, 0px 0px;
+    filter: hue-rotate(0deg) saturate(1);
+  }
+  25% {
+    background-position: 10px 10px, -10px 10px;
+    filter: hue-rotate(90deg) saturate(1.2);
+  }
+  50% {
+    background-position: 20px 0px, 0px 20px;
+    filter: hue-rotate(180deg) saturate(1.4);
+  }
+  75% {
+    background-position: 10px -10px, 10px 10px;
+    filter: hue-rotate(270deg) saturate(1.2);
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.code-header {
+  background: var(--bg-secondary);
+  padding: 12px 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ff5f57; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #28ca42; }
+
+.code-content {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.code-line {
+  margin-bottom: 4px;
+  animation: code-type 0.1s ease-in-out;
+}
+
+.indent { padding-left: 20px; }
+.indent2 { padding-left: 40px; }
+
+.keyword { color: #c678dd; }
+.variable { color: #e06c75; }
+.property { color: #56b6c2; }
+.string { color: #98c379; }
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.scroll-arrow {
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid var(--text-secondary);
+  border-bottom: 2px solid var(--text-secondary);
+  transform: rotate(45deg);
+}
+
+/* Skills Section */
+.skills-section {
+  padding: 100px 0;
+  background: var(--bg-secondary);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.skill-card {
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.skill-card:hover::before {
+  left: 100%;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-color);
+}
+
+.skill-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: grayscale(0.2);
+}
+
+.skill-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.skill-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Index Page Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 100px 0 60px; /* Adjusted for mobile navbar */
+  }
+  
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+  
+  .code-snippet {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 90px 0 40px; /* Further adjusted for small screens */
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* Performance optimizations for holographic effects */
+@media (prefers-reduced-motion: reduce) {
+  .shape,
+  .code-snippet {
+    animation: none !important;
+  }
+  
+  .shape::before,
+  .shape::after,
+  .code-snippet::before,
+  .code-snippet::after {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .shape,
+  .code-snippet {
+    filter: none !important;
+    background-blend-mode: normal !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .shape {
+    filter: blur(0.3px) saturate(1.1) !important;
+    animation-duration: 8s !important;
+  }
+  
+  .code-snippet {
+    background-size: 100% 100%, 200% 200%, 15px 15px, 20px 20px, 25px 25px !important;
+  }
+  
+  .code-snippet::before {
+    opacity: 0.5 !important;
+  }
+}
+
+/* Enhanced glow effects for dark mode */
+.dark-mode .shape {
+  /* Adjust base colors for dark backgrounds */
+  background: 
+    /* Base gradient with darker tones */
+    linear-gradient(135deg, 
+      rgba(139, 69, 19, 0.8) 0%,
+      rgba(255, 140, 0, 0.6) 25%,
+      rgba(255, 215, 0, 0.7) 50%,
+      rgba(255, 69, 0, 0.6) 75%,
+      rgba(139, 69, 19, 0.8) 100%
+    ),
+    /* Bright holographic overlay for dark mode */
+    linear-gradient(45deg, 
+      rgba(255, 0, 255, 0.4) 0%,
+      rgba(0, 255, 255, 0.4) 25%,
+      rgba(255, 255, 0, 0.4) 50%,
+      rgba(255, 0, 150, 0.4) 75%,
+      rgba(0, 150, 255, 0.4) 100%
+    ),
+    /* Enhanced sparkle points */
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.8) 1px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.6) 1px, transparent 2px),
+    radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.6) 1px, transparent 2px);
+  
+  background-size: 100% 100%, 200% 200%, 15px 15px, 20px 20px, 25px 25px;
+  
+  box-shadow: 
+    0 0 30px rgba(255, 255, 255, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1),
+    0 0 60px rgba(255, 0, 255, 0.4),
+    0 0 80px rgba(0, 255, 255, 0.3);
+  
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .code-snippet {
+  /* Darker base with enhanced holographic effects */
+  background: 
+    /* Dark card background */
+    var(--bg-card),
+    /* Brighter rainbow shimmer for dark mode */
+    linear-gradient(45deg, 
+      transparent 20%,
+      rgba(255, 0, 255, 0.3) 30%,
+      rgba(0, 255, 255, 0.3) 40%,
+      rgba(255, 255, 0, 0.3) 50%,
+      rgba(255, 0, 150, 0.3) 60%,
+      transparent 70%
+    ),
+    /* Enhanced sparkle effects */
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.4) 1px, transparent 2px),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.3) 1px, transparent 2px),
+    radial-gradient(circle at 40% 70%, rgba(0, 255, 255, 0.3) 1px, transparent 2px);
+  
+  background-size: 
+    100% 100%,
+    250% 250%,
+    18px 18px,
+    22px 22px,
+    28px 28px;
+  
+  box-shadow: 
+    var(--shadow-xl),
+    0 0 40px rgba(255, 0, 255, 0.4),
+    0 0 60px rgba(0, 255, 255, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
+  
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Dark mode hover effects */
+.dark-mode .code-snippet:hover {
+  box-shadow: 
+    var(--shadow-xl),
+    0 0 60px rgba(255, 0, 255, 0.6),
+    0 0 100px rgba(0, 255, 255, 0.4),
+    0 0 140px rgba(255, 255, 0, 0.3);
+}
+
+/* Enhanced dark mode holographic overlay */
+.dark-mode .code-snippet::before {
+  background: 
+    /* Brighter prismatic pattern for dark mode */
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 2px,
+      rgba(255, 255, 255, 0.1) 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      rgba(255, 0, 255, 0.1) 1px,
+      transparent 2px,
+      rgba(255, 0, 255, 0.1) 4px
+    ),
+    /* Brighter galaxy texture */
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 0, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.2) 0%, transparent 50%);
+  
+  mix-blend-mode: overlay; /* Better blend mode for dark backgrounds */
+}
+
+/* Dark mode rainbow sweep effect */
+.dark-mode .code-snippet::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8) 10%,
+    rgba(255, 0, 255, 0.6) 25%,
+    rgba(0, 255, 255, 0.6) 50%,
+    rgba(255, 255, 0, 0.6) 75%,
+    rgba(255, 255, 255, 0.8) 90%,
+    transparent
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Dark mode sparkle effects */
+.dark-mode .shape.sparkle::before {
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.8) 1px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.8) 1px, transparent 2px),
+    radial-gradient(circle at 45% 65%, rgba(255, 0, 255, 0.6) 1px, transparent 2px),
+    radial-gradient(circle at 85% 35%, rgba(0, 255, 255, 0.6) 1px, transparent 2px);
+  background-size: 18px 18px, 25px 25px, 20px 20px, 30px 30px;
+  mix-blend-mode: screen;
+  opacity: 0.8;
+}
+
+/* Additional sparkle effect layer */
+.shape.sparkle::before {
+  background: 
+    radial-gradient(circle at 25% 25%, white 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, white 1px, transparent 1px),
+    radial-gradient(circle at 45% 65%, white 1px, transparent 1px),
+    radial-gradient(circle at 85% 35%, white 1px, transparent 1px);
+  background-size: 20px 20px, 30px 30px, 25px 25px, 35px 35px;
+  animation: sparkle-twinkle 2s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}

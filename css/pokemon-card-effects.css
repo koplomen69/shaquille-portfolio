@@ -1,0 +1,226 @@
+/* Pokemon Card Holographic Effects - Enhanced CSS */
+
+/* Additional glitter textures for enhanced effects */
+.card.rainbow .card__shine:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,0.8) 1px, transparent 2px),
+    radial-gradient(circle at 75% 25%, rgba(255,255,255,0.6) 1px, transparent 2px),
+    radial-gradient(circle at 25% 75%, rgba(255,255,255,0.4) 1px, transparent 2px),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,0.7) 1px, transparent 2px);
+  background-size: 
+    15px 15px,
+    20px 20px,
+    10px 10px,
+    25px 25px;
+  background-position:
+    0 0,
+    calc(var(--pointer-x) / 4) calc(var(--pointer-y) / 4),
+    calc(var(--pointer-x) / 6) calc(var(--pointer-y) / 6),
+    calc(var(--pointer-x) / 3) calc(var(--pointer-y) / 3);
+  animation: sparkle 3s ease-in-out infinite;
+  opacity: calc(var(--card-opacity) * 0.6);
+  mix-blend-mode: screen;
+}
+
+@keyframes sparkle {
+  0%, 100% { 
+    opacity: calc(var(--card-opacity) * 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    opacity: calc(var(--card-opacity) * 0.8);
+    transform: scale(1.05);
+  }
+}
+
+/* Enhanced holo effect with scanlines */
+.card.holo .card__shine:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+  background-size: 4px 100%;
+  background-position: calc(var(--background-x) * 2) 0;
+  mix-blend-mode: overlay;
+  opacity: calc(var(--card-opacity) * 0.5);
+}
+
+/* Gold card prismatic effect */
+.card.gold .card__shine:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(
+      ellipse at var(--pointer-x) var(--pointer-y),
+      rgba(255, 215, 0, 0.9) 0%,
+      rgba(255, 193, 7, 0.7) 25%,
+      rgba(255, 235, 59, 0.5) 50%,
+      transparent 75%
+    );
+  mix-blend-mode: multiply;
+  opacity: calc(var(--card-opacity) * 0.8);
+}
+
+.card.gold .card__shine:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255,215,0,0.8) 2px, transparent 3px),
+    radial-gradient(circle at 80% 20%, rgba(255,193,7,0.6) 1px, transparent 2px),
+    radial-gradient(circle at 40% 80%, rgba(255,235,59,0.4) 1px, transparent 2px);
+  background-size: 8px 8px, 12px 12px, 6px 6px;
+  background-position:
+    calc(var(--pointer-x) / 2) calc(var(--pointer-y) / 2),
+    calc(var(--pointer-x) / 3) calc(var(--pointer-y) / 3),
+    calc(var(--pointer-x) / 4) calc(var(--pointer-y) / 4);
+  mix-blend-mode: screen;
+  opacity: calc(var(--card-opacity) * 0.7);
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0%, 100% { 
+    opacity: calc(var(--card-opacity) * 0.4);
+  }
+  50% { 
+    opacity: calc(var(--card-opacity) * 0.9);
+  }
+}
+
+/* Enhanced interactive states */
+.card.interactive:hover {
+  --card-scale: 1.02;
+}
+
+.card.active {
+  --card-scale: 1.1;
+  --translate-y: -15px;
+  z-index: 1000;
+}
+
+.card.interacting {
+  --card-opacity: 1;
+}
+
+/* Smooth transitions for all effects */
+.card,
+.card *,
+.card *::before,
+.card *::after {
+  transition: 
+    transform 0.1s ease-out,
+    opacity 0.2s ease-out,
+    filter 0.2s ease-out,
+    background-position 0.1s ease-out;
+}
+
+.card:not(.interacting),
+.card:not(.interacting) *,
+.card:not(.interacting) *::before,
+.card:not(.interacting) *::after {
+  transition: 
+    transform 0.6s cubic-bezier(0.23, 1, 0.320, 1),
+    opacity 0.4s ease-out,
+    filter 0.4s ease-out,
+    background-position 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+/* Accessibility improvements */
+.card__rotator:focus {
+  outline: 2px solid var(--card-glow);
+  outline-offset: 4px;
+}
+
+.card__rotator:focus-visible {
+  outline: 2px solid var(--card-glow);
+  outline-offset: 4px;
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card *,
+  .card *::before,
+  .card *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .card:hover {
+    --card-scale: 1 !important;
+    --rotate-x: 0deg !important;
+    --rotate-y: 0deg !important;
+  }
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .card {
+    --card-glow: #4fc3f7;
+    --card-edge: #29b6f6;
+  }
+  
+  .card__rotator:focus {
+    outline-color: var(--card-glow);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card__shine {
+    opacity: calc(var(--card-opacity) * 0.5) !important;
+  }
+  
+  .card__glare {
+    opacity: calc(var(--card-opacity) * 0.3) !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .card:not(.interactive):hover {
+    --card-scale: 1;
+    --translate-y: 0px;
+  }
+  
+  .card.interactive {
+    --card-opacity: 0.6;
+  }
+}
+
+/* Print styles */
+@media print {
+  .card__shine,
+  .card__glare {
+    display: none !important;
+  }
+  
+  .card {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}

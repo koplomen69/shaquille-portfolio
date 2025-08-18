@@ -1,0 +1,834 @@
+/* Experience Page Specific Styles */
+
+.solar-system-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-content {
+  text-align: center;
+  color: white;
+  max-width: 400px;
+  padding: 2rem;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.loading-content p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.loading-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+body.dark-mode .loading-screen {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #1a1a2e 100%);
+}
+
+.experience-section {
+  min-height: 100vh;
+  padding: 120px 0 80px;
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  transition: all 0.5s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.experience-content:hover {
+  background: rgba(220, 220, 220, 0.989);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+body.dark-mode .experience-content:hover {
+  background: rgba(8, 0, 14, 0.66);
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+}
+
+.experience-title {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* CV Button Styles */
+.cv-button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.cv-buttons-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cv-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 10px 30px rgba(var(--primary-color), 0.3);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  min-width: 140px;
+  justify-content: center;
+}
+
+.cv-button.cv-download {
+  background: linear-gradient(135deg, var(--secondary-color), #e97d0a);
+  box-shadow: 0 10px 30px rgba(var(--secondary-color), 0.3);
+}
+
+.cv-button:hover {
+  transform: translateY(-3px);
+  color: white;
+  text-decoration: none;
+}
+
+.cv-button.cv-view:hover {
+  box-shadow: 0 15px 40px rgba(var(--primary-color), 0.4);
+}
+
+.cv-button.cv-download:hover {
+  box-shadow: 0 15px 40px rgba(var(--secondary-color), 0.4);
+}
+
+.cv-button:active {
+  transform: translateY(-1px);
+}
+
+.cv-button.cv-view:active {
+  box-shadow: 0 8px 25px rgba(var(--primary-color), 0.3);
+}
+
+.cv-button.cv-download:active {
+  box-shadow: 0 8px 25px rgba(var(--secondary-color), 0.3);
+}
+
+.cv-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.cv-button:hover::before {
+  left: 100%;
+}
+
+.cv-button i {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s ease;
+}
+
+.cv-button:hover i:last-child {
+  transform: translateY(2px);
+}
+
+/* Dark mode adjustments for CV button */
+[data-theme="dark"] .cv-button.cv-view {
+  box-shadow: 0 10px 30px rgba(var(--primary-color), 0.4);
+}
+
+[data-theme="dark"] .cv-button.cv-download {
+  box-shadow: 0 10px 30px rgba(var(--secondary-color), 0.4);
+}
+
+[data-theme="dark"] .cv-button.cv-view:hover {
+  box-shadow: 0 15px 40px rgba(var(--primary-color), 0.5);
+}
+
+[data-theme="dark"] .cv-button.cv-download:hover {
+  box-shadow: 0 15px 40px rgba(var(--secondary-color), 0.5);
+}
+
+.experience-timeline {
+  position: relative;
+}
+
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  z-index: 1;
+}
+
+.experience-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-left: 60px;
+}
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 20px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  border: 3px solid var(--bg-primary);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.experience-item:hover::before {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px var(--primary-color);
+}
+
+.experience-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 0.8;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Allow text selection while keeping camera controls */
+.experience-card * {
+  pointer-events: none;
+  user-select: text;
+  cursor: text;
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-color);
+}
+
+.experience-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.experience-card:hover::before {
+  opacity: 0.7;
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.experience-role {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+}
+
+.experience-period {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.experience-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Dark mode specific styles */
+body.dark-mode .experience-card {
+  background: rgba(17, 17, 17, 0.6);
+  border-color: #ffffff;
+  opacity: 0.7;
+}
+
+body.dark-mode .experience-card:hover {
+  background: rgba(17, 17, 17, 0.75);
+  opacity: 1;
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.5),
+    0 10px 10px -5px rgba(0, 0, 0, 0.2),
+    0 0 30px rgba(99, 102, 241, 0.3);
+}
+
+body.dark-mode .experience-period {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+/* Solar System Controls */
+.solar-system-controls {
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  background: rgb(255, 255, 255);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 12px;
+  padding: 1rem;
+  width: 280px;
+  z-index: 100;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+body.dark-mode .solar-system-controls {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgb(255, 255, 255);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.solar-system-controls:hover {
+  background: rgb(220, 220, 220);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .solar-system-controls:hover {
+  background: rgba(22, 0, 0, 0.331);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.controls-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.controls-header h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.controls-toggle {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.controls-toggle:hover {
+  transform: rotate(90deg);
+}
+
+.controls-content {
+  max-height: 400px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.controls-content.collapsed {
+  max-height: 0;
+}
+
+.control-group {
+  margin-bottom: 1rem;
+}
+
+.control-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  outline: none;
+  appearance: none;
+  margin-bottom: 0.25rem;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+body.dark-mode .slider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.slider-value {
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  font-weight: 500;
+  float: right;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 70px;
+}
+
+.control-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.reset-btn:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+.pause-btn.paused {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: white;
+}
+
+.hide-cards-btn.cards-hidden {
+  background: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+
+/* Free Look Camera Toggle Control */
+.control-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.toggle-btn {
+  flex: 1;
+  min-width: auto;
+}
+
+.toggle-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+body.dark-mode .toggle-btn.active {
+  background: var(--primary-color);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+
+/* Experience cards hide/show animation */
+.experience-section.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+/* Solar system focus mode */
+.solar-system-focus .experience-section {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.solar-system-focus .solar-system-controls {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .solar-system-focus .solar-system-controls {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .solar-system-controls {
+    width: 250px;
+    left: 10px;
+    top: 80px;
+    padding: 0.75rem;
+  }
+  
+  .controls-header h4 {
+    font-size: 0.9rem;
+  }
+  
+  .control-group label {
+    font-size: 0.8rem;
+  }
+  
+  .control-buttons {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .control-btn {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+  
+  .keyboard-shortcuts {
+    display: none;
+  }
+  
+  .camera-hint {
+    bottom: 10px;
+    right: 10px;
+    max-width: 240px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .cv-button {
+    padding: 0.9rem 1.75rem;
+    font-size: 1.05rem;
+  }
+  
+  .cv-buttons-group {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .solar-system-controls {
+    width: calc(100vw - 20px);
+    left: 10px;
+    right: 10px;
+  }
+  
+  .experience-content {
+    padding: 0 1rem;
+  }
+  
+  .experience-title {
+    font-size: 2rem;
+  }
+  
+  .cv-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    gap: 0.5rem;
+    min-width: 120px;
+    width: 100%;
+  }
+  
+  .cv-button i {
+    font-size: 1rem;
+  }
+  
+  .cv-buttons-group {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .solar-system-controls:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  body.dark-mode .solar-system-controls:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .control-btn:hover {
+    background: transparent;
+    color: var(--primary-color);
+  }
+  
+  .control-btn:active {
+    background: var(--primary-color);
+    color: white;
+  }
+}
+
+/* Keyboard Shortcuts Hint */
+.keyboard-shortcuts {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.keyboard-shortcuts small {
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  opacity: 1;
+}
+
+body.dark-mode .keyboard-shortcuts {
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Camera control feedback */
+body.camera-active {
+  cursor: grabbing !important;
+  user-select: none;
+}
+
+body.camera-active * {
+  cursor: grabbing !important;
+  user-select: none;
+}
+
+.camera-hint {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  z-index: 1000;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  max-width: 280px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.camera-hint div:first-child {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.camera-hint div:last-child {
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+.camera-hint.show {
+  opacity: 1;
+}
+
+body.dark-mode .camera-hint {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Interactive area indicators */
+.experience-content::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--primary-color), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 2px;
+}
+
+.experience-content:hover::before {
+  opacity: 0.6;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+  background: rgba(17, 17, 17, 0.8);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--bg-primary);
+}
+
+body.dark-mode * {
+  scrollbar-color: #6366f1 rgba(17, 17, 17, 0.8);
+}
+
+/* Experience Page Specific Styles */

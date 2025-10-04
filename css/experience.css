@@ -1,4 +1,15 @@
 /* Experience Page Specific Styles */
+/* When cards are hidden, let events go through to the canvas */
+body.cards-hidden .experience-section,
+body.cards-hidden .experience-content {
+  pointer-events: none !important;
+  opacity: 0;              /* optional: fade them visually */
+  transition: opacity 0.3s ease;
+}
+
+body.cards-hidden .experience-section * {
+  pointer-events: none !important;
+}
 
 .solar-system-canvas {
   position: fixed;
@@ -374,16 +385,52 @@ body.dark-mode .experience-period {
   position: fixed;
   top: 100px;
   left: 20px;
-  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
-  border: 1px solid rgb(255, 255, 255);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 1rem;
   width: 280px;
-  z-index: 100;
+  z-index: 1000;
   transition: all 0.3s ease;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   animation: slideInLeft 0.5s ease-out;
+  pointer-events: auto;
+}
+
+.solar-system-controls.shrunk {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+}
+
+.solar-system-controls.shrunk .controls-content {
+visibility: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+.solar-system-controls.shrunk .controls-header h4 {
+  display: none; /* Hide "Solar System Controls" text when shrunk */
+}
+
+.solar-system-controls.shrunk .controls-toggle {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0; /* Remove any margins */
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+  display: flex; /* Use flexbox to center contents */
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes slideInLeft {
@@ -399,19 +446,33 @@ body.dark-mode .experience-period {
 
 body.dark-mode .solar-system-controls {
   background: rgba(0, 0, 0, 0.3);
-  border-color: rgb(255, 255, 255);
+  border-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
+body.dark-mode .solar-system-controls.shrunk {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
 .solar-system-controls:hover {
-  background: rgb(220, 220, 220);
+  background: rgba(220, 220, 220, 0.2);
   transform: translateY(-2px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 body.dark-mode .solar-system-controls:hover {
-  background: rgba(22, 0, 0, 0.331);
+  background: rgba(22, 0, 0, 0.4);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.solar-system-controls.shrunk:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .solar-system-controls.shrunk:hover {
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .controls-header {
@@ -420,6 +481,7 @@ body.dark-mode .solar-system-controls:hover {
   align-items: center;
   margin-bottom: 1rem;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .controls-header h4 {
@@ -436,32 +498,101 @@ body.dark-mode .solar-system-controls:hover {
   font-size: 1.2rem;
   cursor: pointer;
   transition: transform 0.3s ease;
+  padding: 0;
+  line-height: 1;
+  pointer-events: auto;
 }
 
 .controls-toggle:hover {
   transform: rotate(90deg);
 }
 
+.solar-system-controls.shrunk .controls-toggle:hover {
+  transform: none;
+}
+
 .controls-content {
   max-height: 400px;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .controls-content.collapsed {
   max-height: 0;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.control-group {
-  margin-bottom: 1rem;
+/* Ensure other controls remain interactive */
+.control-group,
+.control-btn {
+  pointer-events: auto;
 }
 
-.control-group label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 0.5rem;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .solar-system-controls {
+    width: 250px;
+    left: 10px;
+    top: 80px;
+    padding: 0.75rem;
+  }
+
+  .solar-system-controls.shrunk {
+    width: 36px;
+    height: 36px;
+  }
+
+  .solar-system-controls.shrunk .controls-toggle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .solar-system-controls {
+    width: calc(100vw - 20px);
+    left: 10px;
+    right: 10px;
+  }
+
+  .solar-system-controls.shrunk {
+    width: 36px;
+    height: 36px;
+    left: 10px;
+    right: auto;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .solar-system-controls:hover {
+    transform: none;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  body.dark-mode .solar-system-controls:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .solar-system-controls.shrunk:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  body.dark-mode .solar-system-controls.shrunk:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .controls-toggle:hover {
+    transform: none;
+  }
+
+  .solar-system-controls.shrunk .controls-toggle:hover {
+    transform: none;
+  }
 }
 
 .slider {
@@ -546,8 +677,8 @@ body.dark-mode .slider {
 }
 
 .hide-cards-btn.cards-hidden {
-  background: #10b981;
-  border-color: #10b981;
+  background: #000000;
+  border-color: #5147ba;
   color: white;
 }
 
@@ -830,5 +961,65 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
 body.dark-mode * {
   scrollbar-color: #6366f1 rgba(17, 17, 17, 0.8);
 }
+/* ===== Fix: re-enable interactions and mobile scrolling ===== */
 
-/* Experience Page Specific Styles */
+/* Re-enable pointer events for interactive sections and controls */
+.experience-section,
+.experience-content,
+.experience-card,
+.experience-timeline,
+.experience-item,
+.cv-button,
+.cv-button * ,
+.cv-buttons-group,
+.control-btn,
+.controls-toggle,
+.controls-content,
+.solar-system-controls,
+.camera-hint {
+  pointer-events: auto !important;
+}
+
+/* Ensure buttons and interactive controls are touch-friendly */
+.cv-button,
+.control-btn,
+.controls-toggle,
+.toggle-btn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+/* On small screens, let touches pass through the background canvas so page can scroll.
+   If you still want to interact with the solar canvas on mobile remove this block. */
+/* When cards are hidden, completely remove them on small screens */
+@media (max-width: 768px) {
+  body.cards-hidden .experience-section {
+    display: none !important;   /* remove the element so canvas is exposed */
+  }
+}
+
+/* Desktop still uses fade + pointer-events:none */
+@media (min-width: 769px) {
+  body.cards-hidden .experience-section,
+  body.cards-hidden .experience-content {
+    pointer-events: none !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+}
+
+/* If camera mode should block page interaction, you can re-disable interactions via
+   a body class when the camera is active (example: body.camera-active). */
+body.camera-active .experience-section,
+body.camera-active .experience-content {
+  pointer-events: none;
+}
+
+/* Minor nicety: make scrollbar available on mobile if hidden elsewhere */
+@media (hover: none) and (pointer: coarse) {
+  html, body {
+    overflow-y: auto !important;
+  }
+}
+

@@ -15,40 +15,62 @@
   </head>
   <body class="light-mode">
 
-  <nav class="navbar navbar-expand-lg" id="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                Shaquille
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <div class="hamburger">
-                    <div class="hamburger-line"></div>
-                    <div class="hamburger-line"></div>
-                    <div class="hamburger-line"></div>
-                </div>
+  <!-- Navbar -->
+    <nav class="custom-navbar" id="navbar">
+      <div class="navbar-container">
+        <div class="navbar-content">
+          <a class="navbar-brand" href="index.html">Shaquille</a>
+          
+          <!-- Desktop Navigation -->
+          <div class="navbar-nav-desktop">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="experience.html">Experience</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="project.html">Project</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+            <i id="themeToggle" class="bi bi-brightness-high-fill theme-toggle"></i>
+          </div>
+
+          <!-- Mobile Hamburger -->
+          <div class="navbar-mobile">
+            <i id="themeToggleMobile" class="bi bi-brightness-high-fill theme-toggle-mobile"></i>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
             </button>
-            
-            <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="index.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="experience.html">Experience</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#">Project</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <i id="themeToggle" class="bi bi-brightness-high-fill theme-toggle"></i>
-                    </li>
-                </ul>
-            </div>
+          </div>
         </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="navbar-nav-mobile" id="mobileNav">
+          <div class="mobile-nav-content">
+            <ul class="mobile-nav-list">
+              <li class="mobile-nav-item">
+                <a class="mobile-nav-link active" href="index.html">About</a>
+              </li>
+              <li class="mobile-nav-item">
+                <a class="mobile-nav-link" href="experience.html">Experience</a>
+              </li>
+              <li class="mobile-nav-item">
+                <a class="mobile-nav-link" href="project.html">Project</a>
+              </li>
+              <li class="mobile-nav-item">
+                <a class="mobile-nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </nav>
     
     <!-- Loading Animation -->

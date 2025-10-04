@@ -96,15 +96,6 @@ class IndexPageManager {
     });
 
     // Add cursor blink effect to last line
-    const lastLine = codeLines[codeLines.length - 1];
-    if (lastLine) {
-      setTimeout(() => {
-        const cursor = document.createElement('span');
-        cursor.textContent = '|';
-        cursor.style.animation = 'blink-caret 1s step-end infinite';
-        lastLine.appendChild(cursor);
-      }, 500 + (codeLines.length * 200));
-    }
   }
 
   // Handle scroll indicator
@@ -131,89 +122,7 @@ class IndexPageManager {
     });
   }
 
-  // Enhanced skill cards interactions
-  initSkillCards() {
-    const skillCards = document.querySelectorAll('.skill-card');
-    
-    skillCards.forEach((card, index) => {
-      // Add staggered entrance animation
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(50px)';
-      
-      // Animate cards in view
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.transition = 'all 0.6s ease';
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }, index * 150);
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      observer.observe(card);
-
-      // Add enhanced hover effects
-      card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-15px) scale(1.03)';
-        this.createParticles(card);
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-      });
-
-      // Add click effect
-      card.addEventListener('click', () => {
-        card.style.animation = 'pulse 0.6s ease';
-        setTimeout(() => {
-          card.style.animation = '';
-        }, 600);
-      });
-    });
-  }
-
-  // Create particle effects for skill cards
-  createParticles(card) {
-    const particleCount = 5;
-    const cardRect = card.getBoundingClientRect();
-    
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div');
-      particle.style.cssText = `
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: var(--primary-color);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 1000;
-      `;
-      
-      const startX = cardRect.left + Math.random() * cardRect.width;
-      const startY = cardRect.top + Math.random() * cardRect.height;
-      
-      particle.style.left = startX + 'px';
-      particle.style.top = startY + 'px';
-      
-      document.body.appendChild(particle);
-      
-      // Animate particle
-      const endX = startX + (Math.random() - 0.5) * 100;
-      const endY = startY - Math.random() * 100;
-      
-      particle.animate([
-        { transform: 'translate(0, 0)', opacity: 1 },
-        { transform: `translate(${endX - startX}px, ${endY - startY}px)`, opacity: 0 }
-      ], {
-        duration: 1000,
-        easing: 'ease-out'
-      }).onfinish = () => particle.remove();
-    }
-  }
-
+  
   // Initialize particle background effects
   initParticleEffects() {
     const heroSection = document.querySelector('.hero-section');
@@ -238,7 +147,6 @@ class IndexPageManager {
       position: absolute;
       width: ${Math.random() * 4 + 2}px;
       height: ${Math.random() * 4 + 2}px;
-      background: rgba(99, 102, 241, ${Math.random() * 0.3 + 0.1});
       border-radius: 50%;
       pointer-events: none;
       z-index: 1;
@@ -334,26 +242,8 @@ class CounterAnimation {
 document.addEventListener('DOMContentLoaded', () => {
   const indexManager = new IndexPageManager();
   
-  // Add custom cursor effect
-  const cursor = document.createElement('div');
-  cursor.style.cssText = `
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary-color);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: all 0.1s ease;
-    display: none;
-  `;
-  document.body.appendChild(cursor);
-  
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.display = 'block';
-    cursor.style.left = e.clientX - 10 + 'px';
-    cursor.style.top = e.clientY - 10 + 'px';
-  });
+
+
   
   // Hide custom cursor on mobile
   if (window.innerWidth <= 768) {

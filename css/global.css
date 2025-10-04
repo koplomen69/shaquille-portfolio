@@ -7,7 +7,7 @@
   --primary-hover: #5855eb;
   --secondary-color: #f59e0b;
   --accent-color: #10b981;
-  --text-primary: #1f2937;
+  --text-primary: #002457;
   --text-secondary: #6b7280;
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
@@ -29,9 +29,9 @@
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
   --bg-primary: #111827;
-  --bg-secondary: #1f2937;
-  --bg-card: #1f2937;
-  --border-color: #374151;
+  --bg-secondary: #0b1015;
+  --bg-card: #141921;
+  --border-color: #1b2129;
   
   /* RGB versions for alpha transparency */
   --bg-primary-rgb: 17, 24, 39;
@@ -71,7 +71,7 @@ body.dark-mode {
   --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
   --bg-card: #111111;
-  --border-color: #374151;
+  --border-color: #12161b;
   --bg-primary-rgb: 0, 0, 0;
   --bg-card-rgb: 17, 17, 17;
   --border-color-rgb: 55, 65, 81;

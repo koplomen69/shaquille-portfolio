@@ -24,7 +24,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body class="light-mode">
-    <!-- Navbar -->
+   <!-- Navbar -->
     <nav class="custom-navbar" id="navbar">
       <div class="navbar-container">
         <div class="navbar-content">
@@ -34,10 +34,10 @@
           <div class="navbar-nav-desktop">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">About</a>
+                <a class="nav-link active" href="index.html">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="experience.html">Experience</a>
+                <a class="nav-link" href="experience.html">Experience</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="project.html">Project</a>
@@ -48,6 +48,7 @@
             </ul>
             <i id="themeToggle" class="bi bi-brightness-high-fill theme-toggle"></i>
           </div>
+
           <!-- Mobile Hamburger -->
           <div class="navbar-mobile">
             <i id="themeToggleMobile" class="bi bi-brightness-high-fill theme-toggle-mobile"></i>
@@ -58,15 +59,16 @@
             </button>
           </div>
         </div>
+
         <!-- Mobile Navigation Menu -->
         <div class="navbar-nav-mobile" id="mobileNav">
           <div class="mobile-nav-content">
             <ul class="mobile-nav-list">
               <li class="mobile-nav-item">
-                <a class="mobile-nav-link" href="index.html">About</a>
+                <a class="mobile-nav-link active" href="index.html">About</a>
               </li>
               <li class="mobile-nav-item">
-                <a class="mobile-nav-link active" href="experience.html">Experience</a>
+                <a class="mobile-nav-link" href="experience.html">Experience</a>
               </li>
               <li class="mobile-nav-item">
                 <a class="mobile-nav-link" href="project.html">Project</a>
@@ -82,17 +84,6 @@
     <!-- Solar System Background -->
     <canvas id="solar-system-canvas" class="solar-system-canvas"></canvas>
 
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-      <div class="loading-content">
-        <div class="loading-spinner"></div>
-        <h3>Loading Solar System</h3>
-        <p id="loadingText">Initializing textures...</p>
-        <div class="loading-progress">
-          <div class="progress-bar" id="progressBar"></div>
-        </div>
-      </div>
-    </div>
 
     <!-- Camera Control Hint -->
     <div class="camera-hint" id="cameraHint">
@@ -117,7 +108,7 @@
         <div class="control-buttons">
           <button class="control-btn reset-btn" id="resetBtn">Reset</button>
           <button class="control-btn pause-btn" id="pauseBtn">Pause</button>
-          <button class="control-btn hide-cards-btn" id="hideCardsBtn">Hide Cards</button>
+          <button class="control-btn hide-cards-btn" id="hideCardsBtn"><i class="bi bi-eye-fill"></i></button>
         </div>
       </div>
     </div>
@@ -210,7 +201,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
     <script src="js/global.js"></script>
-    <script src="js/solar-system.js"></script>
     <script src="js/experience.js"></script>
+    <script src="js/solar-system.js"></script>
   </body>
 </html>

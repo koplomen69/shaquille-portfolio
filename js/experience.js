@@ -1,6 +1,20 @@
-// Experience Page Specific JavaScript
-
 document.addEventListener('DOMContentLoaded', () => {
+
+  const hideBtn = document.getElementById("hideCardsBtn");
+  const body = document.body;
+  let hidden = false;
+
+  hideBtn.addEventListener("click", () => {
+    hidden = !hidden;
+    if (hidden) {
+      body.classList.add("cards-hidden");
+      hideBtn.textContent = "Show Cards";
+    } else {
+      body.classList.remove("cards-hidden");
+      hideBtn.textContent = "Hide Cards";
+    }
+  });
+
   // Initialize AOS (Animate On Scroll)
   AOS.init({
     duration: 800,
@@ -27,15 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Observe all experience items
   const experienceItems = document.querySelectorAll('.experience-item');
   experienceItems.forEach((item, index) => {
-    // Set initial state
     item.style.opacity = '0';
     item.style.transform = 'translateY(30px)';
     item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    
     observer.observe(item);
   });
 
-  // Add hover effect for timeline dots
+  // Add hover effect for timeline items
   experienceItems.forEach(item => {
     item.addEventListener('mouseenter', () => {
       item.style.transform = 'translateY(-2px)';
@@ -46,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Smooth scroll for any internal links
+  // Smooth scroll for internal links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -73,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const experienceCards = document.querySelectorAll('.experience-card');
   experienceCards.forEach(card => {
     card.addEventListener('mouseenter', (e) => {
-      // Add subtle glow effect
       card.style.boxShadow = `
         var(--shadow-xl), 
         0 0 30px rgba(99, 102, 241, 0.3),
@@ -82,11 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     card.addEventListener('mouseleave', (e) => {
-      // Remove glow effect
       card.style.boxShadow = 'var(--shadow-md)';
     });
 
-    // Add click ripple effect
     card.addEventListener('click', (e) => {
       const ripple = document.createElement('div');
       const rect = card.getBoundingClientRect();
@@ -110,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       card.appendChild(ripple);
 
-      // Remove ripple after animation
       setTimeout(() => {
         ripple.remove();
       }, 600);
@@ -136,10 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Performance optimization: Reduce animations on low-end devices
   const isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
-                         /Android.*Chrome\/[.0-9]*/.test(navigator.userAgent);
+                        /Android.*Chrome\/[.0-9]*/.test(navigator.userAgent);
   
   if (isLowEndDevice) {
-    // Disable complex animations on low-end devices
     document.documentElement.style.setProperty('--animation-duration', '0.3s');
   }
 
@@ -175,8 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (textureQualitySlider && window.solarSystem) {
       textureQualitySlider.addEventListener('input', (e) => {
         const value = parseFloat(e.target.value);
-        
-        // Update texture filtering for all loaded textures
         if (window.solarSystem.textures) {
           Object.values(window.solarSystem.textures).forEach(texture => {
             if (texture) {
@@ -184,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
         }
-        
         textureQualityValue.textContent = Math.round(value * 100) + '%';
       });
     }
@@ -193,14 +197,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('resetBtn');
     if (resetBtn && window.solarSystem) {
       resetBtn.addEventListener('click', () => {
-        // Reset camera position
         window.solarSystem.resetCamera();
-        
-        // Reset controls
         window.solarSystem.setRotationSpeed(1);
         window.solarSystem.setTimeScale(1);
         
-        // Update sliders
         if (speedSlider) {
           speedSlider.value = 1;
           speedValue.textContent = '1x';
@@ -244,21 +244,53 @@ document.addEventListener('DOMContentLoaded', () => {
         const isHidden = experienceSection.classList.contains('hidden');
         
         experienceSection.classList.toggle('hidden', !isHidden);
-        hideCardsBtn.textContent = isHidden ? 'Hide Cards' : 'Show Cards';
+        hideCardsBtn.innerHTML = isHidden ? '<i class="bi bi-eye-slash-fill"></i>' : '<i class="bi bi-eye-fill"></i>';
         hideCardsBtn.classList.toggle('cards-hidden', !isHidden);
       });
     }
 
-    // Controls Panel Toggle
+    // Controls Panel Toggle with Auto-Shrink
     const controlsToggle = document.getElementById('controlsToggle');
-    const controlsContent = document.getElementById('controlsContent');
-    if (controlsToggle && controlsContent) {
-      controlsToggle.addEventListener('click', () => {
-        controlsContent.classList.toggle('collapsed');
-        controlsToggle.style.transform = controlsContent.classList.contains('collapsed') 
-          ? 'rotate(0deg)' 
-          : 'rotate(90deg)';
+    const controlsPanel = document.querySelector('.solar-system-controls');
+    let hasInteracted = false;
+
+    if (controlsToggle && controlsContent && controlsPanel) {
+      console.log('Controls elements found:', { controlsToggle, controlsContent, controlsPanel });
+
+      // Toggle control panel
+      controlsToggle.addEventListener('click', (e) => {
+        console.log('Controls toggle clicked, current state:', {
+          isShrunk: controlsPanel.classList.contains('shrunk'),
+        });
+        e.stopPropagation();
+        const isShrunk = controlsPanel.classList.contains('shrunk');
+        controlsPanel.classList.toggle('shrunk', !isShrunk);
+        controlsToggle.style.transform = isShrunk ? 'rotate(0deg)' : 'rotate(90deg)';
+        // Ensure controls-content is visible when expanded
+        if (!isShrunk) {
+          controlsContent.style.display = 'block';
+          console.log('Expanded controls, buttons should be visible');
+        }
       });
+
+      // Auto-shrink after interaction with canvas
+      const canvas = document.getElementById('solar-system-canvas');
+      if (canvas) {
+        const shrinkOnInteraction = () => {
+          if (!hasInteracted) {
+            console.log('Canvas interaction detected, shrinking controls');
+            hasInteracted = true;
+            controlsPanel.classList.add('shrunk');
+            controlsContent.style.display = 'none';
+            controlsToggle.style.transform = 'rotate(0deg)';
+          }
+        };
+        
+        canvas.addEventListener('mousedown', shrinkOnInteraction);
+        canvas.addEventListener('touchstart', shrinkOnInteraction);
+      }
+    } else {
+      console.error('Controls elements not found:', { controlsToggle, controlsContent, controlsPanel });
     }
   };
 
@@ -266,7 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.solarSystem) {
     setupSolarSystemControls();
   } else {
-    // Wait for solar system to initialize
     const checkSolarSystem = setInterval(() => {
       if (window.solarSystem) {
         setupSolarSystemControls();
@@ -278,17 +309,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Camera hint functionality
   const cameraHint = document.getElementById('cameraHint');
   if (cameraHint) {
-    // Show hint on page load
     setTimeout(() => {
       cameraHint.classList.add('show');
     }, 1000);
     
-    // Hide hint after 5 seconds
     setTimeout(() => {
       cameraHint.classList.remove('show');
     }, 6000);
     
-    // Show hint when user first interacts with canvas
     const canvas = document.getElementById('solar-system-canvas');
     if (canvas) {
       let hasInteracted = false;

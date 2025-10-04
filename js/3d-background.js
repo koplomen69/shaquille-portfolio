@@ -20,11 +20,11 @@ class ThreeBackground {
     this.mouse = { x: 0, y: 0 };
     this.windowHalf = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     this.colors = {
-      primary: 0x6366f1,
-      secondary: 0xf59e0b,
-      accent: 0x10b981,
-      white: 0xffffff,
-      dark: 0x1f2937,
+      primary: 0x6f71ffff,
+      secondary: 0xff0000ff,
+      accent: 0x230047ff,
+      white: 0xff00e1ff,
+      dark: 0x00d5e0ff,
       polygon: 0x8b5cf6
     };
     this.isDarkMode = false;
@@ -91,7 +91,6 @@ class ThreeBackground {
     // Create floating geometric shapes
     this.createFloatingShapes();
     this.createParticleSystem();
-    this.createWaveform();
     // Create interactive polygonal shape
     this.createInteractivePolygon();
   }

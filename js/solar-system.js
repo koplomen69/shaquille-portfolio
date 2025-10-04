@@ -1276,3 +1276,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, 100);
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hideBtn = document.getElementById("hideCardsBtn");
+  const body = document.body;
+  let hidden = false;
+
+  hideBtn.addEventListener("click", () => {
+    hidden = !hidden;
+    if (hidden) {
+      body.classList.add("cards-hidden");
+      hideBtn.textContent = "Show Cards";
+    } else {
+      body.classList.remove("cards-hidden");
+      hideBtn.textContent = "Hide Cards";
+    }
+  });
+});

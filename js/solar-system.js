@@ -1,3 +1,19 @@
+function ensureCssColor(c) {
+  if (!c) return c;
+  c = String(c).trim();
+  if (/^[0-9a-fA-F]{3}$/.test(c) || /^[0-9a-fA-F]{6}$/.test(c)) return '#' + c;
+  return c;
+}
+
+function loadTexturePromise(url) {
+  return new Promise((resolve, reject) => {
+    const loader = new THREE.TextureLoader();
+    loader.crossOrigin = 'anonymous';
+    loader.load(url, texture => resolve(texture), undefined, err => reject(err));
+  });
+}
+
+
 class SolarSystem {
   constructor() {
     this.scene = null;
@@ -302,10 +318,10 @@ class SolarSystem {
     const texturePromises = textureList.map(({ path, name, fallbackColor }) => {
       return new Promise((resolve) => {
         const loadStrategies = [
-          () => this.loadTextureWithStrategy(path, 'default'),
+          () => this.loadTextureWithStrategy(path, 'absoluteUrl'),
           () => this.loadTextureWithStrategy(path, 'crossOrigin'),
           () => this.loadTextureWithStrategy(path.replace(/^\//, './'), 'relative'),
-          () => this.createFallbackTexture(name, fallbackColor)
+          () => Promise.resolve(this.createFallbackTexture(name, fallbackColor))
         ];
 
         const tryNextStrategy = (strategyIndex = 0) => {
@@ -387,7 +403,8 @@ class SolarSystem {
     const ctx = canvas.getContext('2d');
     const gradient = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
     if (name.includes('sun')) {
-      gradient.addColorStop(0, '#FFD700'); gradient.addColorStop(1, '#8B0000');
+      gradient.addColorStop(stop, ensureCssColor(colorValue));
+
     } else {
       const hexColor = '#' + color.toString(16).padStart(6, '0');
       gradient.addColorStop(0, hexColor); gradient.addColorStop(1, new THREE.Color(color).multiplyScalar(0.6).getHexString());

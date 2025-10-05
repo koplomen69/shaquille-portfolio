@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadDefaultTextures() {
         // Load background.jpg
         const bgImg = new Image();
-        bgImg.src = "blackhole/starry_background.jpg";
+        bgImg.src = "blackhole/stars.jpg";
         bgImg.onload = () => {
             const canvas = document.createElement('canvas');
             canvas.width = bgImg.width;

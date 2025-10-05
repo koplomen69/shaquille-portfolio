@@ -150,23 +150,23 @@ footer {
     border-top: 1px solid rgba(var(--border-color-rgb, 229, 231, 235), 0.3);
 }
 
-/* Toggle Button Styles (Override for inside contact-container) */
+/* Toggle Button Styles */
 .toggle-contact {
     position: fixed;
-    bottom: 16px;
-    right: 16px;
-    width: 46px;
-    height: 46px;
+    bottom: 20px; /* Consistent bottom spacing */
+    right: 20px; /* Consistent right spacing */
+    width: 48px; /* Slightly larger for better tap target */
+    height: 48px;
     background-color: rgba(255, 255, 255, 0.8);
     background-color: rgba(var(--bg-primary-rgb, 255, 255, 255), 0.8);
     border: 1px solid rgba(var(--border-color-rgb, 229, 231, 235), 0.5);
-    border-radius: 10px;
+    border-radius: 12px; /* Slightly larger radius for consistency */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 110; /* Above contact-container and footer */
+    transition: all 0.3s ease; /* Smooth transition for size/position changes */
+    z-index: 200; /* Ensure it’s above contact-container and footer */
 }
 
 .toggle-contact:hover {
@@ -183,6 +183,33 @@ footer {
 .toggle-contact.active {
     animation: pulse 2s infinite;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .toggle-contact {
+        right: 16px; /* Slightly closer to edge for smaller screens */
+        width: 40px; /* Smaller for mobile */
+        height: 40px;
+        border-radius: 10px;
+    }
+
+    .toggle-contact i {
+        font-size: 1rem; /* Smaller icon for mobile */
+    }
+
+    /* Ensure contact-container doesn’t overlap toggle button */
+    .contact-container {
+        right: 50%;
+        transform: translate(50%, -50%);
+        width: calc(100% - 32px);
+        padding: 24px;
+        margin: 12px;
+        min-width: 280px;
+        margin-bottom: 90px; /* Ensure space for toggle button */
+    }
+}
+
+
 
 /* Responsive Adjustments */
 @media (max-width: 480px) {
@@ -213,18 +240,23 @@ footer {
         margin-right: 14px;
     }
     
-    .toggle-contact {
-        width: 36px;
-        height: 36px;
-        top: 8px;
-        right: 8px;
-        font-size: 1rem;
-    }
 
     footer {
         padding: 12px;
         font-size: 0.8rem;
     }
+
+        .toggle-contact {
+        right: 12px;
+        width: 36px; /* Smallest size for very small screens */
+        height: 36px;
+        border-radius: 8px;
+    }
+
+    .toggle-contact i {
+        font-size: 0.9rem;
+    }
+
 }
 
 /* Animations */

@@ -84,6 +84,18 @@
     <!-- Solar System Background -->
     <canvas id="solar-system-canvas" class="solar-system-canvas"></canvas>
 
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <h3>Loading Solar System</h3>
+        <p id="loadingText">Initializing textures...</p>
+        <div class="loading-progress">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Camera Control Hint -->
     <div class="camera-hint" id="cameraHint">
@@ -201,7 +213,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
     <script src="js/global.js"></script>
-    <script src="js/experience.js"></script>
     <script src="js/solar-system.js"></script>
+    <script src="js/experience.js"></script>
   </body>
 </html>

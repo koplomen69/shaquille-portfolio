@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Load stars.jpg
         const starsImg = new Image();
-        starsImg.src = 'blackhole/stars.jpg';
+        starsImg.src = 'blackhole/background.jpg';
         starsImg.onload = () => {
             const canvas = document.createElement('canvas');
             canvas.width = starsImg.width;

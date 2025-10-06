@@ -47,8 +47,8 @@ class SolarSystem {
         radius: 0.2439 * 3,
         distance: 0.387 * 30,
         speed: 4.149,
-        color: 0x8C6239,
-        trailColor: 0x8C6239,
+        color: '#8C6239',
+        trailColor: '#8C6239',
         inclination: 7.0,
         eccentricity: 0.206,
         rotationPeriod: 58.646 * 3600,
@@ -59,8 +59,8 @@ class SolarSystem {
         radius: 0.6052 * 2,
         distance: 0.723 * 30,
         speed: 1.626,
-        color: 0xFF6B47,
-        trailColor: 0xFF6B47,
+        color: '#FF6B47',
+        trailColor: '#FF6B47',
         inclination: 3.4,
         eccentricity: 0.007,
         rotationPeriod: -243.018 * 3600,
@@ -71,8 +71,8 @@ class SolarSystem {
         radius: 0.6371 * 2,
         distance: 1.000 * 30,
         speed: 1.000,
-        color: 0x4A90E2,
-        trailColor: 0x4A90E2,
+        color: '#4A90E2',
+        trailColor: '#4A90E2',
         inclination: 0.0,
         eccentricity: 0.017,
         rotationPeriod: 24 * 3600,
@@ -84,8 +84,8 @@ class SolarSystem {
         radius: 0.3390 * 2,
         distance: 1.524 * 30,
         speed: 0.532,
-        color: 0xCD5C5C,
-        trailColor: 0xCD5C5C,
+        color: '#CD5C5C',
+        trailColor: '#CD5C5C',
         inclination: 1.9,
         eccentricity: 0.094,
         rotationPeriod: 24.622 * 3600,
@@ -96,8 +96,8 @@ class SolarSystem {
         radius: 5.9911,
         distance: 5.203 * 30,
         speed: 0.084,
-        color: 0xD8CA9D,
-        trailColor: 0xD8CA9D,
+        color: '#D8CA9D',
+        trailColor: '#D8CA9D',
         inclination: 1.3,
         eccentricity: 0.049,
         rotationPeriod: 9.925 * 3600,
@@ -108,8 +108,8 @@ class SolarSystem {
         radius: 4.8232,
         distance: 9.539 * 30,
         speed: 0.034,
-        color: 0xFAD5A5,
-        trailColor: 0xFAD5A5,
+        color: '#FAD5A5',
+        trailColor: '#FAD5A5',
         inclination: 2.5,
         eccentricity: 0.057,
         rotationPeriod: 10.656 * 3600,
@@ -122,8 +122,8 @@ class SolarSystem {
         radius: 2.5362,
         distance: 19.191 * 30,
         speed: 0.012,
-        color: 0x4FD0E7,
-        trailColor: 0x4FD0E7,
+        color: '#4FD0E7',
+        trailColor: '#4FD0E7',
         inclination: 0.8,
         eccentricity: 0.046,
         rotationPeriod: -17.24 * 3600,
@@ -134,8 +134,8 @@ class SolarSystem {
         radius: 2.4622,
         distance: 30.069 * 30,
         speed: 0.006,
-        color: 0x4B70DD,
-        trailColor: 0x4B70DD,
+        color: '#4B70DD',
+        trailColor: '#4B70DD',
         inclination: 1.8,
         eccentricity: 0.011,
         rotationPeriod: 16.11 * 3600,
@@ -146,8 +146,8 @@ class SolarSystem {
         radius: 0.1188 * 4,
         distance: 39.482 * 30,
         speed: 0.004,
-        color: 0xD3C7A1,
-        trailColor: 0xD3C7A1,
+        color: '#D3C7A1',
+        trailColor: '#D3C7A1',
         inclination: 17.2,
         eccentricity: 0.249,
         rotationPeriod: 6.387 * 24 * 3600,
@@ -164,56 +164,56 @@ class SolarSystem {
     };
 
     this.starCatalog = [
-      { name: 'Betelgeuse', ra: 5.9195, dec: 7.4071, mag: 0.45, color: 0xffaaaa },
-      { name: 'Rigel', ra: 5.2423, dec: -8.2016, mag: 0.18, color: 0xaabbff },
-      { name: 'Bellatrix', ra: 5.4188, dec: 6.3497, mag: 1.64, color: 0xffffff },
-      { name: 'Mintaka', ra: 5.5334, dec: -0.2991, mag: 2.25, color: 0xaabbff },
-      { name: 'Alnilam', ra: 5.6036, dec: -1.2019, mag: 1.69, color: 0xaabbff },
-      { name: 'Alnitak', ra: 5.6793, dec: -1.9426, mag: 1.74, color: 0xaabbff },
-      { name: 'Saiph', ra: 5.7955, dec: -9.6697, mag: 2.07, color: 0xaabbff },
-      { name: 'Alkaid', ra: 13.7924, dec: 49.3133, mag: 1.85, color: 0xffffff },
-      { name: 'Mizar', ra: 13.3988, dec: 54.9254, mag: 2.23, color: 0xffffff },
-      { name: 'Alioth', ra: 12.9001, dec: 55.9598, mag: 1.76, color: 0xffffff },
-      { name: 'Megrez', ra: 12.2570, dec: 57.0320, mag: 3.32, color: 0xffffff },
-      { name: 'Phecda', ra: 11.8969, dec: 53.6948, mag: 2.41, color: 0xffffff },
-      { name: 'Merak', ra: 11.0307, dec: 56.3824, mag: 2.34, color: 0xffffff },
-      { name: 'Dubhe', ra: 11.0622, dec: 61.7510, mag: 1.81, color: 0xffeeaa },
-      { name: 'Antares', ra: 16.4901, dec: -26.4320, mag: 1.06, color: 0xffaaaa },
-      { name: 'Shaula', ra: 17.5602, dec: -37.1038, mag: 1.62, color: 0xaabbff },
-      { name: 'Dschubba', ra: 16.0055, dec: -22.6167, mag: 2.29, color: 0xaabbff },
-      { name: 'Sargas', ra: 17.7005, dec: -42.9981, mag: 1.86, color: 0xffeeaa },
-      { name: 'Schedar', ra: 0.6751, dec: 56.5371, mag: 2.24, color: 0xffeeaa },
-      { name: 'Caph', ra: 0.1520, dec: 59.1497, mag: 2.28, color: 0xffffff },
-      { name: 'Tsih', ra: 0.9566, dec: 60.7161, mag: 2.51, color: 0xaabbff },
-      { name: 'Ruchbah', ra: 1.4289, dec: 60.2353, mag: 2.68, color: 0xffffff },
-      { name: 'Segin', ra: 1.9042, dec: 63.6701, mag: 3.35, color: 0xffffff },
-      { name: 'Deneb', ra: 20.6905, dec: 45.2803, mag: 1.25, color: 0xffffff },
-      { name: 'Albireo', ra: 19.5110, dec: 27.9597, mag: 3.05, color: 0xffeeaa },
-      { name: 'Sadr', ra: 20.3705, dec: 40.2567, mag: 2.23, color: 0xffffff },
-      { name: 'Sirius', ra: 6.7525, dec: -16.7161, mag: -1.46, color: 0xffffff },
-      { name: 'Canopus', ra: 6.3992, dec: -52.6957, mag: -0.74, color: 0xffffff },
-      { name: 'Arcturus', ra: 14.2612, dec: 19.1824, mag: -0.05, color: 0xffeeaa },
-      { name: 'Vega', ra: 18.6156, dec: 38.7837, mag: 0.03, color: 0xaabbff },
-      { name: 'Capella', ra: 5.2782, dec: 45.9980, mag: 0.08, color: 0xffeeaa },
-      { name: 'Procyon', ra: 7.6550, dec: 5.2247, mag: 0.34, color: 0xffffff },
-      { name: 'Altair', ra: 19.8464, dec: 8.8683, mag: 0.77, color: 0xffffff },
-      { name: 'Aldebaran', ra: 4.5987, dec: 16.5093, mag: 0.87, color: 0xffaaaa },
-      { name: 'Spica', ra: 13.4199, dec: -11.1613, mag: 0.98, color: 0xaabbff },
-      { name: 'Pollux', ra: 7.7553, dec: 28.0262, mag: 1.16, color: 0xffeeaa },
-      { name: 'Regulus', ra: 10.1395, dec: 11.9672, mag: 1.36, color: 0xaabbff },
-      { name: 'Fomalhaut', ra: 22.9608, dec: -29.6222, mag: 1.16, color: 0xffffff },
-      { name: 'Achernar', ra: 1.6286, dec: -57.2367, mag: 0.45, color: 0xaabbff },
-      { name: 'Betelgeuse', ra: 5.9195, dec: 7.4071, mag: 0.45, color: 0xffaaaa },
-      { name: 'Polaris', ra: 2.5303, dec: 89.2641, mag: 1.97, color: 0xffeeaa },
-      { name: 'Castor', ra: 7.5767, dec: 31.8883, mag: 1.58, color: 0xffffff },
-      { name: 'Mirfak', ra: 3.4054, dec: 49.8612, mag: 1.79, color: 0xffeeaa },
-      { name: 'Wezen', ra: 7.1397, dec: -26.3933, mag: 1.83, color: 0xffeeaa },
-      { name: 'Alphard', ra: 9.4598, dec: -8.6586, mag: 2.00, color: 0xffeeaa },
-      { name: 'Hamal', ra: 2.1198, dec: 23.4624, mag: 2.01, color: 0xffeeaa },
-      { name: 'Diphda', ra: 0.7265, dec: -17.9866, mag: 2.04, color: 0xffeeaa },
-      { name: 'Mirach', ra: 1.1623, dec: 35.6206, mag: 2.07, color: 0xffaaaa },
-      { name: 'Almach', ra: 2.0648, dec: 42.3297, mag: 2.10, color: 0xffeeaa },
-      { name: 'Adhara', ra: 6.9771, dec: -28.9721, mag: 1.50, color: 0xaabbff }
+      { name: 'Betelgeuse', ra: 5.9195, dec: 7.4071, mag: 0.45, color: '#ffaaaa' },
+      { name: 'Rigel', ra: 5.2423, dec: -8.2016, mag: 0.18, color: '#aabbff' },
+      { name: 'Bellatrix', ra: 5.4188, dec: 6.3497, mag: 1.64, color: '#ffffff' },
+      { name: 'Mintaka', ra: 5.5334, dec: -0.2991, mag: 2.25, color: '#aabbff' },
+      { name: 'Alnilam', ra: 5.6036, dec: -1.2019, mag: 1.69, color: '#aabbff' },
+      { name: 'Alnitak', ra: 5.6793, dec: -1.9426, mag: 1.74, color: '#aabbff' },
+      { name: 'Saiph', ra: 5.7955, dec: -9.6697, mag: 2.07, color: '#aabbff' },
+      { name: 'Alkaid', ra: 13.7924, dec: 49.3133, mag: 1.85, color: '#ffffff' },
+      { name: 'Mizar', ra: 13.3988, dec: 54.9254, mag: 2.23, color: '#ffffff' },
+      { name: 'Alioth', ra: 12.9001, dec: 55.9598, mag: 1.76, color: '#ffffff' },
+      { name: 'Megrez', ra: 12.2570, dec: 57.0320, mag: 3.32, color: '#ffffff' },
+      { name: 'Phecda', ra: 11.8969, dec: 53.6948, mag: 2.41, color: '#ffffff' },
+      { name: 'Merak', ra: 11.0307, dec: 56.3824, mag: 2.34, color: '#ffffff' },
+      { name: 'Dubhe', ra: 11.0622, dec: 61.7510, mag: 1.81, color: '#ffeeaa' },
+      { name: 'Antares', ra: 16.4901, dec: -26.4320, mag: 1.06, color: '#ffaaaa' },
+      { name: 'Shaula', ra: 17.5602, dec: -37.1038, mag: 1.62, color: '#aabbff' },
+      { name: 'Dschubba', ra: 16.0055, dec: -22.6167, mag: 2.29, color: '#aabbff' },
+      { name: 'Sargas', ra: 17.7005, dec: -42.9981, mag: 1.86, color: '#ffeeaa' },
+      { name: 'Schedar', ra: 0.6751, dec: 56.5371, mag: 2.24, color: '#ffeeaa' },
+      { name: 'Caph', ra: 0.1520, dec: 59.1497, mag: 2.28, color: '#ffffff' },
+      { name: 'Tsih', ra: 0.9566, dec: 60.7161, mag: 2.51, color: '#aabbff' },
+      { name: 'Ruchbah', ra: 1.4289, dec: 60.2353, mag: 2.68, color: '#ffffff' },
+      { name: 'Segin', ra: 1.9042, dec: 63.6701, mag: 3.35, color: '#ffffff' },
+      { name: 'Deneb', ra: 20.6905, dec: 45.2803, mag: 1.25, color: '#ffffff' },
+      { name: 'Albireo', ra: 19.5110, dec: 27.9597, mag: 3.05, color: '#ffeeaa' },
+      { name: 'Sadr', ra: 20.3705, dec: 40.2567, mag: 2.23, color: '#ffffff' },
+      { name: 'Sirius', ra: 6.7525, dec: -16.7161, mag: -1.46, color: '#ffffff' },
+      { name: 'Canopus', ra: 6.3992, dec: -52.6957, mag: -0.74, color: '#ffffff' },
+      { name: 'Arcturus', ra: 14.2612, dec: 19.1824, mag: -0.05, color: '#ffeeaa' },
+      { name: 'Vega', ra: 18.6156, dec: 38.7837, mag: 0.03, color: '#aabbff' },
+      { name: 'Capella', ra: 5.2782, dec: 45.9980, mag: 0.08, color: '#ffeeaa' },
+      { name: 'Procyon', ra: 7.6550, dec: 5.2247, mag: 0.34, color: '#ffffff' },
+      { name: 'Altair', ra: 19.8464, dec: 8.8683, mag: 0.77, color: '#ffffff' },
+      { name: 'Aldebaran', ra: 4.5987, dec: 16.5093, mag: 0.87, color: '#ffaaaa' },
+      { name: 'Spica', ra: 13.4199, dec: -11.1613, mag: 0.98, color: '#aabbff' },
+      { name: 'Pollux', ra: 7.7553, dec: 28.0262, mag: 1.16, color: '#ffeeaa' },
+      { name: 'Regulus', ra: 10.1395, dec: 11.9672, mag: 1.36, color: '#aabbff' },
+      { name: 'Fomalhaut', ra: 22.9608, dec: -29.6222, mag: 1.16, color: '#ffffff' },
+      { name: 'Achernar', ra: 1.6286, dec: -57.2367, mag: 0.45, color: '#aabbff' },
+      { name: 'Betelgeuse', ra: 5.9195, dec: 7.4071, mag: 0.45, color: '#ffaaaa' },
+      { name: 'Polaris', ra: 2.5303, dec: 89.2641, mag: 1.97, color: '#ffeeaa' },
+      { name: 'Castor', ra: 7.5767, dec: 31.8883, mag: 1.58, color: '#ffffff' },
+      { name: 'Mirfak', ra: 3.4054, dec: 49.8612, mag: 1.79, color: '#ffeeaa' },
+      { name: 'Wezen', ra: 7.1397, dec: -26.3933, mag: 1.83, color: '#ffeeaa' },
+      { name: 'Alphard', ra: 9.4598, dec: -8.6586, mag: 2.00, color: '#ffeeaa' },
+      { name: 'Hamal', ra: 2.1198, dec: 23.4624, mag: 2.01, color: '#ffeeaa' },
+      { name: 'Diphda', ra: 0.7265, dec: -17.9866, mag: 2.04, color: '#ffeeaa' },
+      { name: 'Mirach', ra: 1.1623, dec: 35.6206, mag: 2.07, color: '#ffaaaa' },
+      { name: 'Almach', ra: 2.0648, dec: 42.3297, mag: 2.10, color: '#ffeeaa' },
+      { name: 'Adhara', ra: 6.9771, dec: -28.9721, mag: 1.50, color: '#aabbff' }
     ];
 
     this.constellationData = [
@@ -269,11 +269,11 @@ class SolarSystem {
 
     const basePath = window.location.href.replace(/\/[^\/]*$/, '/');
 
-    textureList.push({ path: this.getAbsolutePath(this.texturePaths.sun), name: 'sun', fallbackColor: 0xFDB813 });
-    textureList.push({ path: this.getAbsolutePath(this.texturePaths.moon), name: 'moon', fallbackColor: 0x888888 });
-    textureList.push({ path: this.getAbsolutePath(this.texturePaths.saturnRing), name: 'saturnRing', fallbackColor: 0xFAD5A5 });
-    textureList.push({ path: this.getAbsolutePath(this.texturePaths.pluto), name: 'pluto', fallbackColor: 0xD3C7A1 });
-    textureList.push({ path: this.getAbsolutePath(this.texturePaths.earthClouds), name: 'earthClouds', fallbackColor: 0xFFFFFF });
+    textureList.push({ path: this.getAbsolutePath(this.texturePaths.sun), name: 'sun', fallbackColor: '#FDB813' });
+    textureList.push({ path: this.getAbsolutePath(this.texturePaths.moon), name: 'moon', fallbackColor: '#888888' });
+    textureList.push({ path: this.getAbsolutePath(this.texturePaths.saturnRing), name: 'saturnRing', fallbackColor: '#FAD5A5' });
+    textureList.push({ path: this.getAbsolutePath(this.texturePaths.pluto), name: 'pluto', fallbackColor: '#D3C7A1' });
+    textureList.push({ path: this.getAbsolutePath(this.texturePaths.earthClouds), name: 'earthClouds', fallbackColor: '#FFFFFF' });
 
     Object.keys(this.planetData).forEach(planetName => {
       const data = this.planetData[planetName];
@@ -284,7 +284,7 @@ class SolarSystem {
         textureList.push({ path: this.getAbsolutePath(data.ringTexture), name: data.name.toLowerCase() + 'Ring', fallbackColor: data.color });
       }
       if (data.cloudTexture) {
-        textureList.push({ path: this.getAbsolutePath(data.cloudTexture), name: data.name.toLowerCase() + 'Clouds', fallbackColor: 0xFFFFFF });
+        textureList.push({ path: this.getAbsolutePath(data.cloudTexture), name: data.name.toLowerCase() + 'Clouds', fallbackColor: '#FFFFFF' });
       }
     });
 
@@ -301,11 +301,12 @@ class SolarSystem {
 
     const texturePromises = textureList.map(({ path, name, fallbackColor }) => {
       return new Promise((resolve) => {
+        // Fix 1: Wrap createFallbackTexture in a Promise (around line 308)
         const loadStrategies = [
           () => this.loadTextureWithStrategy(path, 'default'),
           () => this.loadTextureWithStrategy(path, 'crossOrigin'),
           () => this.loadTextureWithStrategy(path.replace(/^\//, './'), 'relative'),
-          () => this.createFallbackTexture(name, fallbackColor)
+          () => Promise.resolve(this.createFallbackTexture(name, fallbackColor)) // FIXED: Wrap in Promise.resolve()
         ];
 
         const tryNextStrategy = (strategyIndex = 0) => {
@@ -381,20 +382,31 @@ class SolarSystem {
     });
   }
 
+  // Fix 2: Add # prefix to all color values in createFallbackTexture
   createFallbackTexture(name, color) {
     const canvas = document.createElement('canvas');
-    canvas.width = 512; canvas.height = 512;
+    canvas.width = 512;
+    canvas.height = 512;
     const ctx = canvas.getContext('2d');
     const gradient = ctx.createRadialGradient(256, 256, 0, 256, 256, 256);
+
+    // FIXED: Add # prefix to colors
     if (name.includes('sun')) {
-      gradient.addColorStop(0, '#FFD700'); gradient.addColorStop(1, '#8B0000');
+      gradient.addColorStop(0, '#FFD700');
+      gradient.addColorStop(1, '#8B0000');
     } else {
-      const hexColor = '#' + color.toString(16).padStart(6, '0');
-      gradient.addColorStop(0, hexColor); gradient.addColorStop(1, new THREE.Color(color).multiplyScalar(0.6).getHexString());
+      // Add # prefix to the color parameter if it doesn't have it
+      const hexColor = color.startsWith('#') ? color : `#${color}`;
+      gradient.addColorStop(0, hexColor);
+      gradient.addColorStop(0.5, hexColor);
+      gradient.addColorStop(1, '#000000');
     }
-    ctx.fillStyle = gradient; ctx.fillRect(0, 0, 512, 512);
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 512, 512);
     const texture = new THREE.CanvasTexture(canvas);
-    texture.wrapS = THREE.RepeatWrapping; texture.wrapT = THREE.RepeatWrapping;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
     console.log(`✓ Created fallback texture for ${name}`);
     return texture;
   }
@@ -420,18 +432,18 @@ class SolarSystem {
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     }
 
-    this.ambientLight = new THREE.AmbientLight(0x000000, 0.3);
+    this.ambientLight = new THREE.AmbientLight('#000000', 0.3);
     this.scene.add(this.ambientLight);
 
-    this.sunLight = new THREE.PointLight(0xffffee, 3.5, 4500);
+    this.sunLight = new THREE.PointLight('#ffffee', 3.5, 4500);
     this.sunLight.position.set(0, 0, 0);
-    this.dirLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
+    this.dirLight1 = new THREE.DirectionalLight('#ffffff', 0.6);
     this.dirLight1.position.set(50, 50, 50);
     this.scene.add(this.dirLight1);
-    this.dirLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+    this.dirLight2 = new THREE.DirectionalLight('#ffffff', 0.4);
     this.dirLight2.position.set(-50, 30, -50);
     this.scene.add(this.dirLight2);
-    this.rimLight = new THREE.DirectionalLight(0x000000, 0.2);
+    this.rimLight = new THREE.DirectionalLight('#000000', 0.2);
     this.rimLight.position.set(0, 100, 0);
     this.scene.add(this.rimLight);
 
@@ -620,7 +632,7 @@ class SolarSystem {
 
     for (let i = 0; i < Math.min(5, this.starCatalog.length); i++) {
       const geometry = new THREE.SphereGeometry(10, 16, 16);
-      const material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
+      const material = new THREE.MeshBasicMaterial({ color: '#ff0000', transparent: true, opacity: 0.5 });
       const sphere = new THREE.Mesh(geometry, material);
       sphere.position.set(catalogPositions[i * 3], catalogPositions[i * 3 + 1], catalogPositions[i * 3 + 2]);
       this.starGroup.add(sphere);
@@ -682,7 +694,7 @@ class SolarSystem {
 
       const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
       const lineMaterial = new THREE.LineBasicMaterial({
-        color: 0xaaaaaa,
+        color: '#aaaaaa',
         transparent: true,
         opacity: 0.3
       });
@@ -699,11 +711,11 @@ class SolarSystem {
     const sunGeometry = new THREE.SphereGeometry(5, 32, 32);
     let sunMaterial = new THREE.MeshBasicMaterial({
       map: this.textures.sun || null,
-      emissive: 0xffcc00,
+      emissive: '#ffcc00',
       emissiveIntensity: 0.4,
       transparent: false,
       side: THREE.FrontSide,
-      color: this.textures.sun ? null : 0xFDB813
+      color: this.textures.sun ? null : '#FDB813'
     });
     this.sun = new THREE.Mesh(sunGeometry, sunMaterial);
     this.sun.castShadow = false;
@@ -740,7 +752,7 @@ class SolarSystem {
       map: this.textures[data.name.toLowerCase()] || null,
       color: this.textures[data.name.toLowerCase()] ? null : data.color,
       shininess: data.name === 'Earth' ? 120 : 50,
-      specular: 0x333333,
+      specular: '#333333',
       transparent: false,
       side: THREE.FrontSide
     });
@@ -755,7 +767,7 @@ class SolarSystem {
       const moonGeometry = new THREE.SphereGeometry(0.1737, 32, 32);
       let moonMaterial = new THREE.MeshPhongMaterial({
         map: this.textures.moon || null,
-        color: this.textures.moon ? null : 0x888888,
+        color: this.textures.moon ? null : '#888888',
         shininess: 20,
         transparent: false
       });
@@ -783,7 +795,7 @@ class SolarSystem {
         const ringGeometry = new THREE.RingGeometry(level.innerRadius, level.outerRadius, level.segments);
         let ringMaterial = new THREE.MeshPhongMaterial({
           map: this.textures[data.name.toLowerCase() + 'Ring'] || null,
-          color: this.textures[data.name.toLowerCase() + 'Ring'] ? null : 0xdddddd,
+          color: this.textures[data.name.toLowerCase() + 'Ring'] ? null : '#dddddd',
           transparent: false,
           side: THREE.DoubleSide
         });
@@ -929,7 +941,7 @@ class SolarSystem {
     asteroidGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
     const asteroidMaterial = new THREE.PointsMaterial({
-      color: 0x999999,
+      color: '#999999',
       size: 0.2,
       sizeAttenuation: true,
       transparent: true,

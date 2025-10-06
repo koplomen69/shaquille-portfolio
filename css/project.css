@@ -1,5 +1,13 @@
 /* Pokemon Card Holographic Effects */
-
+#three-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: auto; /* Allow interaction with the 3D scene */
+}
 /* Override Bootstrap card default background */
 .pokemon-card.card {
   background: transparent !important;

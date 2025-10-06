@@ -419,41 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => loadingManager.hide(), 500);
   });
   
-  // Add scroll-to-top functionality
-  const scrollTopBtn = document.createElement('button');
-  scrollTopBtn.innerHTML = '<i class="bi bi-arrow-up"></i>';
-  scrollTopBtn.className = 'scroll-top-btn';
-  scrollTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-lg);
-  `;
-  
-  scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      scrollTopBtn.style.display = 'flex';
-    } else {
-      scrollTopBtn.style.display = 'none';
-    }
-  });
+
   
   document.body.appendChild(scrollTopBtn);
 });

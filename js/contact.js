@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadDefaultTextures() {
         // Load background.jpg
         const bgImg = new Image();
-        bgImg.src = "blackhole/stars.jpg";
+        bgImg.src = "blackhole/starry_background.jpg";
         bgImg.onload = () => {
             const canvas = document.createElement('canvas');
             canvas.width = bgImg.width;
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Load stars.jpg
         const starsImg = new Image();
-        starsImg.src = 'blackhole/background.jpg';
+        starsImg.src = 'blackhole/stars.jpg';
         starsImg.onload = () => {
             const canvas = document.createElement('canvas');
             canvas.width = starsImg.width;

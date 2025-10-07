@@ -267,8 +267,6 @@ class SolarSystem {
     const textureList = [];
     let loadedCount = 0;
 
-    const basePath = window.location.href.replace(/\/[^\/]*$/, '/');
-
     textureList.push({ path: this.getAbsolutePath(this.texturePaths.sun), name: 'sun', fallbackColor: '#FDB813' });
     textureList.push({ path: this.getAbsolutePath(this.texturePaths.moon), name: 'moon', fallbackColor: '#888888' });
     textureList.push({ path: this.getAbsolutePath(this.texturePaths.saturnRing), name: 'saturnRing', fallbackColor: '#FAD5A5' });
@@ -305,8 +303,6 @@ class SolarSystem {
         const loadStrategies = [
           () => this.loadTextureWithStrategy(path, 'default'),
           () => this.loadTextureWithStrategy(path, 'crossOrigin'),
-          () => this.loadTextureWithStrategy(path.replace(/^\//, './'), 'relative'),
-          () => Promise.resolve(this.createFallbackTexture(name, fallbackColor)) // FIXED: Wrap in Promise.resolve()
         ];
 
         const tryNextStrategy = (strategyIndex = 0) => {

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary-fixed":"#002113","background":"#101419","primary-container":"#10b981","tertiary":"#adc6ff","on-background":"#e0e2ea","secondary-container":"#03b5d3","error-container":"#93000a","secondary":"#4cd7f6","primary-fixed-dim":"#4edea3","outline":"#86948a","on-secondary":"#003640","surface-dim":"#101419","surface-container-highest":"#31353b","on-error-container":"#ffdad6","surface-container-low":"#181c21","primary":"#4edea3","on-tertiary-fixed-variant":"#004395","surface-bright":"#36393f","on-primary":"#003824","on-primary-fixed-variant":"#005236","error":"#ffb4ab","secondary-fixed":"#acedff","surface-container-lowest":"#0a0e14","surface":"#101419","primary-fixed":"#6ffbbe","on-secondary-fixed":"#001f26","tertiary-fixed-dim":"#adc6ff","outline-variant":"#3c4a42","tertiary-fixed":"#d8e2ff","surface-container":"#1c2025","on-surface":"#e0e2ea","on-primary-container":"#00422b","surface-tint":"#4edea3","on-tertiary-container":"#00367a","on-tertiary-fixed":"#001a42","secondary-fixed-dim":"#4cd7f6","on-secondary-container":"#00424e","on-secondary-fixed-variant":"#004e5c","tertiary-container":"#71a1ff","inverse-on-surface":"#2d3136","inverse-surface":"#e0e2ea","surface-container-high":"#262a30","on-surface-variant":"#bbcabf","inverse-primary":"#006c49","surface-variant":"#31353b","on-tertiary":"#002e6a","on-error":"#690005"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin-mobile":"1.25rem","space-sm":"0.5rem","space-xl":"2.5rem","gutter":"1.5rem","gutter-mobile":"1rem","space-lg":"1.5rem","space-xs":"0.25rem","margin":"3rem","space-md":"1rem"},"fontFamily":{"body-lg":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"code-badge":["JetBrains Mono"],"headline-md":["Plus Jakarta Sans"],"body-md":["Inter"],"display-xl-mobile":["Plus Jakarta Sans"],"label-mono":["JetBrains Mono"],"headline-sm":["Plus Jakarta Sans"],"display-xl":["Plus Jakarta Sans"],"body-sm":["Inter"],"headline-lg":["Plus Jakarta Sans"]},"fontSize":{"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"headline-lg-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"code-badge":["11px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}],"display-xl-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"800"}],"label-mono":["13px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"26px","fontWeight":"600"}],"display-xl":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"800"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"headline-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}]}}}};</script></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><img alt="Shaquille Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Uo0mLBFj-NiHG_JTmHYCwtfdrBq8hgw4ugoH2SZMYio8YZixA_MDasYVp8TP6Aq32zSLhIRnoLO5AkEWfG4nPYliWALVoR-Da6GcLqBUsb_0sY1IrjN-O0Dv9dzneMBYrF3z08vMGssKBEGHyEXvI59SP4oaXAt6Exij3x7Y1EDHcXKFNCAdr8zLTbbuqmSo3l1R46d-WEDMEfAriwFGFFZcOhBC_u1V32iUtPhj_U"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight leading-none">Shaquille R. W.</span><span class="font-code-badge text-code-badge text-primary font-medium tracking-wide uppercase mt-space-xs">IS Engineer • AI/IoT</span></div></div><nav class="hidden xl:flex items-center gap-space-xs p-space-xs rounded-xl bg-surface-container/60 backdrop-blur-md" data-active-classes="bg-primary-container text-on-primary-container rounded-lg font-semibold"><a aria-current="page" class="px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container rounded-lg font-semibold" data-path="about" href="#">About</a><a class="px-space-md py-space-sm font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="experience" href="#">Experience</a><a class="px-space-md py-space-sm font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="projects-and-rd" href="#">Projects &amp; R&amp;D</a><a class="px-space-md py-space-sm font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="certifications-and-credentials" href="#">Certifications &amp; Credentials</a><a class="px-space-md py-space-sm font-label-mono text-label-mono text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" data-path="academic-and-hki" href="#">Academic &amp; HKI</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center px-space-md py-space-sm rounded-lg bg-surface-container-high font-label-mono text-label-mono text-on-surface hover:bg-surface-bright hover:text-on-surface transition-colors" data-path="contact" href="#">Contact</a><a class="inline-flex items-center px-space-md py-space-sm rounded-lg bg-primary-container font-label-mono text-label-mono text-on-primary-container font-semibold hover:bg-primary transition-all shadow-[0_0_20px_-4px_rgba(16,185,129,0.35)]" data-path="contact" href="#">Download CV</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- SECTION 1: HERO & CORE TELEMETRY -->
+<section class="relative w-full overflow-hidden pb-space-xl">
+<!-- Ambient Cybernetic Glow Gradients -->
+<div class="absolute -top-32 left-1/4 w-96 h-96 rounded-full bg-primary-container/10 blur-[120px] pointer-events-none"></div>
+<div class="absolute top-48 right-12 w-80 h-80 rounded-full bg-secondary-container/10 blur-[100px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-margin">
+<!-- Terminal Status Pill & Live Nodes -->
+<div class="flex flex-wrap items-center justify-between gap-space-md py-space-md border-b border-outline-variant/30">
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container-high font-code-badge text-code-badge text-primary">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+            SYS_STATUS: READY FOR HIGH-IMPACT ROLES
+          </span>
+<span class="hidden sm:inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded bg-surface-container font-code-badge text-code-badge text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">pin_drop</span>
+            Batu &amp; Surabaya, East Java, ID
+          </span>
+</div>
+<div class="flex items-center gap-space-sm font-label-mono text-label-mono text-outline">
+<span>GPA: 3.63 / 4.00 (160 CREDITS)</span>
+<span>•</span>
+<span class="text-tertiary">TELKOM UNIVERSITY (2022–2026)</span>
+</div>
+</div>
+<!-- Hero Asymmetric Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center pt-space-xl">
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="flex items-center gap-space-xs text-primary font-label-mono text-label-mono uppercase tracking-widest">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span>Enterprise Architect • Edge AI • IoT Embedded Systems</span>
+</div>
+<h1 class="font-display-xl text-display-xl text-on-surface tracking-tight leading-tight">
+            Shaquille <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-tertiary">
+              Rayhannizam
+            </span> Wibisono
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+            Bridging mission-critical enterprise systems (<span class="text-on-surface font-semibold">SAP S/4HANA &amp; ABAP</span>) with applied deep learning (<span class="text-primary font-semibold">YOLOv8 &amp; Gemma 12B</span>) and real-time hardware telemetry (<span class="text-secondary font-semibold">ESP32 &amp; Sensor IoT</span>). Delivering high-reliability architectures from government smart cities to autonomous livestock engineering.
+          </p>
+<!-- Action Matrix -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-sm">
+<a class="inline-flex items-center gap-space-xs px-space-lg py-space-md rounded-lg bg-primary font-label-mono text-label-mono text-on-primary font-bold shadow-[0_0_25px_-5px_rgba(78,222,163,0.4)] hover:bg-primary-fixed transition-all hover:scale-[1.02]" href="#projects">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span>EXPLORE DEPLOYMENTS</span>
+</a>
+<button class="inline-flex items-center gap-space-xs px-space-lg py-space-md rounded-lg bg-surface-container-high font-label-mono text-label-mono text-on-surface hover:bg-surface-bright transition-all" onclick="navigator.clipboard.writeText('shaquille.wibisono@gmail.com'); alert('Email copied: shaquille.wibisono@gmail.com');">
+<span class="material-symbols-outlined text-[18px] text-secondary">content_copy</span>
+<span>COPY DIRECT EMAIL</span>
+</button>
+<div class="flex items-center gap-space-xs pl-space-sm">
+<a class="p-space-sm rounded-lg bg-surface-container text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" href="https://github.com" rel="noreferrer" target="_blank" title="GitHub">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</a>
+<a class="p-space-sm rounded-lg bg-surface-container text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors" href="https://linkedin.com" rel="noreferrer" target="_blank" title="LinkedIn">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Hero Graphic Telemetry Hub Card -->
+<div class="lg:col-span-4 flex flex-col gap-space-md">
+<div class="relative rounded-xl bg-surface-container-low p-space-lg shadow-xl overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-code-badge text-code-badge text-on-surface">SYS_DIAGNOSTICS • ACTIVE</span>
+</div>
+<span class="font-code-badge text-code-badge text-secondary">ID: SRW-2025</span>
+</div>
+<!-- Terminal Stream Preview -->
+<div class="p-space-sm rounded bg-surface-container-lowest font-code-badge text-code-badge text-on-surface-variant space-y-space-xs">
+<p class="text-primary font-semibold">&gt; init core_specializations</p>
+<p>&gt; load YOLOv8_custom_dataset [OK]</p>
+<p>&gt; mount ESP32_HX711_telemetry [ACTIVE]</p>
+<p>&gt; verify SAP_BC400_credentials [PASSED]</p>
+<p class="text-secondary">&gt; peer_sync: JMM_SINTA_Journal [PUBLISHED]</p>
+</div>
+<!-- Diagnostic Live Meter Component -->
+<div class="pt-space-md space-y-space-sm">
+<div>
+<div class="flex justify-between font-label-mono text-label-mono text-body-sm text-on-surface-variant mb-1">
+<span>Degree Completion (160 SKS)</span>
+<span class="text-primary font-bold">100%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container">
+<div class="h-2 rounded-full bg-primary shadow-[0_0_12px_rgba(78,222,163,0.5)]" style="width: 100%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-mono text-label-mono text-body-sm text-on-surface-variant mb-1">
+<span>Academic Standing Index</span>
+<span class="text-secondary font-bold">3.63 / 4.00</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container">
+<div class="h-2 rounded-full bg-secondary shadow-[0_0_12px_rgba(76,215,246,0.5)]" style="width: 90.75%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-mono text-label-mono text-body-sm text-on-surface-variant mb-1">
+<span>English Proficiency (TOEIC / EPRT)</span>
+<span class="text-tertiary font-bold">730 / 490</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container">
+<div class="h-2 rounded-full bg-tertiary shadow-[0_0_12px_rgba(173,198,255,0.5)]" style="width: 77%"></div>
+</div>
+</div>
+</div>
+<!-- Certified R&D MBKM Visual Badge -->
+<div class="mt-space-md p-space-sm rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">verified</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-md text-on-surface leading-tight font-semibold">Ternakpark R&amp;D MBKM</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant">Cert: 0257/Sertif-TP/03.VI/2025</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-xs py-space-xs rounded">VERIFIED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: HIGH-IMPACT QUANTIFIED METRICS BAR -->
+<section class="w-full bg-surface-container-low py-space-lg shadow-inner">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="flex flex-col p-space-md rounded-lg bg-surface-container/70 shadow-sm">
+<div class="flex items-center gap-space-xs text-primary mb-space-xs">
+<span class="material-symbols-outlined text-[20px]">school</span>
+<span class="font-code-badge text-code-badge uppercase tracking-wider">Cum. GPA</span>
+</div>
+<span class="font-display-xl text-headline-lg font-bold text-on-surface">3.63<span class="font-headline-sm text-headline-sm text-outline">/4.0</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Telkom University • 160 SKS Completed</span>
+</div>
+<div class="flex flex-col p-space-md rounded-lg bg-surface-container/70 shadow-sm">
+<div class="flex items-center gap-space-xs text-secondary mb-space-xs">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+<span class="font-code-badge text-code-badge uppercase tracking-wider">Certifications</span>
+</div>
+<span class="font-display-xl text-headline-lg font-bold text-on-surface">10+<span class="font-headline-sm text-headline-sm text-outline"> Valid</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Microsoft, SAP BC400, Azure AI-900</span>
+</div>
+<div class="flex flex-col p-space-md rounded-lg bg-surface-container/70 shadow-sm">
+<div class="flex items-center gap-space-xs text-tertiary mb-space-xs">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="font-code-badge text-code-badge uppercase tracking-wider">Publications &amp; HKI</span>
+</div>
+<span class="font-display-xl text-headline-lg font-bold text-on-surface">1<span class="font-headline-sm text-headline-sm text-outline"> SINTA/JMM</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Published Research • Kelurahan Gayungan</span>
+</div>
+<div class="flex flex-col p-space-md rounded-lg bg-surface-container/70 shadow-sm">
+<div class="flex items-center gap-space-xs text-primary-fixed mb-space-xs">
+<span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+<span class="font-code-badge text-code-badge uppercase tracking-wider">Deployments</span>
+</div>
+<span class="font-display-xl text-headline-lg font-bold text-on-surface">4+<span class="font-headline-sm text-headline-sm text-outline"> Live</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Kominfo Smart City, Agro-IoT &amp; MSME VR</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: CORE SPECIALIZATIONS MATRIX (BENTO GRID) -->
+<section class="w-full py-space-xl">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-secondary font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span>SYSTEM ARCHITECTURE • DOMAIN MATRIX</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Engineered Competencies &amp; Research Focus</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+          A unique synthesis of hardware telemetry, generative neural models, and SAP enterprise-grade governance.
+        </p>
+</div>
+<!-- Bento Matrix Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter">
+<!-- 1. AI & Computer Vision (Span 7) -->
+<div class="lg:col-span-7 rounded-xl bg-surface-container-low p-space-lg shadow-md flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">visibility</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">AI &amp; Computer Vision Systems</h3>
+<span class="font-code-badge text-code-badge text-primary">Edge Detection • LLM Fine-Tuning</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge px-space-sm py-space-xs rounded bg-surface-container-high text-primary font-mono">NODE 01</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Constructed livestock behavioral tracking using custom Ultralytics YOLO models over CCTV streams with a curated 300-sample dataset. Engineered an autonomous LLM customer-agent leveraging fine-tuned Gemma 12B for live agro-commerce, Aqiqah transactions, and Qurban parceling.
+            </p>
+<!-- Inline Telemetry Viz: Inference Latency vs Accuracy -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest mb-space-md">
+<div class="flex items-center justify-between text-body-sm font-label-mono mb-space-xs text-on-surface">
+<span>Model Inference Benchmark (YOLOv8 Edge)</span>
+<span class="text-primary font-bold">32.4 FPS • 96.2% mAP</span>
+</div>
+<div class="w-full h-3 rounded bg-surface-container-high flex overflow-hidden">
+<div class="bg-primary h-full" style="width: 78%" title="Detection Precision"></div>
+<div class="bg-secondary h-full" style="width: 18%" title="Recall"></div>
+<div class="bg-surface-bright h-full" style="width: 4%" title="Latency Overhead"></div>
+</div>
+<div class="flex justify-between font-code-badge text-code-badge text-on-surface-variant mt-1">
+<span>Precision: 94.8%</span>
+<span>Recall: 92.1%</span>
+<span>Edge Overhead: 14ms</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-sm py-space-xs rounded">Ultralytics YOLO</span>
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-sm py-space-xs rounded">OpenCV</span>
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-sm py-space-xs rounded">Gemma 12B LLM</span>
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-sm py-space-xs rounded">Azure AI-900</span>
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-sm py-space-xs rounded">Python DataTrain</span>
+</div>
+</div>
+<!-- 2. IoT & Hardware Engineering (Span 5) -->
+<div class="lg:col-span-5 rounded-xl bg-surface-container-low p-space-lg shadow-md flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">memory</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">IoT &amp; Hardware Telemetry</h3>
+<span class="font-code-badge text-code-badge text-secondary">ESP32 • Load Cells • MQTT</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge px-space-sm py-space-xs rounded bg-surface-container-high text-secondary font-mono">NODE 02</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Prototyped and calibrated an automated smart feeding scale system using ESP32 controllers interfaced with HX711 load cell amplifiers for precise micro-gram biomass measurement and remote nutrition distribution control.
+            </p>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest font-code-badge text-code-badge text-on-surface-variant flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">sensors</span>
+<span>ESP32 Telemetry Loop</span>
+</div>
+<span class="text-secondary font-bold">100Hz Calibration</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="font-code-badge text-code-badge text-secondary bg-secondary/10 px-space-sm py-space-xs rounded">ESP32 DevKit</span>
+<span class="font-code-badge text-code-badge text-secondary bg-secondary/10 px-space-sm py-space-xs rounded">HX711 Amplifiers</span>
+<span class="font-code-badge text-code-badge text-secondary bg-secondary/10 px-space-sm py-space-xs rounded">C / C++ Embedded</span>
+<span class="font-code-badge text-code-badge text-secondary bg-secondary/10 px-space-sm py-space-xs rounded">Firmware UART</span>
+</div>
+</div>
+<!-- 3. Enterprise Systems & Governance (Span 5) -->
+<div class="lg:col-span-5 rounded-xl bg-surface-container-low p-space-lg shadow-md flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">corporate_fare</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Enterprise Systems &amp; ERP</h3>
+<span class="font-code-badge text-code-badge text-tertiary">SAP S/4HANA • ABAP • COBIT</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge px-space-sm py-space-xs rounded bg-surface-container-high text-tertiary font-mono">NODE 03</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Specialized speaker for SAP BC400 (ABAP Workbench Concepts) and HR050 HCM. Practiced in COBIT IT Governance, DAMA-DMBOK data governance, and high-concurrency OracleDB / SQL optimization.
+            </p>
+<div class="grid grid-cols-2 gap-space-sm mb-space-md">
+<div class="p-space-sm rounded bg-surface-container-lowest text-center">
+<span class="font-label-mono text-label-mono text-tertiary font-bold">SAP BC400</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ABAP Workbench Speaker</p>
+</div>
+<div class="p-space-sm rounded bg-surface-container-lowest text-center">
+<span class="font-label-mono text-label-mono text-tertiary font-bold">DAMA • COBIT</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Framework Certified</p>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="font-code-badge text-code-badge text-tertiary bg-tertiary/10 px-space-sm py-space-xs rounded">SAP S/4HANA</span>
+<span class="font-code-badge text-code-badge text-tertiary bg-tertiary/10 px-space-sm py-space-xs rounded">ABAP Workbench</span>
+<span class="font-code-badge text-code-badge text-tertiary bg-tertiary/10 px-space-sm py-space-xs rounded">OracleDB</span>
+<span class="font-code-badge text-code-badge text-tertiary bg-tertiary/10 px-space-sm py-space-xs rounded">Enterprise Architecture</span>
+</div>
+</div>
+<!-- 4. Full-Stack & Cloud Architecture (Span 7) -->
+<div class="lg:col-span-7 rounded-xl bg-surface-container-low p-space-lg shadow-md flex flex-col justify-between hover:bg-surface-container transition-all">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-fixed">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Full-Stack &amp; Public Infrastructure</h3>
+<span class="font-code-badge text-code-badge text-primary-fixed">React • RESTful APIs • RBAC</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge px-space-sm py-space-xs rounded bg-surface-container-high text-primary-fixed font-mono">NODE 04</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Architected RESTful endpoints and high-security role-based access control (RBAC) portals for Kominfo Batu City smart city integrations. Built statistical React dashboards with GIS geo-tagging published in JMM Community Research for local government decentralization.
+            </p>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-code-badge text-code-badge">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span>Kominfo Batu City Smart City Portal • REST Interoperability</span>
+</div>
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-sm py-space-xs rounded">LIVE GOV DEPLOYMENT</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="font-code-badge text-code-badge text-primary-fixed bg-primary-fixed/10 px-space-sm py-space-xs rounded">React.js</span>
+<span class="font-code-badge text-code-badge text-primary-fixed bg-primary-fixed/10 px-space-sm py-space-xs rounded">Java OOP</span>
+<span class="font-code-badge text-code-badge text-primary-fixed bg-primary-fixed/10 px-space-sm py-space-xs rounded">PHP / Laravel</span>
+<span class="font-code-badge text-code-badge text-primary-fixed bg-primary-fixed/10 px-space-sm py-space-xs rounded">RESTful RBAC</span>
+<span class="font-code-badge text-code-badge text-primary-fixed bg-primary-fixed/10 px-space-sm py-space-xs rounded">Tailwind CSS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: FEATURED PROJECT SPOTLIGHT PREVIEW -->
+<section class="w-full bg-surface-container-low/60 py-space-xl" id="projects">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
+<div>
+<div class="flex items-center gap-space-xs text-primary font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-[16px]">featured_play_list</span>
+<span>PRODUCTION DEPLOYMENTS • R&amp;D HIGHLIGHTS</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Engineered Systems in Production</h2>
+</div>
+<a class="inline-flex items-center gap-space-xs font-label-mono text-label-mono text-secondary hover:text-on-surface transition-colors" data-path="projects-and-rd" href="#">
+<span>VIEW FULL PROJECT REPOSITORY</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Project 1: Agro-Tech Computer Vision & Gemma LLM -->
+<div class="rounded-xl bg-surface-container p-space-lg flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all group">
+<div class="flex flex-col">
+<div class="w-full h-48 rounded-lg overflow-hidden mb-space-md relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Dark high-tech agrotech CCTV user interface displaying bounding boxes tracking sheep livestock inside an agricultural barn, with green cybernetic telemetry lines, camera overlays, neural model latency statistics, and modern dashboard metrics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApZZYgBINzFxABpcGpRLXSEshAGyQ5_nVaed5Iygs3reIy0zY5LeYoKxfypddICfCMCeyv0gYvS7oohrF6djDzwsdJVWVQ9e71MTQtts7gQNbCvZfVVjZBPX_tLPdVCB88FoEqNpCLCHSTlhxtNnXq_Q8qHiVjkATUjkFELqnCuHAnqkHfVC_I6HeduHgNPXU-LFDIoANmT3srthrdmXwdh142qrH6ABY-vSpUR8py"/>
+<div class="absolute top-3 left-3 px-space-sm py-space-xs rounded bg-surface-container-lowest/90 font-code-badge text-code-badge text-primary backdrop-blur-md">
+                CV • YOLOv8
+              </div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-code-badge text-code-badge mb-space-xs">
+<span>PT. Agro Properti Selaras Bersama</span>
+<span>•</span>
+<span>2025</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mb-space-xs">
+              Autonomous Livestock Computer Vision &amp; Gemma LLM Agent
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Implemented real-time sheep counting &amp; anomalous perimeter escape detection via CCTV. Integrated a custom-tuned Gemma 12B LLM customer agent for automated livestock commerce.
+            </p>
+</div>
+<div class="flex flex-col gap-space-sm pt-space-sm border-t border-outline-variant/30">
+<div class="flex flex-wrap gap-space-xs">
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-xs py-space-xs rounded">YOLOv8</span>
+<span class="font-code-badge text-code-badge text-secondary bg-secondary/10 px-space-xs py-space-xs rounded">Gemma 12B</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant bg-surface-container-high px-space-xs py-space-xs rounded">ESP32 Scale</span>
+</div>
+<a class="inline-flex items-center justify-between text-primary font-label-mono text-label-mono pt-space-xs hover:underline" data-path="projects-and-rd" href="#">
+<span>Inspect Architecture Case Study</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+<!-- Project 2: Kominfo Batu City Smart City Service Gateway -->
+<div class="rounded-xl bg-surface-container p-space-lg flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all group">
+<div class="flex flex-col">
+<div class="w-full h-48 rounded-lg overflow-hidden mb-space-md relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Government municipal smart city administrative interface with maps of Batu City, data charts, regional telemetry endpoints, RBAC permission roles, and cybernetic clean dark mode styling with emerald accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXvgO2f13l3xpedqtQ_jVHkOwI0lFcTREr9VT8IjlO5zvUDZPsE13LwmBzSOZTANe2YSOb-ZYcxnczgobz3pveZ9-V4HLZ_XioAFbXbK95094z6fuyMlfm5CuBEunTPgZGwd6AIU_9QvNST3a-sF_8mwxlcAJRJUf_uqof_u8IamW7evENO7NTj8fluR8jHqFi30BebSNhHl4yLYsyGONgCJPiwAzTNJ1VsxWNEgV0"/>
+<div class="absolute top-3 left-3 px-space-sm py-space-xs rounded bg-surface-container-lowest/90 font-code-badge text-code-badge text-secondary backdrop-blur-md">
+                GOV TECH • SMART CITY
+              </div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-code-badge text-code-badge mb-space-xs">
+<span>Kominfo Batu City</span>
+<span>•</span>
+<span>2021</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors mb-space-xs">
+              Smart City RESTful API Gateway &amp; Village Admin RBAC Portal
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Engineered secure RESTful endpoints ensuring regional data consistency across government portals. Implemented low-bandwidth asset optimizations and multi-role administrative permission matrix.
+            </p>
+</div>
+<div class="flex flex-col gap-space-sm pt-space-sm border-t border-outline-variant/30">
+<div class="flex flex-wrap gap-space-xs">
+<span class="font-code-badge text-code-badge text-secondary bg-secondary/10 px-space-xs py-space-xs rounded">RESTful API</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant bg-surface-container-high px-space-xs py-space-xs rounded">RBAC Security</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant bg-surface-container-high px-space-xs py-space-xs rounded">Performance Tuning</span>
+</div>
+<a class="inline-flex items-center justify-between text-secondary font-label-mono text-label-mono pt-space-xs hover:underline" data-path="projects-and-rd" href="#">
+<span>Inspect API Schemas &amp; Protocols</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+<!-- Project 3: SINTA / JMM Published Community Statistical GIS -->
+<div class="rounded-xl bg-surface-container p-space-lg flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all group">
+<div class="flex flex-col">
+<div class="w-full h-48 rounded-lg overflow-hidden mb-space-md relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern interactive statistical GIS dashboard for population and complaint tracking with map heatmaps, demographic distribution charts, scientific research layout, and dark obsidian aesthetic with cyan highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK44gr0tYjFkD814_PAqZUU7gQDlq9FM855vDAT-AcJ8sP6QcKm_3jjgp61SimshnC_ysGnc28iilgvISKiKVFWHyAEa1ipKbwhKPdIDmj4uvBUlpQxJQ1wZqtTSdd5Y3150gn9DTXC3eqotj5NNYB1lt3LNbR_TDdjnLRHu1KlTjqYywm6IlPWXEsCP4yqFM0jqrkJ1tWatKfx1JQMuVuKPHfSWxanFl3FwZ5jvQQ"/>
+<div class="absolute top-3 left-3 px-space-sm py-space-xs rounded bg-surface-container-lowest/90 font-code-badge text-code-badge text-tertiary backdrop-blur-md">
+                JMM PUBLICATION • GIS
+              </div>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-code-badge text-code-badge mb-space-xs">
+<span>BPS &amp; Kelurahan Gayungan</span>
+<span>•</span>
+<span>2024</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-tertiary transition-colors mb-space-xs">
+              Regional Statistical Portal &amp; GIS Complaint Tracking System
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Co-designed React-driven spatial intelligence portal for public infrastructure geo-tagging and SDG alignment. Formally published in JMM (Jurnal Masyarakat Mandiri).
+            </p>
+</div>
+<div class="flex flex-col gap-space-sm pt-space-sm border-t border-outline-variant/30">
+<div class="flex flex-wrap gap-space-xs">
+<span class="font-code-badge text-code-badge text-tertiary bg-tertiary/10 px-space-xs py-space-xs rounded">React.js</span>
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-xs py-space-xs rounded">Geo-Tagging GIS</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant bg-surface-container-high px-space-xs py-space-xs rounded">SINTA Indexed</span>
+</div>
+<a class="inline-flex items-center justify-between text-tertiary font-label-mono text-label-mono pt-space-xs hover:underline" data-path="academic-and-hki" href="#">
+<span>View JMM Research Paper</span>
+<span class="material-symbols-outlined text-[16px]">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: CERTIFIED CREDENTIALS & HARDWARE AUDIT PREVIEW -->
+<section class="w-full py-space-xl">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Credential Spotlight Card (Inspired by User Certificate Asset) -->
+<div class="lg:col-span-6 rounded-xl bg-surface-container-low p-space-lg shadow-xl relative overflow-hidden">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[28px]">verified</span>
+<div>
+<span class="font-code-badge text-code-badge text-primary uppercase">OFFICIAL MBKM CERTIFICATION</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Ternakpark Wonosalam</h3>
+</div>
+</div>
+<span class="font-code-badge text-code-badge px-space-sm py-space-xs rounded bg-surface-container-high text-on-surface font-mono">
+              № 0257/Sertif-TP/03.VI/2025
+            </span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-lowest space-y-space-sm mb-space-md">
+<div class="flex justify-between text-body-sm font-label-mono text-on-surface-variant border-b border-outline-variant/30 pb-2">
+<span>Recipient:</span>
+<span class="text-on-surface font-semibold">Shaquille Rayhannizam Wibisono</span>
+</div>
+<div class="flex justify-between text-body-sm font-label-mono text-on-surface-variant border-b border-outline-variant/30 pb-2">
+<span>Tenure / Execution:</span>
+<span class="text-primary font-semibold">10 Feb 2025 – 10 Jun 2025</span>
+</div>
+<div class="flex justify-between text-body-sm font-label-mono text-on-surface-variant border-b border-outline-variant/30 pb-2">
+<span>Signatory 1:</span>
+<span class="text-on-surface">Imran Ibnu Fajri (Direktur)</span>
+</div>
+<div class="flex justify-between text-body-sm font-label-mono text-on-surface-variant">
+<span>Signatory 2:</span>
+<span class="text-on-surface">Rangga Galih Pradana (GM Wonosalam)</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-code-badge text-code-badge text-outline flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+              VERIFIED PORTAL ID • MBKM KAMPUS MERDEKA
+            </span>
+<a class="font-label-mono text-label-mono text-primary hover:underline flex items-center gap-1" data-path="certifications-and-credentials" href="#">
+<span>Inspect All 10+ Credentials</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Academic & Enterprise Credentials Quick Stack -->
+<div class="lg:col-span-6 flex flex-col gap-space-sm">
+<div class="p-space-md rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-secondary text-[24px]">security</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">Microsoft Security Fundamentals</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant">Exam 98-367 • Active Credential</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge text-secondary bg-secondary/10 px-space-sm py-space-xs rounded">VALID 2022-2025</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-tertiary text-[24px]">record_voice_over</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">SAP BC400 Training Speaker</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant">ABAP Workbench Concepts • Telkom University</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge text-tertiary bg-tertiary/10 px-space-sm py-space-xs rounded">2023-2026</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-primary text-[24px]">translate</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">TOEIC Official English Proficiency</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant">Score 730 • EPRT Score 490</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge text-primary bg-primary/10 px-space-sm py-space-xs rounded">VALID 2022-2025</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-primary-fixed text-[24px]">code</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-body-lg font-semibold text-on-surface">OOP Practicum Assistant Certification</span>
+<span class="font-code-badge text-code-badge text-on-surface-variant">Object Oriented Programming (Java) • Mentorship</span>
+</div>
+</div>
+<span class="font-code-badge text-code-badge text-primary-fixed bg-primary-fixed/10 px-space-sm py-space-xs rounded">2024</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: DIRECT TELEMETRY / CONTACT CALLOUT BANNER -->
+<section class="w-full bg-surface-container-lowest py-space-xl border-t border-outline-variant/30">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="p-space-xl rounded-2xl bg-gradient-to-r from-surface-container via-surface-container-high to-surface-container-low shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-space-xl relative overflow-hidden">
+<div class="flex flex-col gap-space-xs z-10 max-w-xl">
+<div class="flex items-center gap-space-xs text-primary font-label-mono text-label-mono">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+<span>DIRECT TELEMETRY CONNECTION • AVAILABLE IMMEDIATELY</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Initiate Collaboration or Architecture Inquiry</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Whether for enterprise ERP solutions, edge artificial intelligence pipelines, or academic systems research, reach out directly to initiate dialogue.
+          </p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-md z-10 w-full lg:w-auto">
+<button class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-lg bg-primary font-label-mono text-label-mono text-on-primary font-bold shadow-[0_0_20px_-4px_rgba(78,222,163,0.5)] hover:bg-primary-fixed transition-all hover:scale-105" onclick="navigator.clipboard.writeText('shaquille.wibisono@gmail.com'); alert('Shaquille\'s email copied: shaquille.wibisono@gmail.com');">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span>shaquille.wibisono@gmail.com</span>
+</button>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-space-md rounded-lg bg-surface-container-highest font-label-mono text-label-mono text-on-surface hover:bg-surface-bright transition-colors" href="tel:+6281233502636">
+<span class="material-symbols-outlined text-[18px] text-secondary">call</span>
+<span>+62 812-3350-2636</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Simple micro-interaction for notification when nodes are clicked
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("Shaquille R. Wibisono Portfolio Node initialized successfully.");
+  });
+</script></main><footer class="w-full bg-surface-container-lowest py-space-xl"><div class="max-w-7xl mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start pb-space-xl"><div class="md:col-span-6 flex flex-col gap-space-sm"><div class="flex items-center gap-space-md"><img alt="Shaquille Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Uo0mLBFj-NiHG_JTmHYCwtfdrBq8hgw4ugoH2SZMYio8YZixA_MDasYVp8TP6Aq32zSLhIRnoLO5AkEWfG4nPYliWALVoR-Da6GcLqBUsb_0sY1IrjN-O0Dv9dzneMBYrF3z08vMGssKBEGHyEXvI59SP4oaXAt6Exij3x7Y1EDHcXKFNCAdr8zLTbbuqmSo3l1R46d-WEDMEfAriwFGFFZcOhBC_u1V32iUtPhj_U"/><span class="font-headline-sm text-headline-sm text-on-surface">Shaquille Rayhannizam Wibisono</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Information Systems Specialist, AI &amp; IoT Embedded Researcher, and Enterprise Systems Architect driving high-reliability software, predictive intelligence, and operational excellence.</p><div class="flex items-center gap-space-md mt-space-sm"><span class="font-code-badge text-code-badge text-secondary bg-surface-container px-space-sm py-space-xs rounded">SAP S/4HANA</span><span class="font-code-badge text-code-badge text-primary bg-surface-container px-space-sm py-space-xs rounded">Edge AI • IoT</span><span class="font-code-badge text-code-badge text-tertiary bg-surface-container px-space-sm py-space-xs rounded">Cloud Infrastructure</span></div></div><div class="md:col-span-3 flex flex-col gap-space-xs"><span class="font-label-mono text-label-mono text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Telemetry &amp; Comms</span><div class="flex flex-col gap-space-xs text-on-surface-variant font-body-sm text-body-sm"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[16px]">mail</span><span>shaquille.wibisono@gmail.com</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[16px]">call</span><span>+62 812-3350-2636</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-on-surface-variant text-[16px]">location_on</span><span>Batu, East Java, ID</span></div></div></div><div class="md:col-span-3 flex flex-col gap-space-xs"><span class="font-label-mono text-label-mono text-on-surface font-semibold uppercase tracking-wider mb-space-xs">Network Nodes</span><div class="flex flex-col gap-space-xs font-label-mono text-label-mono"><a class="inline-flex items-center gap-space-xs text-on-surface-variant hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-[16px]">terminal</span><span>GitHub Profile</span></a><a class="inline-flex items-center gap-space-xs text-on-surface-variant hover:text-secondary transition-colors" href="#"><span class="material-symbols-outlined text-[16px]">link</span><span>LinkedIn Network</span></a><a class="inline-flex items-center gap-space-xs text-on-surface-variant hover:text-tertiary transition-colors" href="#"><span class="material-symbols-outlined text-[16px]">verified</span><span>HKI &amp; Intellectual Property</span></a></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md"><div class="font-body-sm text-body-sm text-on-surface-variant">© 2025 Shaquille Rayhannizam Wibisono. System Architecture • All Rights Reserved.</div><div class="font-code-badge text-code-badge text-outline flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span><span>NODE ID: SRW-SYS-01 • 200 OK</span></div></div></div></footer></body></html>

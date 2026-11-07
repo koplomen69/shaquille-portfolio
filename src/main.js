@@ -1,5 +1,7 @@
 import "./styles.css"
 import { createScene } from "./scene.js"
+import { createLightScene } from "./lightScene.js"
+import { startPortfolioBuildIntro } from "./buildIntro.js"
 import {
   profile,
   metrics,
@@ -14,8 +16,34 @@ import {
 
 const app = document.getElementById("app")
 const canvas = document.getElementById("webgl-bg")
+const lightCanvas = document.createElement("canvas")
+lightCanvas.id = "webgl-bg-light"
+canvas.before(lightCanvas)
 
-const solar = createScene(canvas)
+const THEME_KEY = "portfolio-theme"
+let theme = localStorage.getItem(THEME_KEY) || "dark"
+
+const solarScene = createScene(canvas)
+const lightScene = createLightScene(lightCanvas)
+solarScene.setActive(theme !== "light")
+lightScene.setActive(theme === "light")
+let activeScene = theme === "light" ? lightScene : solarScene
+const buildIntroEnabled =
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+  new URLSearchParams(window.location.search).get("intro") !== "0"
+
+function applyTheme(next) {
+  theme = next
+  document.documentElement.dataset.theme = theme
+  localStorage.setItem(THEME_KEY, theme)
+  solarScene.setActive(theme !== "light")
+  lightScene.setActive(theme === "light")
+  activeScene = theme === "light" ? lightScene : solarScene
+  activeScene.setInteractive(exploreMode)
+  syncExploreUI()
+  const themeIcon = document.querySelector("#theme-toggle .material-symbols-outlined")
+  if (themeIcon) themeIcon.textContent = theme === "light" ? "dark_mode" : "light_mode"
+}
 
 const spotlight = certifications.find((c) => c.spotlight) || certifications[0]
 const certList = certifications
@@ -99,6 +127,9 @@ app.innerHTML = `
         <a href="#academic">Academic &amp; HKI</a>
       </nav>
       <div class="header-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" title="Toggle light / dark mode" aria-label="Toggle light or dark mode">
+          ${icon(theme === "light" ? "dark_mode" : "light_mode")}
+        </button>
         <a class="btn btn-ghost label-mono contact-btn-desktop" href="#contact">Contact</a>
         <a class="btn btn-primary label-mono" href="${profile.cvPath}" download>Download CV</a>
         <button class="mobile-toggle" id="menu-btn" aria-label="Open menu">${icon("menu")}</button>
@@ -563,6 +594,10 @@ app.innerHTML = `
   </div>
 `
 
+if (buildIntroEnabled) {
+  startPortfolioBuildIntro({ revealNow })
+}
+
 // Interactions
 const toast = document.getElementById("toast")
 function showToast(msg) {
@@ -625,22 +660,49 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !imageModal.hidden) closeImageModal()
 })
 
-// Solar system explore mode — hide portfolio UI so users can interact with planets
+// Explore mode — hide portfolio UI so users can interact with the 3D scene
 const solarToggle = document.getElementById("solar-toggle")
 const solarToggleLabel = document.getElementById("solar-toggle-label")
+const solarHint = document.getElementById("solar-hint")
 let exploreMode = false
+
+function syncExploreUI() {
+  const isSolar = theme === "dark"
+  solarToggleLabel.textContent = exploreMode
+    ? "Show Portfolio"
+    : isSolar
+      ? "Explore Solar System"
+      : "Explore Horizon"
+  solarToggle.querySelector(".material-symbols-outlined").textContent = exploreMode
+    ? "layers"
+    : isSolar
+      ? "public"
+      : "waves"
+  solarHint.textContent = isSolar
+    ? "Drag anywhere to rotate · Scroll or pinch to zoom · Tap a planet for details · Double-click to reset"
+    : "Drag anywhere to orbit · Scroll or pinch to zoom · Double-click to reset"
+}
 solarToggle?.addEventListener("click", () => {
   exploreMode = !exploreMode
   document.body.classList.toggle("explore-mode", exploreMode)
   solarToggle.setAttribute("aria-pressed", String(exploreMode))
-  solarToggleLabel.textContent = exploreMode ? "Show Portfolio" : "Explore Solar System"
-  solarToggle.querySelector(".material-symbols-outlined").textContent = exploreMode
-    ? "layers"
-    : "public"
-  solar.setInteractive(exploreMode)
-  if (!exploreMode) solar.focusSun()
-  showToast(exploreMode ? "Solar system unlocked — drag to explore" : "Portfolio content restored")
+  syncExploreUI()
+  activeScene.setInteractive(exploreMode)
+  if (!exploreMode) activeScene.resetView()
+  showToast(
+    exploreMode
+      ? theme === "light"
+        ? "Horizon unlocked — drag to explore"
+        : "Solar system unlocked — drag to explore"
+      : "Portfolio content restored",
+  )
 })
+
+document.getElementById("theme-toggle")?.addEventListener("click", () => {
+  applyTheme(theme === "light" ? "dark" : "light")
+  showToast(theme === "light" ? "Dark mode — solar system active" : "Light mode — horizon active")
+})
+syncExploreUI()
 
 const menuBtn = document.getElementById("menu-btn")
 const mobileNav = document.getElementById("mobile-nav")
@@ -690,7 +752,7 @@ document.getElementById("cert-list")?.addEventListener("click", (e) => {
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && !document.body.classList.contains("build-active")) {
         revealNow(entry.target)
         revealObserver.unobserve(entry.target)
       }
@@ -710,7 +772,7 @@ document.querySelectorAll(".reveal, .diag-card").forEach((el) => {
   el.classList.add("reveal")
   const rect = el.getBoundingClientRect()
   const inView = rect.top < window.innerHeight * 0.92 && rect.bottom > 0
-  if (inView) {
+  if (inView && !document.body.classList.contains("build-active")) {
     revealNow(el)
   } else {
     revealObserver.observe(el)

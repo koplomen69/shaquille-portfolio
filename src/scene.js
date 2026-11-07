@@ -345,11 +345,13 @@ export function createScene(canvas) {
   renderer.domElement.addEventListener("dblclick", onDblClick)
 
   let raf = 0
+  let active = true
   const clock = new THREE.Clock()
 
   function animate() {
     raf = requestAnimationFrame(animate)
     const dt = clock.getDelta()
+    if (!active) return
     const t = clock.elapsedTime
 
     sunMesh.rotation.y += 0.002
@@ -384,6 +386,15 @@ export function createScene(canvas) {
 
   return {
     setInteractive,
+    setActive(v) {
+      active = v
+      if (v) onResize()
+    },
+    resetView() {
+      focused = null
+      controls.target.set(0, 0, 0)
+      camera.position.set(0, 28, 52)
+    },
     focusSun() {
       focused = null
       controls.target.set(0, 0, 0)
